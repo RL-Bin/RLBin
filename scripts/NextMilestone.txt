@@ -1,0 +1,17 @@
+
+- Having a data structure and a graph for each function 
+
+	- Data structure has the following
+		- Start of function
+		- Number of bytes
+		- Number of instruction
+		- Function found statically or dynamically
+		- Number of exit points
+		//- indirect CTIs
+		//- Called Functions
+
+- Having a call graph of the program showing which calls were actually executed 
+
++ Code clean up
+
++ Force instructions to either stay in function, or go to the beginning of another function or pseduo-function

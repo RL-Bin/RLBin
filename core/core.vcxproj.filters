@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Capstone">
+      <UniqueIdentifier>{66bce7fe-d6b7-4a8c-bc01-f473b7ca8ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Parser">
+      <UniqueIdentifier>{d33b0f5d-8323-40d3-8d86-6f339c1e2ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits">
+      <UniqueIdentifier>{d960d4bd-0778-43ff-a216-969ab44a1871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\Utils">
+      <UniqueIdentifier>{a04cd315-1b56-4ed5-9243-4502d9162273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits">
+      <UniqueIdentifier>{e6f55858-b29a-4bea-8f73-75150f1e45e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits\Utils">
+      <UniqueIdentifier>{b297053b-123e-42b1-86c4-6b3fd756b4bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\Conversion.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\FileOperations.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\Logging.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\MemOperations.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\Other.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Utils\RLBinUtils.cpp">
+      <Filter>Source Files\SubUnits\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Capstone\capstone.h">
+      <Filter>Header Files\Capstone</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Capstone\platform.h">
+      <Filter>Header Files\Capstone</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Capstone\x86.h">
+      <Filter>Header Files\Capstone</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Parser\nt-headers.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Parser\parse.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Parser\to_string.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\utils\defs.h">
+      <Filter>Header Files\SubUnits\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\utils\RLBinUtils.h">
+      <Filter>Header Files\SubUnits\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

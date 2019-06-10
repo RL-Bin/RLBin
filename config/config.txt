@@ -1,0 +1,32 @@
+/////////////////////////////////// Operation Mode
+//
+// default=1
+//
+// OptMode 0 is the Static RL-Bin
+//
+OptMode=1
+
+
+/////////////////////////////////// optimization level
+//
+// OptLevel 0 is the base RL-Bin 
+//
+// default=1
+//
+OptLevel=1
+
+
+/////////////////////////////////// Log Files
+// 
+// default=0
+//
+DisLog=0
+ModLog=0
+OptLog=0
+ThreadLog=0
+TimeLog=0
+TrampLog=0
+
+
+/////////////////////////////////// Features (optimization or ...)
+

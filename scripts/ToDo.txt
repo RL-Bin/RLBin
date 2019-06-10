@@ -1,0 +1,11 @@
++ fix code redundancy
+
+- fix names and formatting (style)
+
+- add error messages
+
+- instruction handling specially jmp eax
+
+- improve demangle for c++
+
+- find additional call backs in cpp

@@ -162,24 +162,46 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CU\CU.cpp" />
+    <ClCompile Include="DataStructs\CallGraph\CallGraph.cpp" />
+    <ClCompile Include="DataStructs\DisTable\DisTable.cpp" />
+    <ClCompile Include="DataStructs\Funcs\Funcs.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="core.cpp" />
+    <ClCompile Include="FAU\FAU.cpp" />
+    <ClCompile Include="IMU\IMU.cpp" />
+    <ClCompile Include="SubUnits\Disassembler\Disassembler.cpp" />
+    <ClCompile Include="SubUnits\Modules\Modules.cpp" />
+    <ClCompile Include="SubUnits\OptStat\OptStat.cpp" />
+    <ClCompile Include="SubUnits\Timer\Timer.cpp" />
     <ClCompile Include="SubUnits\Utils\Conversion.cpp" />
     <ClCompile Include="SubUnits\Utils\FileOperations.cpp" />
     <ClCompile Include="SubUnits\Utils\Logging.cpp" />
     <ClCompile Include="SubUnits\Utils\MemOperations.cpp" />
     <ClCompile Include="SubUnits\Utils\Other.cpp" />
     <ClCompile Include="SubUnits\Utils\RLBinUtils.cpp" />
+    <ClCompile Include="TMU\TMU.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h" />
     <ClInclude Include="include\Capstone\platform.h" />
     <ClInclude Include="include\Capstone\x86.h" />
+    <ClInclude Include="include\CU\CU.h" />
+    <ClInclude Include="include\DataStructs\CallGraph\CallGraph.h" />
+    <ClInclude Include="include\DataStructs\DisTable\DisTable.h" />
+    <ClInclude Include="include\DataStructs\Funcs\Funcs.h" />
+    <ClInclude Include="include\FAU\FAU.h" />
+    <ClInclude Include="include\IMU\IMU.h" />
     <ClInclude Include="include\Parser\nt-headers.h" />
     <ClInclude Include="include\Parser\parse.h" />
     <ClInclude Include="include\Parser\to_string.h" />
+    <ClInclude Include="include\SubUnits\Disassembler\Disassembler.h" />
+    <ClInclude Include="include\SubUnits\Modules\Modules.h" />
+    <ClInclude Include="include\SubUnits\OptStat\OptStat.h" />
+    <ClInclude Include="include\SubUnits\Timer\Timer.h" />
     <ClInclude Include="include\SubUnits\utils\defs.h" />
     <ClInclude Include="include\SubUnits\utils\RLBinUtils.h" />
+    <ClInclude Include="include\TMU\TMU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,6 +27,78 @@
     <Filter Include="Header Files\SubUnits\Utils">
       <UniqueIdentifier>{b297053b-123e-42b1-86c4-6b3fd756b4bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\CU">
+      <UniqueIdentifier>{ed231efb-0066-4afa-9c48-5c7954f0eb02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FAU">
+      <UniqueIdentifier>{dc15f3c3-19c5-4641-87ce-8a99f9582b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IMU">
+      <UniqueIdentifier>{665f8014-3547-4e74-b5ca-ab6e0734f2b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructs">
+      <UniqueIdentifier>{bbb2b67c-c4c6-4620-a569-af5f17e264a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TMU">
+      <UniqueIdentifier>{4fc5cd2d-83f0-4847-8da2-5290258d44e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructs\CallGraph">
+      <UniqueIdentifier>{6c99071c-953f-4d4f-b9e7-1c66bdc2875c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructs\DisTable">
+      <UniqueIdentifier>{d0c602d6-5ea7-4f84-9a99-28399a1689b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructs\Funcs">
+      <UniqueIdentifier>{4303ab21-98de-4a52-99d8-d081e284b02b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\Disassembler">
+      <UniqueIdentifier>{d711518a-f82e-4e87-bceb-7ec83faf93fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\Modules">
+      <UniqueIdentifier>{b4c21bb9-237e-4c6d-b282-b4d1c4ff8abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\OptStat">
+      <UniqueIdentifier>{fb32c781-bcf2-4009-a5bc-4bcd5a2e6814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\Timer">
+      <UniqueIdentifier>{f74cf808-45af-412e-a159-a2905ee5e1ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits\Disassembler">
+      <UniqueIdentifier>{593e3ac2-ba77-4e9d-a7c9-88b908a12971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits\Modules">
+      <UniqueIdentifier>{5ae604d1-66a4-46c8-ba2e-8ab6ccd1b1dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits\OptStat">
+      <UniqueIdentifier>{76ec9b51-d5b4-43be-a50e-b656fa8b7fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubUnits\Timer">
+      <UniqueIdentifier>{863db5d6-f4d6-42e3-b0c9-303e121bf485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructs">
+      <UniqueIdentifier>{e434dbb2-e9a9-474d-aba5-316b78680ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructs\CallGraph">
+      <UniqueIdentifier>{04c152eb-4b30-4e7c-a3ff-9ee601990f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructs\DisTable">
+      <UniqueIdentifier>{7cc40907-f23e-42ed-8c5f-8949943c207e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructs\Funcs">
+      <UniqueIdentifier>{3cb28bdf-9723-485b-8afe-a6f6c87be104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CU">
+      <UniqueIdentifier>{ac3a274c-b4a5-4ed8-8b3c-1caf8d9c1b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FAU">
+      <UniqueIdentifier>{bdefbe7d-b904-4162-8719-4c85beae62bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IMU">
+      <UniqueIdentifier>{0cee7fd4-3626-4f18-8e94-38b2acfa25dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TMU">
+      <UniqueIdentifier>{02c5abf7-c54d-4651-8509-40dc222ea470}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core.cpp">
@@ -53,6 +125,39 @@
     <ClCompile Include="SubUnits\Utils\RLBinUtils.cpp">
       <Filter>Source Files\SubUnits\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="CU\CU.cpp">
+      <Filter>Source Files\CU</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\CallGraph\CallGraph.cpp">
+      <Filter>Source Files\DataStructs\CallGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\DisTable\DisTable.cpp">
+      <Filter>Source Files\DataStructs\DisTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\Funcs\Funcs.cpp">
+      <Filter>Source Files\DataStructs\Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="FAU\FAU.cpp">
+      <Filter>Source Files\FAU</Filter>
+    </ClCompile>
+    <ClCompile Include="IMU\IMU.cpp">
+      <Filter>Source Files\IMU</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Disassembler\Disassembler.cpp">
+      <Filter>Source Files\SubUnits\Disassembler</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Modules\Modules.cpp">
+      <Filter>Source Files\SubUnits\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\OptStat\OptStat.cpp">
+      <Filter>Source Files\SubUnits\OptStat</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Timer\Timer.cpp">
+      <Filter>Source Files\SubUnits\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="TMU\TMU.cpp">
+      <Filter>Source Files\TMU</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h">
@@ -78,6 +183,39 @@
     </ClInclude>
     <ClInclude Include="include\SubUnits\utils\RLBinUtils.h">
       <Filter>Header Files\SubUnits\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CU\CU.h">
+      <Filter>Header Files\CU</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructs\CallGraph\CallGraph.h">
+      <Filter>Header Files\DataStructs\CallGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructs\DisTable\DisTable.h">
+      <Filter>Header Files\DataStructs\DisTable</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataStructs\Funcs\Funcs.h">
+      <Filter>Header Files\DataStructs\Funcs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FAU\FAU.h">
+      <Filter>Header Files\FAU</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMU\IMU.h">
+      <Filter>Header Files\IMU</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\Disassembler\Disassembler.h">
+      <Filter>Header Files\SubUnits\Disassembler</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\Modules\Modules.h">
+      <Filter>Header Files\SubUnits\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\OptStat\OptStat.h">
+      <Filter>Header Files\SubUnits\OptStat</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\Timer\Timer.h">
+      <Filter>Header Files\SubUnits\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TMU\TMU.h">
+      <Filter>Header Files\TMU</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

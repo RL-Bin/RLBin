@@ -163,11 +163,12 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CU\CU.cpp" />
+    <ClCompile Include="CU\ExceptionHandler.cpp" />
+    <ClCompile Include="CU\Main.cpp" />
     <ClCompile Include="DataStructs\CallGraph\CallGraph.cpp" />
     <ClCompile Include="DataStructs\DisTable\DisTable.cpp" />
     <ClCompile Include="DataStructs\Funcs\Funcs.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="core.cpp" />
     <ClCompile Include="FAU\FAU.cpp" />
     <ClCompile Include="IMU\IMU.cpp" />
     <ClCompile Include="SubUnits\Disassembler\Disassembler.cpp" />

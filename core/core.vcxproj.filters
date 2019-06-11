@@ -101,9 +101,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="TMU\TMU.cpp">
       <Filter>Source Files\TMU</Filter>
+    </ClCompile>
+    <ClCompile Include="CU\ExceptionHandler.cpp">
+      <Filter>Source Files\CU</Filter>
+    </ClCompile>
+    <ClCompile Include="CU\Main.cpp">
+      <Filter>Source Files\CU</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

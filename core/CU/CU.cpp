@@ -5,7 +5,7 @@
 
 #include "..\include\CU\CU.h"
 
-/** inititalizing the only instace of class */
+// inititalizing the only instace of class 
 CU* CU::s_instance = NULL;
 
 CU* CU::Create(void) 
@@ -27,4 +27,9 @@ CU* CU::Get(void)
 		return NULL;
 	}
 	return s_instance;
+}
+
+void CU::Initialize(void) 
+{
+
 }

@@ -22,6 +22,9 @@ public:
 	/** @brief gets the single instance of the CU class */
 	static CU* Get(void);
 
+	/** @brief initializes all other modules*/
+	static void Initialize(void);
+
 private:
 	/** The single unique object of this class */
 	static CU* s_instance;

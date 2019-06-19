@@ -3,10 +3,13 @@
  * @brief Defines the body of functions in StatUnit class.
  */
 
+#include <list>
+#include <algorithm>
+
 #include "..\include\StatUnit\StatUnit.h"
 
 #include "..\include\SubUnits\Modules\Modules.h"
-
+#include "..\include\SubUnits\Disassembler\Disassembler.h"
 
 // inititalizing the only instace of class 
 StatUnit* StatUnit::s_instance = NULL;
@@ -37,9 +40,171 @@ void StatUnit::Run()
 {
 	Modules::Create();
 	Modules::Get()->Initialize();
+
+	Disassembler::Create();
+
+	RecursiveDisassembly();
+
+	PrintDisassembly();
 }
 
-void StatUnit::Disassemble() 
+void StatUnit::RecursiveDisassembly() 
 {
+	std::list<ADDRESS> to_be_disassembled;
 
+    if(!CheckList(to_be_disassembled, Modules::Get()->GetEntryPoint()))
+    {
+    	to_be_disassembled.push_back(Modules::Get()->GetEntryPoint());	
+    }
+
+    while(!to_be_disassembled.empty())
+    {
+    	//Disassembler::Get()->PrintInst(to_be_disassembled.front(), T_STATIC);
+    	
+    	if(Disassembler::Get()->IsInstDirectJump(to_be_disassembled.front())) // Direct Jump
+    	{
+    		// find out the destination of call or jump
+    		ADDRESS dest; 
+    		Disassembler::Get()->GetDirectCTIDest(to_be_disassembled.front(), &dest);
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest));
+			// add dest to the list to be discovered if it's not in either list
+		    if((!CheckList(to_be_disassembled, dest))&&(!CheckList(disassembled, dest)))
+		    {
+		    	to_be_disassembled.push_back(dest);	
+		    }
+
+			// remove the current instruction from to be discovered and add it to discovered
+		    disassembled.push_back(to_be_disassembled.front());
+		    to_be_disassembled.pop_front();
+    	}
+    	else if(Disassembler::Get()->IsInstDirectCall(to_be_disassembled.front())) // Direct Call
+    	{
+    		// find out the destination of call or jump
+    		ADDRESS dest; 
+    		Disassembler::Get()->GetDirectCTIDest(to_be_disassembled.front(), &dest);
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest));
+    		// add dest to the list to be discovered if it's not in either list
+		    if((!CheckList(to_be_disassembled, dest))&&(!CheckList(disassembled, dest)))
+		    {
+		    	to_be_disassembled.push_back(dest);	
+		    }
+
+   			ADDRESS next = to_be_disassembled.front() + Disassembler::Get()->GetInstSize(to_be_disassembled.front());
+    		// add next to the list to be discovered if it's not in either list
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));    		
+		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
+		    {
+		    	to_be_disassembled.push_back(next);	
+		    }
+
+			// remove the current instruction from to be discovered and add it to discovered
+		    disassembled.push_back(to_be_disassembled.front());
+		    to_be_disassembled.pop_front();
+
+		    // add dest to the list of called addresses
+		    if(!CheckList(static_funcs, dest))
+		    {
+		    	static_funcs.push_back(dest);	
+		    }
+    	}
+    	else if((Disassembler::Get()->IsInstRet(to_be_disassembled.front())) || (Disassembler::Get()->IsInstIndirectJump(to_be_disassembled.front()))) // return or indirect jmp
+    	{
+    		// remove the current instruction from to be discovered and add it to discovered
+    		disassembled.push_back(to_be_disassembled.front());
+    		to_be_disassembled.pop_front();	
+    	}
+    	else if(Disassembler::Get()->IsInstIndirectCall(to_be_disassembled.front())) // indirect call
+    	{
+    		ADDRESS next = to_be_disassembled.front() + Disassembler::Get()->GetInstSize(to_be_disassembled.front());
+    		// add next to the list to be discovered if it's not in either list
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));    		
+		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
+		    {
+		    	to_be_disassembled.push_back(next);	
+		    }
+
+    		// remove the current instruction from to be discovered and add it to discovered
+    		disassembled.push_back(to_be_disassembled.front());
+    		to_be_disassembled.pop_front();	
+    	}
+    	else if(Disassembler::Get()->IsInstConditionalJump(to_be_disassembled.front())) // conditional jump
+    	{
+    		ADDRESS dest[2]; 
+    		Disassembler::Get()->GetConditionalCTIDest(to_be_disassembled.front(), dest);
+    		// add dest to the list to be discovered if it's not in either list
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest[0]));
+		    if((!CheckList(to_be_disassembled, dest[0]))&&(!CheckList(disassembled, dest[0])))
+		    {
+		    	to_be_disassembled.push_back(dest[0]);	
+		    }
+	   		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest[1]));
+		    if((!CheckList(to_be_disassembled, dest[1]))&&(!CheckList(disassembled, dest[1])))
+		    {
+		    	to_be_disassembled.push_back(dest[1]);	
+		    }
+
+    		// remove the current instruction from to be discovered and add it to discovered
+    		disassembled.push_back(to_be_disassembled.front());
+    		to_be_disassembled.pop_front();	
+    	}
+    	else // NormalCase
+    	{
+    		ADDRESS next = to_be_disassembled.front() + Disassembler::Get()->GetInstSize(to_be_disassembled.front());
+    		// add next to the list to be discovered if it's not in either list
+    		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));
+		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
+		    {
+		    	to_be_disassembled.push_back(next);	
+		    }
+
+ 		   	// remove the current instruction from to be discovered and add it to discovered
+		    disassembled.push_back(to_be_disassembled.front());
+		    to_be_disassembled.pop_front();	
+    	}
+    }
+}
+
+bool StatUnit::CheckList(std::list<ADDRESS> input_list, ADDRESS to_be_checked)
+{
+	std::list<ADDRESS>::iterator findIter = std::find(input_list.begin(), input_list.end(), to_be_checked);
+    if(findIter == input_list.end())
+		return false;
+	else
+		return true;
+}
+
+void StatUnit::PrintDisassembly()
+{	
+	int code_coverage = 0;
+	int inst_coverage = 0;
+
+	disassembled.sort();
+
+	std::list<ADDRESS>::iterator it;
+	for(it=disassembled.begin(); it!=disassembled.end(); ++it)
+	{
+		code_coverage += Disassembler::Get()->GetInstSize(*it);
+		inst_coverage ++;
+	}
+	
+	RLBinUtils::RLBin_Static("____________________________________________________________");
+	RLBinUtils::RLBin_Static("                         Summary");
+	RLBinUtils::RLBin_Static("____________________________________________________________");
+	RLBinUtils::RLBin_Static("Code Coverage:	" + RLBinUtils::ConvertIntToString(code_coverage) + " bytes");
+	RLBinUtils::RLBin_Static("Inst Coverage:	" + RLBinUtils::ConvertIntToString(inst_coverage)+ " instructions");
+	RLBinUtils::RLBin_Static("Func Coverage:	" + RLBinUtils::ConvertIntToString(static_funcs.size())+ " functions");
+	
+
+	RLBinUtils::RLBin_Static("\n____________________________________________________________");
+	RLBinUtils::RLBin_Static("                        Disassembly");
+	RLBinUtils::RLBin_Static("____________________________________________________________");
+
+	for(it=disassembled.begin(); it!=disassembled.end(); ++it)
+	{
+		if(CheckList(static_funcs, *it))
+		{
+			RLBinUtils::RLBin_Static("______________________________");
+		}
+		Disassembler::Get()->PrintInst(*it, T_STATIC);
+	}
 }

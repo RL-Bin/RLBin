@@ -133,3 +133,8 @@ void Modules::AddExpFunc(ADDRESS add, std::string _function_name)
 		RLBinUtils::RLBin_Error("module not found for address \t" + _function_name + "\t"  +RLBinUtils::ConvertHexToString(add) + "\n", __FILENAME__, __LINE__);
 	}
 }
+
+ADDRESS Modules::GetEntryPoint()
+{
+	return main_module.entry_point;
+}

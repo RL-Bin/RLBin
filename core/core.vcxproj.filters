@@ -176,6 +176,18 @@
     <ClCompile Include="SubUnits\Config\Config.cpp">
       <Filter>Source Files\SubUnits\Config</Filter>
     </ClCompile>
+    <ClCompile Include="SubUnits\Disassembler\AddressTranslator.cpp">
+      <Filter>Source Files\SubUnits\Disassembler</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Disassembler\Inst.cpp">
+      <Filter>Source Files\SubUnits\Disassembler</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Disassembler\Opcode.cpp">
+      <Filter>Source Files\SubUnits\Disassembler</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Disassembler\Utilty.cpp">
+      <Filter>Source Files\SubUnits\Disassembler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h">
@@ -240,6 +252,9 @@
     </ClInclude>
     <ClInclude Include="include\SubUnits\Modules\ModuleInfo.h">
       <Filter>Header Files\SubUnits\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\Disassembler\Inst.h">
+      <Filter>Header Files\SubUnits\Disassembler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

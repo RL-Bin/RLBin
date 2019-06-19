@@ -20,6 +20,7 @@ Config* Config::Create(void)
 		RLBinUtils::RLBin_Error("An instance of Config exists", __FILENAME__, __LINE__);
 		return NULL;
 	}
+	RLBinUtils::RLBin_Log("Config SubUnit Created!", __FILENAME__);
 	s_instance = new Config();
 	return s_instance;
 }
@@ -51,7 +52,6 @@ void Config::Initialize(void)
 		conf["TrampLog"] = 0;
 		return;
 	}
-	RLBinUtils::RLBin_Log("Configuration information retrieved from the file.", __FILENAME__);
 	std::string line;
 	while( std::getline(config_stream, line) )
 	{
@@ -66,6 +66,17 @@ void Config::Initialize(void)
 		std::string value = line.substr(line.find(delimiter)+1, line.size());
 		conf[key] = std::stoi(value);
 	}
+
+	ISSTATIC
+	{
+		RLBinUtils::RLBin_Log("RLBin is set to static configuration. Running RLBinStatic!", __FILENAME__);
+	}
+
+	NOTSTATIC
+	{
+		RLBinUtils::RLBin_Log("RLBin is set to dynamic configuration. Running RLBinDynamic!", __FILENAME__);
+	}
+	
 	return;
 }
 

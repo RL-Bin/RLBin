@@ -6,6 +6,8 @@
 #ifndef _STAT_UNIT_H
 #define _STAT_UNIT_H
 
+#include <list>
+
 #include "..\SubUnits\Utils\defs.h"
 #include "..\SubUnits\Utils\RLBinUtils.h"
 
@@ -26,11 +28,30 @@ public:
 	void Run(void);
 
 private:
-	/** @brief Disassmeble the binary using recursive traversal*/
-	void Disassemble(void);
-
 	/** The single unique object of this class */
 	static StatUnit* s_instance;
+
+	/** List of addresses that are disassembled */
+	std::list<ADDRESS> disassembled;
+
+	/** List of addresses that are called directly */
+	std::list<ADDRESS> static_funcs;
+
+	/** @brief Disassmeble the binary using recursive traversal*/
+	void RecursiveDisassembly();
+
+	/** @brief Prints the disassembly to file*/
+	void PrintDisassembly();
+
+	/** 
+	 * @brief Checks to see if a given address is in a list
+	 * 
+	 * param [in] the list to be checked
+	 * param [in] the address to be checked
+	 * return true if the item is in the list 
+	 */
+	bool CheckList(std::list<ADDRESS> input_list, ADDRESS to_be_checked);
+
 };
 
 #endif

@@ -47,6 +47,13 @@ public:
 	 */
 	void AddExpFunc(ADDRESS add, std::string _function_name);
 
+	/** 
+	 * @brief gets the entry point of the main module
+	 *
+	 * @return The entry point
+	 */
+	ADDRESS GetEntryPoint();
+
 private:
 	/** The list of all modules (Program and DLL) loaded into the program address space */
 	std::list<ModuleInfo> modules;

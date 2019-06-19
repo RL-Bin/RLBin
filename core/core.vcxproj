@@ -173,7 +173,11 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     <ClCompile Include="IMU\IMU.cpp" />
     <ClCompile Include="StatUnit\StatUnit.cpp" />
     <ClCompile Include="SubUnits\Config\Config.cpp" />
+    <ClCompile Include="SubUnits\Disassembler\AddressTranslator.cpp" />
     <ClCompile Include="SubUnits\Disassembler\Disassembler.cpp" />
+    <ClCompile Include="SubUnits\Disassembler\Inst.cpp" />
+    <ClCompile Include="SubUnits\Disassembler\Opcode.cpp" />
+    <ClCompile Include="SubUnits\Disassembler\Utilty.cpp" />
     <ClCompile Include="SubUnits\Modules\Modules.cpp" />
     <ClCompile Include="SubUnits\OptStat\OptStat.cpp" />
     <ClCompile Include="SubUnits\Timer\Timer.cpp" />
@@ -200,6 +204,7 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     <ClInclude Include="include\Parser\to_string.h" />
     <ClInclude Include="include\StatUnit\StatUnit.h" />
     <ClInclude Include="include\SubUnits\Disassembler\Disassembler.h" />
+    <ClInclude Include="include\SubUnits\Disassembler\Inst.h" />
     <ClInclude Include="include\SubUnits\Modules\ModuleInfo.h" />
     <ClInclude Include="include\SubUnits\Modules\Modules.h" />
     <ClInclude Include="include\SubUnits\OptStat\OptStat.h" />

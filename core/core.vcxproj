@@ -171,6 +171,8 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="FAU\FAU.cpp" />
     <ClCompile Include="IMU\IMU.cpp" />
+    <ClCompile Include="StatUnit\StatUnit.cpp" />
+    <ClCompile Include="SubUnits\Config\Config.cpp" />
     <ClCompile Include="SubUnits\Disassembler\Disassembler.cpp" />
     <ClCompile Include="SubUnits\Modules\Modules.cpp" />
     <ClCompile Include="SubUnits\OptStat\OptStat.cpp" />
@@ -196,7 +198,9 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     <ClInclude Include="include\Parser\nt-headers.h" />
     <ClInclude Include="include\Parser\parse.h" />
     <ClInclude Include="include\Parser\to_string.h" />
+    <ClInclude Include="include\StatUnit\StatUnit.h" />
     <ClInclude Include="include\SubUnits\Disassembler\Disassembler.h" />
+    <ClInclude Include="include\SubUnits\Modules\ModuleInfo.h" />
     <ClInclude Include="include\SubUnits\Modules\Modules.h" />
     <ClInclude Include="include\SubUnits\OptStat\OptStat.h" />
     <ClInclude Include="include\SubUnits\Timer\Timer.h" />

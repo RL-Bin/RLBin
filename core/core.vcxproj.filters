@@ -99,6 +99,15 @@
     <Filter Include="Header Files\TMU">
       <UniqueIdentifier>{02c5abf7-c54d-4651-8509-40dc222ea470}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\StatUnit">
+      <UniqueIdentifier>{4f9666cb-db93-420f-88bf-4ac4ba4d5931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StatUnit">
+      <UniqueIdentifier>{7c8f73b3-15fb-4667-9414-2be959905dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SubUnits\Config">
+      <UniqueIdentifier>{b168d2e7-5fa8-4ce4-b43c-7e64f278af07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -161,6 +170,12 @@
     <ClCompile Include="CU\Main.cpp">
       <Filter>Source Files\CU</Filter>
     </ClCompile>
+    <ClCompile Include="StatUnit\StatUnit.cpp">
+      <Filter>Source Files\StatUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Config\Config.cpp">
+      <Filter>Source Files\SubUnits\Config</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h">
@@ -219,6 +234,12 @@
     </ClInclude>
     <ClInclude Include="include\TMU\TMU.h">
       <Filter>Header Files\TMU</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StatUnit\StatUnit.h">
+      <Filter>Header Files\StatUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SubUnits\Modules\ModuleInfo.h">
+      <Filter>Header Files\SubUnits\Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -80,9 +80,11 @@ void RLBinUtils::RLBin_Log(std::string str, std::string source_file)
     if (logFile)
     {
         std::string tempStr= GetTime();
-        tempStr.append("\t\t");
+        tempStr.append("\t");
+        tempStr.resize(20, ' ');        
         tempStr.append(source_file);
-        tempStr.append("\t\t");
+        tempStr.resize(40, ' ');        
+        tempStr.append("\t");
         tempStr.append(str);
         fprintf(logFile, "%s\n", tempStr.c_str());
         fflush(logFile);

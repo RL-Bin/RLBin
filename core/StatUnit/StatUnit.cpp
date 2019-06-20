@@ -147,6 +147,12 @@ void StatUnit::RecursiveDisassembly()
     		disassembled.push_back(to_be_disassembled.front());
     		to_be_disassembled.pop_front();	
     	}
+    	else if(((* (byte *)to_be_disassembled.front()) == 0XCC) || ((* (int *)to_be_disassembled.front()) == 0X00)) // NULL Terminated or int 3 terminated
+    	{
+ 		   	// remove the current instruction from to be discovered and add it to discovered
+		    disassembled.push_back(to_be_disassembled.front());
+		    to_be_disassembled.pop_front();	
+    	}
     	else // NormalCase
     	{
     		ADDRESS next = to_be_disassembled.front() + Disassembler::Get()->GetInstSize(to_be_disassembled.front());

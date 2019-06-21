@@ -46,6 +46,8 @@ void StatUnit::Run()
 	RecursiveDisassembly();
 
 	PrintDisassembly();
+
+	abort();
 }
 
 void StatUnit::RecursiveDisassembly() 

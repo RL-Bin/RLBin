@@ -33,7 +33,6 @@ bool InitProcess(LPSTR programName)
 
 	//now we have the process command to execute, create the process, suspended with attribute CREATE_SUSPENDED
 	bool ret = CreateProcessA(NULL, programName, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &startInfo, &g_pInfo);
-	
 	return ret;
 }
 
@@ -54,15 +53,15 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	std::string fileName = argv[1];
+	char *fileName = argv[1];
 
-	RLBinUtils::CheckFileExists(fileName.c_str(), "Target application cannot be found. RL-Bin will exit! \n");
+	RLBinUtils::CheckFileExists(fileName, "Target application cannot be found. RL-Bin will exit! \n");
 
 	//RLBinUtils::CheckFileExists(INJECT_LIB_NAME, "inject.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
 
 	RLBinUtils::CheckFileExists(CORE_LIB_NAME, "core.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
 
-	LPSTR fileNameArg = const_cast<char *>(fileName.c_str());
+	LPSTR fileNameArg = (LPSTR)(fileName);
 	
 	// Create the target process, exit if it cannot be created.
 	if(!InitProcess(fileNameArg))

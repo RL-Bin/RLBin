@@ -46,6 +46,33 @@ void RLBinUtils::RLBin_Multi(std::string str, LogType _log_type)
 
 void RLBinUtils::RLBin_Error(std::string errStr, std::string source_file, int source_file_line)
 {
+    // Get the last error code as string
+    std::string error_code = std::string();
+    DWORD error = GetLastError();
+    if (error)
+    {
+        LPVOID lpMsgBuf;
+        DWORD bufLen = FormatMessage(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+            FORMAT_MESSAGE_FROM_SYSTEM |
+            FORMAT_MESSAGE_IGNORE_INSERTS,
+            NULL,
+            error,
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+            (LPTSTR) &lpMsgBuf,
+            0, NULL );
+        if (bufLen)
+        {
+          LPCSTR lpMsgStr = (LPCSTR)lpMsgBuf;
+          std::string result(lpMsgStr, lpMsgStr+bufLen);
+          
+          LocalFree(lpMsgBuf);
+
+          error_code = result;
+        }
+    }
+
+    // Now print to file
     printf("RL-Bin has encountered some error and will exit! \nPlease check the error log for details.\n");
     if (!errorFile)
     {
@@ -53,7 +80,7 @@ void RLBinUtils::RLBin_Error(std::string errStr, std::string source_file, int so
         errorFile = fopen(fileName.c_str(),"a+");
     }
     if (errorFile)
-    {
+    {        
         std::string tempStr= GetTime();
         tempStr.append("\t");
         tempStr.resize(20, ' ');        
@@ -64,9 +91,12 @@ void RLBinUtils::RLBin_Error(std::string errStr, std::string source_file, int so
         tempStr.append("\t");
         tempStr.resize(60, ' ');        
         tempStr.append(errStr);
+        tempStr.append("\nError Code:\t");
+        tempStr.append(error_code);
         fprintf(errorFile, "%s\n", tempStr.c_str());
         fflush(errorFile);
     }
+
     abort();
 }
 

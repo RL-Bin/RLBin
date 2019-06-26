@@ -12,6 +12,19 @@
 #include "..\..\SubUnits\Utils\defs.h"
 #include "..\..\SubUnits\Utils\RLBinUtils.h"
 
+
+/**
+ * @class SectionInfo
+ * @brief This class has the information of each section in a PE file
+ */
+class SectionInfo
+{
+public:
+	std::string name;
+	ADDRESS base;
+	SIZE_TYPE size;
+};
+
 /**
  * @class ModuleInfo
  * @brief This class has the information of the loaded modules
@@ -51,6 +64,9 @@ public:
 
 	/** list of the exported functions of the module */		
 	std::map<ADDRESS,std::string> func;
+
+	/** list of the exported functions of the module */		
+	std::list<SectionInfo> sections;
 };	
 
 #endif

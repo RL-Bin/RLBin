@@ -48,18 +48,28 @@ public:
 	void AddExpFunc(ADDRESS add, std::string _function_name);
 
 	/** 
+	 * @brief adds the given section to the corresponding module
+	 *
+	 * @param [in] The section info to be added
+	 */
+	void AddSection(SectionInfo sec);
+
+	/** 
 	 * @brief gets the entry point of the main module
 	 *
 	 * @return The entry point
 	 */
 	ADDRESS GetEntryPoint();
 
+	/** @brief Prints brief information of each module in the modules file*/
+	void PrintModulesShort();
+
+	/** Get the main module (program)*/
+	ModuleInfo *GetMainModule();
+
 private:
 	/** The list of all modules (Program and DLL) loaded into the program address space */
 	std::list<ModuleInfo> modules;
-	
-	/** The main module (program) loaded into memory */
-	ModuleInfo main_module;
 
 	/** The single unique object of this class */
 	static Modules* s_instance;

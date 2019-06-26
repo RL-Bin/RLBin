@@ -47,7 +47,9 @@ void StatUnit::Run()
 
 	PrintDisassembly();
 
-	abort();
+	Modules::Get()->PrintModulesShort();
+
+	ExitProcess(0);
 }
 
 void StatUnit::RecursiveDisassembly() 
@@ -199,6 +201,9 @@ void StatUnit::PrintDisassembly()
 	RLBinUtils::RLBin_Static("                         Summary");
 	RLBinUtils::RLBin_Static("____________________________________________________________");
 	RLBinUtils::RLBin_Static("Code Coverage:	" + RLBinUtils::ConvertIntToString(code_coverage) + " bytes");
+	SIZE_TYPE text_sec_size = Modules::Get()->GetMainModule()->sections.front().size;
+	RLBinUtils::RLBin_Static("				(out of " + RLBinUtils::ConvertIntToString(text_sec_size) +
+							 " bytes in .text) --> " + RLBinUtils::ConvertIntToString((100*code_coverage/text_sec_size)) + "%");
 	RLBinUtils::RLBin_Static("Inst Coverage:	" + RLBinUtils::ConvertIntToString(inst_coverage)+ " instructions");
 	RLBinUtils::RLBin_Static("Func Coverage:	" + RLBinUtils::ConvertIntToString(static_funcs.size())+ " functions");
 	

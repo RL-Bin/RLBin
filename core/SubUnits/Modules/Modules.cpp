@@ -41,6 +41,23 @@ int printExps(void *_ignore, VA _function_address, std::string &_module_name, st
 	return 0;
 }
 
+int printSecs(void *N, VA secBase, std::string &secName, image_section_header s, bounded_buffer *data) 
+{
+	static_cast<void>(N);
+	static_cast<void>(s);
+
+	SectionInfo sec;
+	sec.name = secName;
+	sec.base = (ADDRESS)secBase + g_base_difference;
+	if (data)
+		sec.size = data->bufLen;
+	else
+		sec.size = 0;
+
+ 	Modules::Get()->AddSection(sec);
+	return 0;
+}
+
 Modules* Modules::Create(void) 
 {
 	if (s_instance != NULL)
@@ -102,15 +119,21 @@ void Modules::Initialize(void)
                 	(ADDRESS)module_info.EntryPoint, RLBinUtils::GetBaseFileName(module_name));
 				modules.insert(modules.end(), current_module);
 				
-				// Using peparse library to extract function names and address to them to each module
+				// Using peparse library to parse the file
 				parsed_pe *pkernel = ParsePEFromFile(module_name);
+
+				// Calculate the difference between the static and dynamic base addresses
 				ADDRESS kernel_base = (ADDRESS) pkernel->peHeader.nt.OptionalHeader.ImageBase;
 				g_base_difference = (ADDRESS)module_info.lpBaseOfDll - kernel_base;  
+				
+				// extract function names and address to them to each module
 				IterExpVA(pkernel, printExps, NULL);
 
-				// The first module is the main program
-				if (i == 0)
-					main_module = current_module;
+				// iterate over sections of pe file and them to module information
+				IterSec(pkernel, printSecs, NULL);
+
+			    // Destruct the parsed module
+	    		DestructParsedPE(pkernel);
             }
         }
     }
@@ -134,7 +157,51 @@ void Modules::AddExpFunc(ADDRESS add, std::string _function_name)
 	}
 }
 
+void Modules::AddSection(SectionInfo sec)
+{
+	bool sec_found = false;
+	ADDRESS add = sec.base;
+	for (std::list<ModuleInfo>::iterator it = modules.begin(); it != modules.end(); it++)
+	{
+		if((add > it->base_address) && (add <= (it->base_address + it->module_size)))
+		{
+			sec_found = true;
+			it->sections.push_back(sec);
+		}
+	}
+	if(!sec_found)
+	{
+		RLBinUtils::RLBin_Error("module not found for address \t" + sec.name + "\t"  +RLBinUtils::ConvertHexToString(sec.base) + "\n", __FILENAME__, __LINE__);
+	}
+}
+
 ADDRESS Modules::GetEntryPoint()
 {
-	return main_module.entry_point;
+	return modules.front().entry_point;
+}
+
+void Modules::PrintModulesShort()
+{
+	for (std::list<ModuleInfo>::iterator it = modules.begin(); it != modules.end(); it++) 
+	{
+		RLBinUtils::RLBin_ModLog(it->name);
+		RLBinUtils::RLBin_ModLog("\t Base Address   : \t " + RLBinUtils::ConvertHexToString(it->base_address));
+		RLBinUtils::RLBin_ModLog("\t Size of Image  : \t " + RLBinUtils::ConvertHexToString(it->module_size));
+		RLBinUtils::RLBin_ModLog("\t Entry Point    : \t " + RLBinUtils::ConvertHexToString(it->entry_point));
+		RLBinUtils::RLBin_ModLog("\t Exported Funcs : \t " + RLBinUtils::ConvertIntToString(it->func.size()));
+
+		RLBinUtils::RLBin_ModLog("\t Sections 		: \t " + RLBinUtils::ConvertIntToString(it->sections.size()));
+		for(std::list<SectionInfo>::iterator itt = it->sections.begin(); itt != it->sections.end(); itt++)
+		{			
+			RLBinUtils::RLBin_ModLog("\t\t Name:	: \t" + itt->name);
+			RLBinUtils::RLBin_ModLog("\t\t Base:	: \t" + RLBinUtils::ConvertHexToString(itt->base));
+			RLBinUtils::RLBin_ModLog("\t\t Size:	: \t" + RLBinUtils::ConvertHexToString(itt->size) + "\n");
+		}
+	}
+	return;
+}
+
+ModuleInfo *Modules::GetMainModule()
+{
+	return &(modules.front());
 }

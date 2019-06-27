@@ -34,6 +34,9 @@ private:
 	/** List of addresses that are disassembled */
 	std::list<ADDRESS> disassembled;
 
+	/** List of addresses that will be disassembled */
+	std::list<ADDRESS> to_be_disassembled;
+
 	/** List of addresses that are called directly */
 	std::list<ADDRESS> static_funcs;
 
@@ -52,6 +55,8 @@ private:
 	 */
 	bool CheckList(std::list<ADDRESS> input_list, ADDRESS to_be_checked);
 
+	/** @brief Add data references to the code segment as starting point of disassembly */
+	void AddDataRefs();
 };
 
 #endif

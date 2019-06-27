@@ -6,6 +6,7 @@
 #include <list>
 #include <algorithm>
 
+#include <iostream>
 #include "..\include\StatUnit\StatUnit.h"
 
 #include "..\include\SubUnits\Modules\Modules.h"
@@ -43,6 +44,10 @@ void StatUnit::Run()
 
 	Disassembler::Create();
 
+
+	// if config file needs data reference, add them to the list to_be_disassembled
+	AddDataRefs();
+	
 	RecursiveDisassembly();
 
 	PrintDisassembly();
@@ -54,8 +59,6 @@ void StatUnit::Run()
 
 void StatUnit::RecursiveDisassembly() 
 {
-	std::list<ADDRESS> to_be_disassembled;
-
     if(!CheckList(to_be_disassembled, Modules::Get()->GetEntryPoint()))
     {
     	to_be_disassembled.push_back(Modules::Get()->GetEntryPoint());	
@@ -220,4 +223,39 @@ void StatUnit::PrintDisassembly()
 		}
 		Disassembler::Get()->PrintInst(*it, T_STATIC);
 	}
+}
+
+void StatUnit::AddDataRefs()
+{
+	SectionInfo code;
+	SectionInfo data;
+	for(std::list<SectionInfo>::iterator it = Modules::Get()->GetMainModule()->sections.begin(); 
+		it != Modules::Get()->GetMainModule()->sections.end(); it++)
+	{
+		if(it->name == ".text")
+		{
+			code = *it;
+		}
+		if(it->name == ".rdata")
+		{
+			data = *it;
+		}
+	}
+
+	std::cout << std::hex << code.base << std::endl << data.base << std::endl;
+
+	byte * pstart = (byte *) data.base;
+	byte * pend = (byte *) (data.base+data.size);
+	for(byte *p = pstart; p<pend; p++)
+	{
+		ADDRESS code_pointer = *(ADDRESS *)p;
+		if((code_pointer>code.base)&&(code_pointer<=(code.base+code.size)))
+		{
+			if(!CheckList(to_be_disassembled, code_pointer))
+		    {
+		    	to_be_disassembled.push_back(code_pointer);	
+		    }
+		}
+	}
+
 }

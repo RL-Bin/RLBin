@@ -10,6 +10,7 @@
 #include "..\include\StatUnit\StatUnit.h"
 
 #include "..\include\SubUnits\Modules\Modules.h"
+#include "..\include\SubUnits\Config\Config.h"
 #include "..\include\SubUnits\Disassembler\Disassembler.h"
 
 // inititalizing the only instace of class 
@@ -44,9 +45,11 @@ void StatUnit::Run()
 
 	Disassembler::Create();
 
-
 	// if config file needs data reference, add them to the list to_be_disassembled
-	AddDataRefs();
+	if(Config::Get()->GetFeatureValue("UseCodePointers") == 1)
+	{
+		AddDataRefs();
+	}
 	
 	RecursiveDisassembly();
 
@@ -241,8 +244,6 @@ void StatUnit::AddDataRefs()
 			data = *it;
 		}
 	}
-
-	std::cout << std::hex << code.base << std::endl << data.base << std::endl;
 
 	byte * pstart = (byte *) data.base;
 	byte * pend = (byte *) (data.base+data.size);

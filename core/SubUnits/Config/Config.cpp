@@ -44,6 +44,7 @@ void Config::Initialize(void)
 		RLBinUtils::RLBin_Log("Config file not found! Will continue with the default configuration.", __FILENAME__);
 		conf["OptMode"] = 1;
 		conf["OptLevel"] = 1;
+		conf["UseCodePointers"] = 0;
 		conf["DisLog"] = 0;
 		conf["ModLog"] = 0;
 		conf["OptLog"] = 0;

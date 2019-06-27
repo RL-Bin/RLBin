@@ -7,13 +7,22 @@
 OptMode=0
 
 
-/////////////////////////////////// optimization level
+/////////////////////////////////// optimization level for dynamic 
 //
 // OptLevel 0 is the base RL-Bin 
 //
 // default=1
 //
 OptLevel=1
+
+/////////////////////////////////// Options for static disassmbly
+//
+// OptLevel 0 is the base RL-Bin 
+//
+// default=0
+//
+UseCodePointers=1
+
 
 
 /////////////////////////////////// Log Files

@@ -12,12 +12,12 @@ bool Disassembler::IsInstRet(ADDRESS _address)
 	//	opcode 		Inst 			operand			flag			size
 	//+	0xC2		ret (near)		imm16			none			3
 	//+	0xC3		ret (near)		none			none			1
-	//-	0xCA		ret (far)		imm16			none			3
-	//-	0xCB		ret (far)		none			none			1
+	//+	0xCA		ret (far)		imm16			none			3
+	//+	0xCB		ret (far)		none			none			1
 	if((instruction.opcode[0] == 0xCA)||(instruction.opcode[0] == 0xCB))
 	{
-		RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(_address) + "\tInstruction not supproted yet!\t" +
-			RLBinUtils::ConvertCharPtrToString(instruction.mnemonic) + "\t" + RLBinUtils::ConvertByteToString(instruction.opcode[0]), __FILENAME__, __LINE__);
+		//RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(_address) + "\tInstruction not supproted yet!\t" +
+		//	RLBinUtils::ConvertCharPtrToString(instruction.mnemonic) + "\t" + RLBinUtils::ConvertByteToString(instruction.opcode[0]), __FILENAME__, __LINE__);
 		return true;
 	}
 	else if((instruction.opcode[0] == 0xC3)||(instruction.opcode[0] == 0xC2))
@@ -39,6 +39,8 @@ bool Disassembler::IsInstDirectJump(ADDRESS _address)
 	//-	0xEA		JMPF 			N/A 			N/A				N/A
 	if(instruction.opcode[0] == 0xEA)
 	{
+		PrintInst(_address, T_ERROR);		
+		
 		RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(_address) + "\tInstruction not supproted yet!\t" +
 			RLBinUtils::ConvertCharPtrToString(instruction.mnemonic) + "\t" + RLBinUtils::ConvertByteToString(instruction.opcode[0]), __FILENAME__, __LINE__);
 		return true;

@@ -36,6 +36,27 @@ bool Disassembler::GetOneInst(int address, Inst *instruction)
 	return true;
 }
 
+bool Disassembler::IsValidInst(int address)
+{
+	unsigned char code[15] = { 0 };
+	ReadProcessMemory(GetCurrentProcess(), (LPCVOID)address, code, sizeof(code), 0);
+	cs_insn *insn;
+	csh handle;
+	size_t count;
+	if (cs_open(CS_ARCH_X86, CS_MODE_32, &handle)) 
+	{
+		RLBinUtils::RLBin_Error("ERROR: Failed to initialize Capstone Disassembly Engine!\n", __FILENAME__, __LINE__);
+		return false;
+	}
+	cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
+	count = cs_disasm(handle, code, sizeof(code) - 1, address, 1, &insn);
+	cs_close(&handle);
+	if (count) 
+		return true;
+	else
+		return false;
+}
+
 int Disassembler::GetInstSize(ADDRESS address)
 {
 	Inst inst;

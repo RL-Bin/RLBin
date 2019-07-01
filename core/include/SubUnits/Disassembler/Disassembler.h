@@ -131,13 +131,21 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * @brief The function that gets the information of a single instruction from capstone library
+	 * @brief The function that gets the information of a single instruction from Capstone library
 	 *
 	 * @param [in] address The address of the instruction 
 	 * @param [out] instruction The pointer to instruction class that will be filled out 
 	 * @return true if the insruction information is successfully read
 	 */	
 	bool GetOneInst(int address, Inst *instruction);
+
+	/**
+	 * @brief The function checks whether there is an instruction in a given address using Capstone library
+	 *
+	 * @param [in] address The address of the instruction 
+	 * @return true if there is a valid insruction in the given address
+	 */	
+	bool IsValidInst(int address);
 
 	/**
 	 * @brief Gets the size of the instruction at the given address

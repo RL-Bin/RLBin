@@ -69,9 +69,14 @@ void StatUnit::RecursiveDisassembly()
 
     while(!to_be_disassembled.empty())
     {
+    	//RLBinUtils::RLBin_Static(RLBinUtils::ConvertHexToString(to_be_disassembled.front()));
     	//Disassembler::Get()->PrintInst(to_be_disassembled.front(), T_STATIC);
     	
-    	if(Disassembler::Get()->IsInstDirectJump(to_be_disassembled.front())) // Direct Jump
+    	if(!Disassembler::Get()->IsValidInst(to_be_disassembled.front()))
+    	{
+			to_be_disassembled.pop_front();
+		}
+    	else if(Disassembler::Get()->IsInstDirectJump(to_be_disassembled.front())) // Direct Jump
     	{
     		// find out the destination of call or jump
     		ADDRESS dest; 
@@ -157,7 +162,7 @@ void StatUnit::RecursiveDisassembly()
     		disassembled.push_back(to_be_disassembled.front());
     		to_be_disassembled.pop_front();	
     	}
-    	else if(((* (byte *)to_be_disassembled.front()) == 0XCC) || ((* (int *)to_be_disassembled.front()) == 0X00)) // NULL Terminated or int 3 terminated
+    	else if((* (byte *)to_be_disassembled.front()) == 0XCC) // int 3 does not go to next instruction
     	{
  		   	// remove the current instruction from to be discovered and add it to discovered
 		    disassembled.push_back(to_be_disassembled.front());

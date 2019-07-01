@@ -205,3 +205,13 @@ ModuleInfo *Modules::GetMainModule()
 {
 	return &(modules.front());
 }
+
+bool Modules::IsInsideMainCode(ADDRESS address)
+{
+	ADDRESS start = modules.front().sections.front().base;
+	ADDRESS end = start + modules.front().sections.front().size;
+	if(( address >= start) && (address <= end))
+		return true;
+	else
+		return false;
+}

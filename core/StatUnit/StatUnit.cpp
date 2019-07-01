@@ -50,12 +50,12 @@ void StatUnit::Run()
 	{
 		AddDataRefs();
 	}
+
+	Modules::Get()->PrintModulesShort();
 	
 	RecursiveDisassembly();
 
 	PrintDisassembly();
-
-	Modules::Get()->PrintModulesShort();
 
 	ExitProcess(0);
 }
@@ -69,10 +69,14 @@ void StatUnit::RecursiveDisassembly()
 
     while(!to_be_disassembled.empty())
     {
+
     	//RLBinUtils::RLBin_Static(RLBinUtils::ConvertHexToString(to_be_disassembled.front()));
-    	//Disassembler::Get()->PrintInst(to_be_disassembled.front(), T_STATIC);
+    	//if(IsValidInstAndTarget(to_be_disassembled.front()))
+    	//{
+    	//	Disassembler::Get()->PrintInst(to_be_disassembled.front(), T_STATIC);
+    	//}
     	
-    	if(!Disassembler::Get()->IsValidInst(to_be_disassembled.front()))
+    	if(!IsValidInstAndTarget(to_be_disassembled.front()))
     	{
 			to_be_disassembled.pop_front();
 		}
@@ -85,6 +89,7 @@ void StatUnit::RecursiveDisassembly()
 			// add dest to the list to be discovered if it's not in either list
 		    if((!CheckList(to_be_disassembled, dest))&&(!CheckList(disassembled, dest)))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(dest));
 		    	to_be_disassembled.push_back(dest);	
 		    }
 
@@ -101,6 +106,7 @@ void StatUnit::RecursiveDisassembly()
     		// add dest to the list to be discovered if it's not in either list
 		    if((!CheckList(to_be_disassembled, dest))&&(!CheckList(disassembled, dest)))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(dest));
 		    	to_be_disassembled.push_back(dest);	
 		    }
 
@@ -109,6 +115,7 @@ void StatUnit::RecursiveDisassembly()
     		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));    		
 		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(next));		    	
 		    	to_be_disassembled.push_back(next);	
 		    }
 
@@ -125,7 +132,7 @@ void StatUnit::RecursiveDisassembly()
     	else if((Disassembler::Get()->IsInstRet(to_be_disassembled.front())) || (Disassembler::Get()->IsInstIndirectJump(to_be_disassembled.front()))) // return or indirect jmp
     	{
     		// remove the current instruction from to be discovered and add it to discovered
-    		disassembled.push_back(to_be_disassembled.front());
+		    disassembled.push_back(to_be_disassembled.front());    		
     		to_be_disassembled.pop_front();	
     	}
     	else if(Disassembler::Get()->IsInstIndirectCall(to_be_disassembled.front())) // indirect call
@@ -135,6 +142,7 @@ void StatUnit::RecursiveDisassembly()
     		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));    		
 		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(next));
 		    	to_be_disassembled.push_back(next);	
 		    }
 
@@ -150,11 +158,13 @@ void StatUnit::RecursiveDisassembly()
     		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest[0]));
 		    if((!CheckList(to_be_disassembled, dest[0]))&&(!CheckList(disassembled, dest[0])))
 		    {
-		    	to_be_disassembled.push_back(dest[0]);	
+		    	to_be_disassembled.push_back(dest[0]);
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(dest[0]));
 		    }
-	   		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(dest[1]));
+   			//RLBinUtils::RLBin_Static("\t\tCCC" + RLBinUtils::ConvertHexToString(dest[1]));
 		    if((!CheckList(to_be_disassembled, dest[1]))&&(!CheckList(disassembled, dest[1])))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(dest[1]));
 		    	to_be_disassembled.push_back(dest[1]);	
 		    }
 
@@ -175,6 +185,7 @@ void StatUnit::RecursiveDisassembly()
     		//RLBinUtils::RLBin_Static("\t\t" + RLBinUtils::ConvertHexToString(next));
 		    if((!CheckList(to_be_disassembled, next))&&(!CheckList(disassembled, next)))
 		    {
+		    	//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(next));		    	
 		    	to_be_disassembled.push_back(next);	
 		    }
 
@@ -259,9 +270,55 @@ void StatUnit::AddDataRefs()
 		{
 			if(!CheckList(to_be_disassembled, code_pointer))
 		    {
-		    	to_be_disassembled.push_back(code_pointer);	
+		    	if(IsValidInstAndTarget(code_pointer))
+    			{
+    				//RLBinUtils::RLBin_Static("PUSHTBD " + RLBinUtils::ConvertHexToString(code_pointer));
+		    		to_be_disassembled.push_back(code_pointer);
+		    	}	
 		    }
 		}
 	}
 
+}
+
+bool StatUnit::IsValidInstAndTarget(ADDRESS address)
+{
+	if(!Disassembler::Get()->IsValidInst(address))
+	{
+		RLBinUtils::RLBin_Debug("Impossible to disassemble at Address " + RLBinUtils::ConvertHexToString(address), __FILENAME__, __LINE__);
+		return false;
+	}
+
+    if(Disassembler::Get()->IsInstDirectCTI(address)) // Direct Jump or call
+    {
+		// find out the destination of call or jump
+		ADDRESS dest; 
+		Disassembler::Get()->GetDirectCTIDest(address, &dest);
+
+		if(!Modules::Get()->IsInsideMainCode(dest))
+		{
+			RLBinUtils::RLBin_Debug("Out of range target address " + RLBinUtils::ConvertHexToString(dest), __FILENAME__, __LINE__);
+			Disassembler::Get()->PrintInst(address,T_DEBUG);
+			return false;
+		}
+    }
+	else if(Disassembler::Get()->IsInstConditionalJump(address)) // conditional jump
+    {
+    	ADDRESS dest[2]; 
+    	Disassembler::Get()->GetConditionalCTIDest(address, dest);
+    	// add dest to the list to be discovered if it's not in either list
+		if(!Modules::Get()->IsInsideMainCode(dest[0]))
+		{
+			RLBinUtils::RLBin_Debug("Out of range target address " + RLBinUtils::ConvertHexToString(dest[0]), __FILENAME__, __LINE__);
+			Disassembler::Get()->PrintInst(address,T_DEBUG);
+			return false;
+		}
+		if(!Modules::Get()->IsInsideMainCode(dest[1]))
+		{
+			RLBinUtils::RLBin_Debug("Out of range target address " + RLBinUtils::ConvertHexToString(dest[0]), __FILENAME__, __LINE__);
+			Disassembler::Get()->PrintInst(address,T_DEBUG);
+			return false;
+		}
+	}
+	return true;
 }

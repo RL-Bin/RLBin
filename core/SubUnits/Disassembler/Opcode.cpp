@@ -109,14 +109,12 @@ bool Disassembler::IsInstConditionalJump(ADDRESS _address)
 	//+	0x0F 8D 		JNL 			rel32			none			3,7+
 	//+	0x0F 8E 		JLE 			rel32			none			3,7+
 	//+	0x0F 8F 		JNLE 			rel32			none			3,7+
-	//-	0xE0  			LOOPNZ 			none			none			11+
-	//-	0xE1  			LOOPZ 			none			none			11+
-	//-	0xE2  			LOOP 			none			none			11+
-	//-	0xE3  			JECXZ 			rel8			none			N/A
+	//+	0xE0  			LOOPNZ 			rel8			none			11+
+	//+	0xE1  			LOOPZ 			rel8			none			11+
+	//+	0xE2  			LOOP 			rel8			none			11+
+	//+	0xE3  			JECXZ 			rel8			none			N/A
 	if((instruction.opcode[0] >= 0xE0) && (instruction.opcode[0] <= 0xE3))
 	{
-		RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(_address) + "\tInstruction not supproted yet!\t" +
-			RLBinUtils::ConvertCharPtrToString(instruction.mnemonic) + "\t" + RLBinUtils::ConvertByteToString(instruction.opcode[0]), __FILENAME__, __LINE__);
 		return true;
 	}
 	else if((instruction.opcode[0] == 0x0F) && (instruction.opcode[1] <= 0x8F) && (instruction.opcode[1] >= 0x80))

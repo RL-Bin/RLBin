@@ -50,9 +50,12 @@ bool Disassembler::IsValidInst(int address)
 	}
 	cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
 	count = cs_disasm(handle, code, sizeof(code) - 1, address, 1, &insn);
+	cs_free(insn, count);
 	cs_close(&handle);
-	if (count) 
-		return true;
+	if (count)
+	{
+		return true;				
+	}
 	else
 		return false;
 }

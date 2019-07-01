@@ -57,6 +57,14 @@ private:
 
 	/** @brief Add data references to the code segment as starting point of disassembly */
 	void AddDataRefs();
+
+	/** 
+	 * @brief checks if an instruction is valid and the target is within the code section
+	 *
+	 * @param [in] The address to be checked
+	 * @return true if inst is valid
+	 */
+	bool IsValidInstAndTarget(ADDRESS address);
 };
 
 #endif

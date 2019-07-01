@@ -67,6 +67,14 @@ public:
 	/** Get the main module (program)*/
 	ModuleInfo *GetMainModule();
 
+	/** 
+	 * @brief checks if an address is within the code section
+	 *
+	 * @param [in] The address to be checked
+	 * @return true if the address is withing the the text section
+	 */
+	bool IsInsideMainCode(ADDRESS address);
+
 private:
 	/** The list of all modules (Program and DLL) loaded into the program address space */
 	std::list<ModuleInfo> modules;

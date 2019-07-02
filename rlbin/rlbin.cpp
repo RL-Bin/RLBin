@@ -24,7 +24,7 @@ PROCESS_INFORMATION g_pInfo;
  * @param [in] programName The name of target application and its arguments
  * @return true if the target can be created successfully
  */
-bool InitProcess(LPSTR programName) 
+bool InitProcess(LPSTR target_cmd) 
 {
 	STARTUPINFOA startInfo;
 
@@ -32,7 +32,7 @@ bool InitProcess(LPSTR programName)
 	GetStartupInfoA(&startInfo);
 
 	//now we have the process command to execute, create the process, suspended with attribute CREATE_SUSPENDED
-	bool ret = CreateProcessA(NULL, programName, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &startInfo, &g_pInfo);
+	bool ret = CreateProcessA(NULL, target_cmd, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &startInfo, &g_pInfo);
 	return ret;
 }
 
@@ -44,7 +44,6 @@ bool InitProcess(LPSTR programName)
  */
 int main(int argc, char *argv[])
 {
-
 	RLBinUtils::Init();
 
 	if (argc < 2)
@@ -60,11 +59,14 @@ int main(int argc, char *argv[])
 	//RLBinUtils::CheckFileExists(INJECT_LIB_NAME, "inject.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
 
 	RLBinUtils::CheckFileExists(CORE_LIB_NAME, "core.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
-
-	LPSTR fileNameArg = (LPSTR)(fileName);
 	
+
+	LPSTR cmd_line = GetCommandLineA();
+
+	LPSTR target_cmd = (LPSTR) (cmd_line + strlen(argv[0]) + 2);
+
 	// Create the target process, exit if it cannot be created.
-	if(!InitProcess(fileNameArg))
+	if(!InitProcess(target_cmd))
 	{
 		RLBinUtils::RLBin_Error("The target process cannot be created! \n", __FILENAME__, __LINE__);
 		return 0;	

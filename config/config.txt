@@ -4,7 +4,7 @@
 //
 // OptMode 0 is the Static RL-Bin
 //
-OptMode=0
+OptMode=1
 
 
 /////////////////////////////////// optimization level for dynamic 

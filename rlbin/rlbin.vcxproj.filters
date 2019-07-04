@@ -17,6 +17,12 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{854f8b58-98b4-4213-89de-4ce5e2173aa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Timer">
+      <UniqueIdentifier>{74d39f43-0178-42d0-8b17-cb8233d84a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Timer">
+      <UniqueIdentifier>{56add438-38a5-4b3c-9b8f-3269aa5eb8ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="rlbin.cpp">
@@ -40,6 +46,9 @@
     <ClCompile Include="..\core\SubUnits\Utils\RLBinUtils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\core\SubUnits\Timer\Timer.cpp">
+      <Filter>Source Files\Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -50,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="..\core\include\SubUnits\utils\RLBinUtils.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\core\include\SubUnits\Timer\Timer.h">
+      <Filter>Header Files\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

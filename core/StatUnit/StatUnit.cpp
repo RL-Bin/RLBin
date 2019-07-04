@@ -40,24 +40,14 @@ StatUnit* StatUnit::Get(void)
 
 void StatUnit::Run() 
 {
-	Modules::Create();
-	Modules::Get()->Initialize();
-
-	Disassembler::Create();
-
 	// if config file needs data reference, add them to the list to_be_disassembled
 	if(Config::Get()->GetFeatureValue("UseCodePointers") == 1)
 	{
 		AddDataRefs();
 	}
-
-	Modules::Get()->PrintModulesShort();
 	
 	RecursiveDisassembly();
-
 	PrintDisassembly();
-
-	ExitProcess(0);
 }
 
 void StatUnit::RecursiveDisassembly() 

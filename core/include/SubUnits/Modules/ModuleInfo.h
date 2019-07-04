@@ -23,6 +23,8 @@ public:
 	std::string name;
 	ADDRESS base;
 	SIZE_TYPE size;
+	byte permission; // This will keep the read, write, exe permission
+	byte contain; // This will show code, uninitialized data, initialized data
 };
 
 /**

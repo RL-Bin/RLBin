@@ -81,6 +81,9 @@ private:
 
 	/** The single unique object of this class */
 	static Modules* s_instance;
+
+	/** @brief Prints the information of the main file to the log file*/
+	void PrintInfoLogFile();
 };
 
 #endif

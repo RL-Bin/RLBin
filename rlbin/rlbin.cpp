@@ -15,6 +15,7 @@
 
 #include "..\core\include\SubUnits\Utils\defs.h"
 #include "..\core\include\SubUnits\Utils\RLBinUtils.h"
+#include "..\core\include\SubUnits\Timer\Timer.h"
 
 /** Global variable used to pass the information of the process that is created. */
 PROCESS_INFORMATION g_pInfo;
@@ -44,6 +45,13 @@ bool InitProcess(LPSTR target_cmd)
  */
 int main(int argc, char *argv[])
 {
+	// First, initialize and set the timers
+	Timer::Create();
+	Timer::Get()->Initialize();
+
+	/** The timer id for the whole program */
+	int total_timer_id = Timer::Get()->GetNewTimer("Prgram");
+
 	RLBinUtils::Init();
 
 	if (argc < 2)
@@ -112,6 +120,10 @@ int main(int argc, char *argv[])
 	WaitForSingleObject(g_pInfo.hThread, INFINITE);
 
 	RLBinUtils::RLBin_Log("Target process executed successfully. Terminating RL-Bin monitoring process!", __FILENAME__);
+
+	// Finally, measure the timers at the end of exection
+	Timer::Get()->Stop(total_timer_id);
+	Timer::Get()->PrintAverageTime(total_timer_id, T_LOG);
 
 	return 0;
 }

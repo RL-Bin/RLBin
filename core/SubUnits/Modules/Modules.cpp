@@ -54,6 +54,9 @@ int printSecs(void *N, VA secBase, std::string &secName, image_section_header s,
 	else
 		sec.size = 0;
 
+	sec.contain = (byte)(s.Characteristics); 
+	sec.permission = (byte)(s.Characteristics >> 24); 
+
  	Modules::Get()->AddSection(sec);
 	return 0;
 }
@@ -137,6 +140,9 @@ void Modules::Initialize(void)
             }
         }
     }
+
+    PrintInfoLogFile();
+
 	return;
 }
 
@@ -193,9 +199,20 @@ void Modules::PrintModulesShort()
 		RLBinUtils::RLBin_ModLog("\t Sections 		: \t " + RLBinUtils::ConvertIntToString(it->sections.size()));
 		for(std::list<SectionInfo>::iterator itt = it->sections.begin(); itt != it->sections.end(); itt++)
 		{			
-			RLBinUtils::RLBin_ModLog("\t\t Name:	: \t" + itt->name);
-			RLBinUtils::RLBin_ModLog("\t\t Base:	: \t" + RLBinUtils::ConvertHexToString(itt->base));
-			RLBinUtils::RLBin_ModLog("\t\t Size:	: \t" + RLBinUtils::ConvertHexToString(itt->size) + "\n");
+			RLBinUtils::RLBin_ModLog("\t\t Name       :  " + itt->name);
+			RLBinUtils::RLBin_ModLog("\t\t Base       :  " + RLBinUtils::ConvertHexToString(itt->base));
+			RLBinUtils::RLBin_ModLog("\t\t Size	      :  " + RLBinUtils::ConvertHexToString(itt->size));
+			std::string contain = "";
+			if(itt->contain & SECTION__CONTAIN_CODE) contain += "code    ";
+			if(itt->contain & SECTION__CONTAIN_IDATA) contain += "initialized data    ";
+			if(itt->contain & SECTION__CONTAIN_UDATA) contain += "uninitialized data    ";
+			RLBinUtils::RLBin_ModLog("\t\t Contain	  :  " + contain);			
+			std::string permission = "";
+			if(itt->permission & SECTION__EXE_PERM) permission += "execute    ";
+			if(itt->permission & SECTION__READ_PERM) permission += "read    ";
+			if(itt->permission & SECTION__WRITE_PERM) permission += "write    ";
+			RLBinUtils::RLBin_ModLog("\t\t Permission :  " + permission + "\n");
+
 		}
 	}
 	return;
@@ -214,4 +231,15 @@ bool Modules::IsInsideMainCode(ADDRESS address)
 		return true;
 	else
 		return false;
+}
+
+void Modules::PrintInfoLogFile()
+{
+	RLBinUtils::RLBin_Log("File image size is " + RLBinUtils::ConvertHexToString(modules.front().module_size), __FILENAME__);
+
+	for(std::list<SectionInfo>::iterator it = modules.front().sections.begin(); it != modules.front().sections.end(); it++)
+	{
+		if(it->name == ".text")
+			RLBinUtils::RLBin_Log("Text section size is " + RLBinUtils::ConvertHexToString(it->size), __FILENAME__);			
+	}
 }

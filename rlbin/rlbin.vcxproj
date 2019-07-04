@@ -133,6 +133,7 @@ del "$(OutDir)\$(ProjectName).lib"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\core\SubUnits\Timer\Timer.cpp" />
     <ClCompile Include="..\core\SubUnits\Utils\Conversion.cpp" />
     <ClCompile Include="..\core\SubUnits\Utils\FileOperations.cpp" />
     <ClCompile Include="..\core\SubUnits\Utils\Logging.cpp" />
@@ -142,6 +143,7 @@ del "$(OutDir)\$(ProjectName).lib"</Command>
     <ClCompile Include="rlbin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\core\include\SubUnits\Timer\Timer.h" />
     <ClInclude Include="..\core\include\SubUnits\utils\defs.h" />
     <ClInclude Include="..\core\include\SubUnits\utils\RLBinUtils.h" />
     <ClInclude Include="resource.h" />

@@ -21,7 +21,7 @@
 
 #define ISSTATIC if(Config::Get()->GetFeatureValue("OptMode") == 0)
 
-#define NOTSTATIC if(Config::Get()->GetFeatureValue("OptMode") != 0)
+#define ISDYNAMIC if(Config::Get()->GetFeatureValue("OptMode") != 0)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //////             New types defined and used in the code                           /////
@@ -140,11 +140,11 @@ typedef unsigned char  CELL;
 /** Default value defined for undiscovered memory locations */
 #define LOC_UNDISCOVERD      0x00
 
-/** Default value defined for discovered memory locations which are not start of BB */
+/** Default value defined for discovered memory locations */
 #define LOC_DISCOVERD        0x01
 
-/** Default value defined for discovered memory locations which are start of BB */
-#define LOC_START_OF_BB      0x02
+/** Default value defined for code that is replaced by trampoline */
+#define LOC_REPLACED_TRAP      0x03
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //////                         DEFAULT_VISIBILTY                                    /////

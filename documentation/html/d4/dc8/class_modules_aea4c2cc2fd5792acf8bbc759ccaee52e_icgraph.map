@@ -1,0 +1,11 @@
+<map id="Modules::Get" name="Modules::Get">
+<area shape="rect" id="node1" title="Gets the one and only instance of Modules class." alt="" coords="617,195,717,221"/>
+<area shape="rect" id="node2" href="$df/d02/class_c_u.html#a53c26d83f6c9a6e759ca4020b9e6a237" title="initializes all other modules" alt="" coords="442,5,537,32"/>
+<area shape="rect" id="node3" href="$d1/d5c/class_stat_unit.html#a96165f11c7e122294d84ac369cfe06c2" title="runs the static disassmebler" alt="" coords="5,165,105,192"/>
+<area shape="rect" id="node4" href="$d1/d5c/class_stat_unit.html#a5558bb021f1f6dc98ce772fac27402da" title="Disassmeble the binary using recursive traversal." alt="" coords="153,140,361,167"/>
+<area shape="rect" id="node5" href="$d1/d5c/class_stat_unit.html#a39d939ba7968ab7e5ab20c2845657c7b" title="Prints the disassembly to file." alt="" coords="168,257,347,284"/>
+<area shape="rect" id="node6" href="$d1/d5c/class_stat_unit.html#a957e12db59f50ea6db885f104e4097a4" title="Add data references to the code segment as starting point of disassembly." alt="" coords="181,191,334,217"/>
+<area shape="rect" id="node7" href="$d1/d5c/class_stat_unit.html#a5e3dc43c69e02be313363892796424c9" title="checks if an instruction is valid and the target is within the code section" alt="" coords="409,158,569,199"/>
+<area shape="rect" id="node8" href="$d5/d65/_modules_8cpp.html#acc83a8b2fd4eb5e99290e1f9a07affb8" title="This function iterates over all exported functions and extracts the names and put them in modules." alt="" coords="451,325,528,352"/>
+<area shape="rect" id="node9" href="$d5/d65/_modules_8cpp.html#af875c97fce53c59d72f98ec6d4e2f436" title=" " alt="" coords="451,376,528,403"/>
+</map>

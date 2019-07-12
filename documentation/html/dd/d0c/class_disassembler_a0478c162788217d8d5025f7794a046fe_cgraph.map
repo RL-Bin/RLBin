@@ -1,0 +1,9 @@
+<map id="Disassembler::IsInstIndirectJump" name="Disassembler::IsInstIndirectJump">
+<area shape="rect" id="node1" title="Checks if the instruction is indirect jump." alt="" coords="5,125,219,152"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#ad51c892ddacb5e65af016d454595f9f4" title="The function that gets the information of a single instruction from Capstone library." alt="" coords="271,45,445,72"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="502,5,663,32"/>
+<area shape="rect" id="node4" href="$d0/d89/class_r_l_bin_utils.html#a6c4556dc486df5a0a71c30eab99db293" title="A utility function for converting a hex to string." alt="" coords="497,67,668,109"/>
+<area shape="rect" id="node5" href="$dd/d0c/class_disassembler.html#a33a776f968c04d691f944b9496f12b0d" title="Gets the Reg value from Modrm bits." alt="" coords="267,147,449,189"/>
+<area shape="rect" id="node6" href="$d0/d89/class_r_l_bin_utils.html#ae580c4bb2fadd74307a8f1a29dc122a7" title="A utility function for converting a char * pointer to string." alt="" coords="269,213,447,254"/>
+<area shape="rect" id="node7" href="$d0/d89/class_r_l_bin_utils.html#abdd1767e8ef27837ec237df28dcf894c" title="A utility function for converting a byte to string." alt="" coords="271,278,445,319"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="StatUnit::IsValidInstAndTarget" name="StatUnit::IsValidInstAndTarget">
+<area shape="rect" id="node1" title="checks if an instruction is valid and the target is within the code section" alt="" coords="5,150,165,191"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#a8e5eed89c11a33aef09aefad013e580b" title="gets the single instance of the Disassembler class" alt="" coords="253,5,384,32"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a14e50bae90e3edd2baadb350272e3e52" title="A utility function that prints the debug information." alt="" coords="233,56,404,83"/>
+<area shape="rect" id="node4" href="$d0/d89/class_r_l_bin_utils.html#a6c4556dc486df5a0a71c30eab99db293" title="A utility function for converting a hex to string." alt="" coords="472,150,643,191"/>
+<area shape="rect" id="node5" href="$dd/d0c/class_disassembler.html#a1758c6b243816cab2138f6a3d51fc559" title="Dynamically calculate the target of direct CTI." alt="" coords="213,157,424,184"/>
+<area shape="rect" id="node6" href="$d4/dc8/class_modules.html#aea4c2cc2fd5792acf8bbc759ccaee52e" title="Gets the one and only instance of Modules class." alt="" coords="269,208,369,235"/>
+<area shape="rect" id="node7" href="$dd/d0c/class_disassembler.html#a1a0c031f72f238deb5b8cc9f665009d1" title="Print the given instruction to the given log file." alt="" coords="240,259,397,285"/>
+<area shape="rect" id="node8" href="$dd/d0c/class_disassembler.html#abfa036dd5d3a2bbe363e6ce60af30fb2" title="Dynamically calculate both targets of conditional CTI." alt="" coords="221,310,416,351"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Disassembler::IsInstDirectCall" name="Disassembler::IsInstDirectCall">
+<area shape="rect" id="node1" title="Checks if the instruction is direct call." alt="" coords="247,5,443,32"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#ae55369e766d236ffea4c89e038b2de39" title="Checks if the instruction is direct CTI." alt="" coords="5,5,199,32"/>
+</map>

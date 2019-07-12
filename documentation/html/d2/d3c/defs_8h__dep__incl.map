@@ -1,0 +1,29 @@
+<map id="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/SubUnits/Utils/defs.h" name="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/SubUnits/Utils/defs.h">
+<area shape="rect" id="node1" title="Definitions used in the project." alt="" coords="2201,5,2359,61"/>
+<area shape="rect" id="node2" href="$da/d05/_c_u_8h.html" title="This file contains CU class which controls and manages all other core classes." alt="" coords="31,221,188,277"/>
+<area shape="rect" id="node3" href="$d5/d12/_main_8cpp.html" title=" " alt="" coords="195,347,386,388"/>
+<area shape="rect" id="node4" href="$dc/dd9/_r_l_bin_utils_8h.html" title="Handles all utility functions provided to RL&#45;Bin in RLBinUtils class." alt="" coords="2122,109,2307,165"/>
+<area shape="rect" id="node5" href="$d1/d23/_t_m_u_8h.html" title="This file contains TMU class which controls and manages all other core classes." alt="" coords="639,221,796,277"/>
+<area shape="rect" id="node6" href="$d9/d0b/_i_m_u_8h.html" title="This file contains IMU class which controls and manages all other core classes." alt="" coords="820,221,977,277"/>
+<area shape="rect" id="node7" href="$df/dc5/_modules_8h.html" title="This file contains Modules class which manages and handles the modules loaded on the memory." alt="" coords="1650,339,1846,395"/>
+<area shape="rect" id="node8" href="$dd/d47/_module_info_8h.html" title="This file contains ModuleInfo class which has the information of the loaded modules." alt="" coords="1643,221,1853,277"/>
+<area shape="rect" id="node9" href="$d5/d93/_disassembler_8h.html" title="This file contains Disassembler class and functions which are responsible for disassembling the code." alt="" coords="2133,332,2296,403"/>
+<area shape="rect" id="node10" href="$d2/db6/_exception_handler_8cpp.html" title="This file contains the implementation of exception handler." alt="" coords="1002,221,1198,277"/>
+<area shape="rect" id="node11" href="$d0/de5/_stat_unit_8h.html" title="This file contains StatUnit class which dumps static disassembly." alt="" coords="212,221,369,277"/>
+<area shape="rect" id="node12" href="$d4/d71/_config_8h.html" title="Contains Config class which handles reading from configuration file." alt="" coords="444,221,615,277"/>
+<area shape="rect" id="node13" href="$d5/d46/_call_graph_8h.html" title="This file contains CallGraph class which keeps the data structure for callgraph." alt="" coords="1223,213,1380,284"/>
+<area shape="rect" id="node14" href="$d5/dcd/_dis_table_8h.html" title="This file contains Funcs class which keeps the data structure for disassmebly table." alt="" coords="1405,221,1619,277"/>
+<area shape="rect" id="node15" href="$d5/d14/_funcs_8h.html" title="This file contains Funcs class which keeps the data structure for functions." alt="" coords="2303,221,2489,277"/>
+<area shape="rect" id="node16" href="$db/ddc/dllmain_8cpp.html" title=" " alt="" coords="2514,228,2697,269"/>
+<area shape="rect" id="node17" href="$d7/d1b/_f_a_u_8h.html" title="This file contains FAU class which controls and manages all other core classes." alt="" coords="2721,221,2879,277"/>
+<area shape="rect" id="node18" href="$d9/d5c/_inst_8h.html" title="This file contains Inst class for keeping information of a single instruction." alt="" coords="1877,221,2075,277"/>
+<area shape="rect" id="node19" href="$d8/d70/_opt_stat_8h.html" title="This file contains OptStat class." alt="" coords="2903,221,3091,277"/>
+<area shape="rect" id="node20" href="$d5/d29/_timer_8h.html" title="This file contains Timer class which has the responsibitly to measeure and report time." alt="" coords="4281,221,4444,277"/>
+<area shape="rect" id="node21" href="$df/d28/rlbin_8cpp.html" title="Creates target process and injects RL&#45;Bin." alt="" coords="4281,347,4445,388"/>
+<area shape="rect" id="node22" href="$d8/d64/_conversion_8cpp.html" title="Handles conversion utility functions provided to RL&#45;Bin in RLBinUtils class." alt="" coords="3115,221,3285,277"/>
+<area shape="rect" id="node23" href="$de/d53/_file_operations_8cpp.html" title="Handles utility functions to handle file operations for RL&#45;Bin in RLBinUtils class." alt="" coords="3309,221,3478,277"/>
+<area shape="rect" id="node24" href="$d4/d5e/_logging_8cpp.html" title="Handles utility functions to handle logging for RL&#45;Bin in RLBinUtils class." alt="" coords="3502,221,3671,277"/>
+<area shape="rect" id="node25" href="$d8/d28/_mem_operations_8cpp.html" title="Handles utility functions to handle memory operations for RL&#45;Bin in RLBinUtils class." alt="" coords="3696,221,3869,277"/>
+<area shape="rect" id="node26" href="$d6/dcf/_other_8cpp.html" title="Handles miscellaneous utility functions for RL&#45;Bin in RLBinUtils class." alt="" coords="3894,221,4063,277"/>
+<area shape="rect" id="node27" href="$d6/d30/_r_l_bin_utils_8cpp.html" title="Handles main utility functions for RL&#45;Bin in RLBinUtils class." alt="" coords="4087,221,4257,277"/>
+</map>

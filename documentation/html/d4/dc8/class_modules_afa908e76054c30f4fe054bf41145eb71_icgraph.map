@@ -1,0 +1,4 @@
+<map id="Modules::AddExpFunc" name="Modules::AddExpFunc">
+<area shape="rect" id="node1" title="adds exported function to a module" alt="" coords="131,5,285,32"/>
+<area shape="rect" id="node2" href="$d5/d65/_modules_8cpp.html#acc83a8b2fd4eb5e99290e1f9a07affb8" title="This function iterates over all exported functions and extracts the names and put them in modules." alt="" coords="5,5,83,32"/>
+</map>

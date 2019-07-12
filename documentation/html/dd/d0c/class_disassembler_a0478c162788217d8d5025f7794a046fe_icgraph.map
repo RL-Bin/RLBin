@@ -1,0 +1,5 @@
+<map id="Disassembler::IsInstIndirectJump" name="Disassembler::IsInstIndirectJump">
+<area shape="rect" id="node1" title="Checks if the instruction is indirect jump." alt="" coords="261,31,475,57"/>
+<area shape="rect" id="node2" href="$d1/d5c/class_stat_unit.html#a5558bb021f1f6dc98ce772fac27402da" title="Disassmeble the binary using recursive traversal." alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#a5cfe9776504141b0faa84d8126c1d8a7" title="Checks if the instruction is indirect CTI." alt="" coords="9,56,210,83"/>
+</map>

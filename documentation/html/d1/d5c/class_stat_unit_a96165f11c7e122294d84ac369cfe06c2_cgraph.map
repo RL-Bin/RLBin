@@ -1,0 +1,12 @@
+<map id="StatUnit::Run" name="StatUnit::Run">
+<area shape="rect" id="node1" title="runs the static disassmebler" alt="" coords="5,208,105,235"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#aae365d0ec96b44055b8575be196dd37b" title="Creates the single instance of the Disassembler class." alt="" coords="184,5,331,32"/>
+<area shape="rect" id="node3" href="$d4/dc8/class_modules.html#a0fd2a6b8a1d42f93f51ad5542bc44f35" title="Creates the one and only instance of ModuleHs class." alt="" coords="199,56,316,83"/>
+<area shape="rect" id="node4" href="$d4/dc8/class_modules.html#aea4c2cc2fd5792acf8bbc759ccaee52e" title="Gets the one and only instance of Modules class." alt="" coords="409,335,509,361"/>
+<area shape="rect" id="node5" href="$d4/dc8/class_modules.html#adbc76c5462ddc0a149f9ea7b6033b3fb" title="initializes Modules module" alt="" coords="194,157,321,184"/>
+<area shape="rect" id="node6" href="$d4/dc8/class_modules.html#a597f918f531870a4c0105142a3e2f5c9" title="Prints brief information of each module in the modules file." alt="" coords="164,208,351,235"/>
+<area shape="rect" id="node7" href="$dd/d34/class_config.html#a1c2bbbe279ba2e753f71b9c5d1d164d9" title="Gets the one and only instance of StaticAnalyzer class." alt="" coords="214,259,301,285"/>
+<area shape="rect" id="node8" href="$d1/d5c/class_stat_unit.html#a957e12db59f50ea6db885f104e4097a4" title="Add data references to the code segment as starting point of disassembly." alt="" coords="181,309,334,336"/>
+<area shape="rect" id="node9" href="$d1/d5c/class_stat_unit.html#a5558bb021f1f6dc98ce772fac27402da" title="Disassmeble the binary using recursive traversal." alt="" coords="153,360,361,387"/>
+<area shape="rect" id="node10" href="$d1/d5c/class_stat_unit.html#a39d939ba7968ab7e5ab20c2845657c7b" title="Prints the disassembly to file." alt="" coords="168,411,347,437"/>
+</map>

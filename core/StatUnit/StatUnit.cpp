@@ -5,12 +5,12 @@
 
 #include <list>
 #include <algorithm>
-
 #include <iostream>
+
 #include "..\include\StatUnit\StatUnit.h"
 
-#include "..\include\SubUnits\Modules\Modules.h"
 #include "..\include\SubUnits\Config\Config.h"
+#include "..\include\SubUnits\Modules\Modules.h"
 #include "..\include\SubUnits\Disassembler\Disassembler.h"
 
 // inititalizing the only instace of class 
@@ -40,6 +40,12 @@ StatUnit* StatUnit::Get(void)
 
 void StatUnit::Run() 
 {
+	Disassembler::Create();
+
+	Modules::Create();
+	Modules::Get()->Initialize();
+	Modules::Get()->PrintModulesShort();
+
 	// if config file needs data reference, add them to the list to_be_disassembled
 	if(Config::Get()->GetFeatureValue("UseCodePointers") == 1)
 	{

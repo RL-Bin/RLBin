@@ -1,0 +1,14 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="The entry point for monitoring process." alt="" coords="5,259,56,285"/>
+<area shape="rect" id="node2" href="$d8/d08/class_timer.html#a83f9003db23e504e9514055923d72b53" title="Creates the single instance of the Timer class." alt="" coords="147,5,247,32"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="339,107,500,133"/>
+<area shape="rect" id="node4" href="$d8/d08/class_timer.html#ab1e5d80c0ee871e54178611e1a7888e1" title="gets the single instance of the Timer class" alt="" coords="156,107,239,133"/>
+<area shape="rect" id="node5" href="$d8/d08/class_timer.html#a96ab325fdf29a1aa5090d862f27953a1" title=" " alt="" coords="143,157,252,184"/>
+<area shape="rect" id="node6" href="$d8/d08/class_timer.html#acff72ff8020118ec73061297e8c6b3f1" title="This function creates and initialize a new timer." alt="" coords="127,208,267,235"/>
+<area shape="rect" id="node7" href="$d0/d89/class_r_l_bin_utils.html#a64f5d09180b506a4f151d7ba57df5b66" title="Initialize the analysis folder for the current execution." alt="" coords="143,259,251,285"/>
+<area shape="rect" id="node8" href="$d0/d89/class_r_l_bin_utils.html#a2bf2e6383028d09a421aec4367d610eb" title="Checks if a given file exists." alt="" coords="104,309,291,336"/>
+<area shape="rect" id="node9" href="$df/d28/rlbin_8cpp.html#a0b97911b4fd957a78bf0f872c0c0f6c9" title="Creates the target process with same startup attribute." alt="" coords="154,360,241,387"/>
+<area shape="rect" id="node10" href="$d0/d89/class_r_l_bin_utils.html#acbcaebf75e308dd6d421a529728626da" title="An utility function that prints log file for RLBin." alt="" coords="120,411,275,437"/>
+<area shape="rect" id="node11" href="$d8/d08/class_timer.html#a28a171eb4c64fb76f02ef93ff9f5c5ae" title="this function stops current time measurement for the given timer" alt="" coords="153,461,242,488"/>
+<area shape="rect" id="node12" href="$d8/d08/class_timer.html#addb28f30d8b8520ffbaf1f69d21c74ca" title="this function prints the average of the time intervals measured by given timer" alt="" coords="116,512,279,539"/>
+</map>

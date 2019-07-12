@@ -75,6 +75,14 @@ public:
 	 */
 	bool IsInsideMainCode(ADDRESS address);
 
+	/** 
+	 * @brief checks if an address is within the main module
+	 *
+	 * @param [in] The address to be checked
+	 * @return true if the address is withing the the main module
+	 */
+	bool IsInsideMainModule(ADDRESS address);
+
 private:
 	/** The list of all modules (Program and DLL) loaded into the program address space */
 	std::list<ModuleInfo> modules;

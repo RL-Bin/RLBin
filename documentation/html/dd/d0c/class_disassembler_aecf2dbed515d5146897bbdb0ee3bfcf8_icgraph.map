@@ -1,0 +1,5 @@
+<map id="Disassembler::GetInstSize" name="Disassembler::GetInstSize">
+<area shape="rect" id="node1" title="Gets the size of the instruction at the given address." alt="" coords="261,31,439,57"/>
+<area shape="rect" id="node2" href="$d1/d5c/class_stat_unit.html#a5558bb021f1f6dc98ce772fac27402da" title="Disassmeble the binary using recursive traversal." alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node3" href="$d1/d5c/class_stat_unit.html#a39d939ba7968ab7e5ab20c2845657c7b" title="Prints the disassembly to file." alt="" coords="20,56,199,83"/>
+</map>

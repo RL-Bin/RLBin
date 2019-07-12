@@ -1,0 +1,4 @@
+<map id="Disassembler::GetModFromModrm" name="Disassembler::GetModFromModrm">
+<area shape="rect" id="node1" title="Gets the Mod value from Modrm bits." alt="" coords="225,5,411,47"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#adaa2c92814cdbee4db3404aabcaa2528" title="Dynamically calculate the target of indirect CTI." alt="" coords="5,5,177,47"/>
+</map>

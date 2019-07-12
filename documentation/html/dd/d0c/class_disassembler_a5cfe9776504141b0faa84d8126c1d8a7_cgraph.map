@@ -1,0 +1,6 @@
+<map id="Disassembler::IsInstIndirectCTI" name="Disassembler::IsInstIndirectCTI">
+<area shape="rect" id="node1" title="Checks if the instruction is indirect CTI." alt="" coords="5,56,207,83"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#aae264eaa893fbc6cfe8f8ab9a40edb1d" title="Checks if the instruction is return instruction." alt="" coords="281,5,441,32"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#a0478c162788217d8d5025f7794a046fe" title="Checks if the instruction is indirect jump." alt="" coords="255,56,468,83"/>
+<area shape="rect" id="node4" href="$dd/d0c/class_disassembler.html#a44debc72ddab60a2b85f399386d06d57" title="Checks if the instruction is indirect call." alt="" coords="259,107,463,133"/>
+</map>

@@ -1,13 +1,14 @@
-/////////////////////////////////// Operation Mode
+////////////// Operation Mode 
 //
 // default=1
 //
-// OptMode 0 is the Static RL-Bin
+// OptMode 0 is the Static  RL-Bin
+// OptMode 1 is the Dynamic RL-Bin
 //
-OptMode=0
+OptMode=1
 
 
-/////////////////////////////////// optimization level for dynamic 
+////////////// optimization level in Dynamic Mode
 //
 // OptLevel 0 is the base RL-Bin 
 //
@@ -15,17 +16,15 @@ OptMode=0
 //
 OptLevel=1
 
-/////////////////////////////////// Options for static disassmbly
+////////////// Options for Static disassmbly
 //
 // OptLevel 0 is the base RL-Bin 
 //
 // default=0
 //
-UseCodePointers=1
+UseCodePointers=0
 
-
-
-/////////////////////////////////// Log Files
+////////////// Log Files
 // 
 // default=0
 //
@@ -36,6 +35,5 @@ ThreadLog=0
 TimeLog=0
 TrampLog=0
 
-
-/////////////////////////////////// Features (optimization or ...)
+////////////// Features (optimization or ...)
 

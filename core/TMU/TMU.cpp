@@ -5,6 +5,8 @@
 
 #include "..\include\TMU\TMU.h"
 
+#include "..\include\SubUnits\Modules\Modules.h"
+
 // inititalizing the only instace of class 
 TMU* TMU::s_instance = NULL;
 
@@ -31,5 +33,11 @@ TMU* TMU::Get(void)
 
 void TMU::Initialize(void) 
 {
+	ADDRESS add = Modules::Get()->GetMainModule()->entry_point;
+	DWORD dwOldProtect;
+	VirtualProtect ((LPVOID)add, 1, PAGE_EXECUTE_READWRITE, &dwOldProtect);
 
+	*(byte *) add = 0xcc;
+
+	//RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(add), __FILENAME__, __LINE__);	
 }

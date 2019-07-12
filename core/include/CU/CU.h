@@ -26,6 +26,10 @@ public:
 	static void Initialize(void);
 
 private:
+
+	/** @brief handles discovery of new code */
+	
+
 	/** The single unique object of this class */
 	static CU* s_instance;
 };

@@ -49,11 +49,7 @@ int printSecs(void *N, VA secBase, std::string &secName, image_section_header s,
 	SectionInfo sec;
 	sec.name = secName;
 	sec.base = (ADDRESS)secBase + g_base_difference;
-	if (data)
-		sec.size = data->bufLen;
-	else
-		sec.size = 0;
-
+	sec.size = s.Misc.VirtualSize;
 	sec.contain = (byte)(s.Characteristics); 
 	sec.permission = (byte)(s.Characteristics >> 24); 
 
@@ -201,12 +197,12 @@ void Modules::PrintModulesShort()
 		{			
 			RLBinUtils::RLBin_ModLog("\t\t Name       :  " + itt->name);
 			RLBinUtils::RLBin_ModLog("\t\t Base       :  " + RLBinUtils::ConvertHexToString(itt->base));
-			RLBinUtils::RLBin_ModLog("\t\t Size	      :  " + RLBinUtils::ConvertHexToString(itt->size));
+			RLBinUtils::RLBin_ModLog("\t\t Size	    :  " + RLBinUtils::ConvertHexToString(itt->size));
 			std::string contain = "";
 			if(itt->contain & SECTION__CONTAIN_CODE) contain += "code    ";
 			if(itt->contain & SECTION__CONTAIN_IDATA) contain += "initialized data    ";
 			if(itt->contain & SECTION__CONTAIN_UDATA) contain += "uninitialized data    ";
-			RLBinUtils::RLBin_ModLog("\t\t Contain	  :  " + contain);			
+			RLBinUtils::RLBin_ModLog("\t\t Contain    :  " + contain);			
 			std::string permission = "";
 			if(itt->permission & SECTION__EXE_PERM) permission += "execute    ";
 			if(itt->permission & SECTION__READ_PERM) permission += "read    ";
@@ -227,6 +223,16 @@ bool Modules::IsInsideMainCode(ADDRESS address)
 {
 	ADDRESS start = modules.front().sections.front().base;
 	ADDRESS end = start + modules.front().sections.front().size;
+	if(( address >= start) && (address <= end))
+		return true;
+	else
+		return false;
+}
+
+bool Modules::IsInsideMainModule(ADDRESS address)
+{
+	ADDRESS start = modules.front().base_address;
+	ADDRESS end = start + modules.front().module_size;
 	if(( address >= start) && (address <= end))
 		return true;
 	else

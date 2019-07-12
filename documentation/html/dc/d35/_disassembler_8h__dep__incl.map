@@ -1,0 +1,9 @@
+<map id="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/SubUnits/Disassembler/Disassembler.h" name="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/SubUnits/Disassembler/Disassembler.h">
+<area shape="rect" id="node1" title="This file contains Disassembler class and functions which are responsible for disassembling the code." alt="" coords="561,5,724,76"/>
+<area shape="rect" id="node2" href="$d9/df6/_c_u_8cpp.html" title="Defines the body of functions in CU class." alt="" coords="5,131,187,173"/>
+<area shape="rect" id="node3" href="$d8/d3f/_stat_unit_8cpp.html" title="Defines the body of functions in StatUnit class." alt="" coords="211,124,373,180"/>
+<area shape="rect" id="node4" href="$d5/d0e/_address_translator_8cpp.html" title="Implementation of the functions in Disassembler class which dynamically calculate the address of inst..." alt="" coords="398,124,637,180"/>
+<area shape="rect" id="node5" href="$d8/d69/_disassembler_8cpp.html" title="Defines the body of functions in Disassembler class." alt="" coords="661,124,875,180"/>
+<area shape="rect" id="node6" href="$df/d89/_opcode_8cpp.html" title="Implements some of the functions in Disassembler class that disect the instructions." alt="" coords="899,124,1077,180"/>
+<area shape="rect" id="node7" href="$d0/dad/_utilty_8cpp.html" title="Implementation of the utility functions in Disassembler class." alt="" coords="1102,124,1271,180"/>
+</map>

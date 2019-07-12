@@ -73,7 +73,7 @@ void Config::Initialize(void)
 		RLBinUtils::RLBin_Log("RLBin is set to static configuration. Running RLBinStatic!", __FILENAME__);
 	}
 
-	NOTSTATIC
+	ISDYNAMIC
 	{
 		RLBinUtils::RLBin_Log("RLBin is set to dynamic configuration. Running RLBinDynamic!", __FILENAME__);
 	}

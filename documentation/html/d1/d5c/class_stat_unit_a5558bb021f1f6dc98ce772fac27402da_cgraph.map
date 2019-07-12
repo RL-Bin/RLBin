@@ -1,0 +1,11 @@
+<map id="StatUnit::RecursiveDisassembly" name="StatUnit::RecursiveDisassembly">
+<area shape="rect" id="node1" title="Disassmeble the binary using recursive traversal." alt="" coords="5,195,213,221"/>
+<area shape="rect" id="node2" href="$d1/d5c/class_stat_unit.html#af9603e7a35b69dfbe7583df8897a59b9" title="Checks to see if a given address is in a list." alt="" coords="301,5,435,32"/>
+<area shape="rect" id="node3" href="$d4/dc8/class_modules.html#aea4c2cc2fd5792acf8bbc759ccaee52e" title="Gets the one and only instance of Modules class." alt="" coords="578,71,678,97"/>
+<area shape="rect" id="node4" href="$d1/d5c/class_stat_unit.html#a5e3dc43c69e02be313363892796424c9" title="checks if an instruction is valid and the target is within the code section" alt="" coords="288,158,448,199"/>
+<area shape="rect" id="node5" href="$dd/d0c/class_disassembler.html#a8e5eed89c11a33aef09aefad013e580b" title="gets the single instance of the Disassembler class" alt="" coords="563,151,693,177"/>
+<area shape="rect" id="node6" href="$dd/d0c/class_disassembler.html#a1758c6b243816cab2138f6a3d51fc559" title="Dynamically calculate the target of direct CTI." alt="" coords="523,201,733,228"/>
+<area shape="rect" id="node7" href="$dd/d0c/class_disassembler.html#abfa036dd5d3a2bbe363e6ce60af30fb2" title="Dynamically calculate both targets of conditional CTI." alt="" coords="531,253,725,294"/>
+<area shape="rect" id="node8" href="$dd/d0c/class_disassembler.html#aecf2dbed515d5146897bbdb0ee3bfcf8" title="Gets the size of the instruction at the given address." alt="" coords="279,325,457,352"/>
+<area shape="rect" id="node9" href="$dd/d0c/class_disassembler.html#a0478c162788217d8d5025f7794a046fe" title="Checks if the instruction is indirect jump." alt="" coords="261,376,475,403"/>
+</map>

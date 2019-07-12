@@ -1,0 +1,4 @@
+<map id="CallGraph::Create" name="CallGraph::Create">
+<area shape="rect" id="node1" title="Creates the single instance of the CallGraph class." alt="" coords="5,5,131,32"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="179,5,340,32"/>
+</map>

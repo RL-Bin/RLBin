@@ -1,0 +1,4 @@
+<map id="Timer::GetNewTimer" name="Timer::GetNewTimer">
+<area shape="rect" id="node1" title="This function creates and initialize a new timer." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="193,5,355,32"/>
+</map>

@@ -6,6 +6,8 @@
 #ifndef _TMU_H
 #define _TMU_H
 
+#include <unordered_map>
+
 #include "..\SubUnits\Utils\defs.h"
 #include "..\SubUnits\Utils\RLBinUtils.h"
 
@@ -26,6 +28,10 @@ public:
 	static void Initialize(void);
 
 private:
+
+	/** The map that contains backup of rewritten code */
+	std::unordered_map<ADDRESS,byte> original_code;
+
 	/** The single unique object of this class */
 	static TMU* s_instance;
 };

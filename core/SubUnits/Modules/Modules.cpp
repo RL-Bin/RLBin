@@ -243,9 +243,23 @@ void Modules::PrintInfoLogFile()
 {
 	RLBinUtils::RLBin_Log("File image size is " + RLBinUtils::ConvertHexToString(modules.front().module_size), __FILENAME__);
 
+	int total_text_size = 0;
 	for(std::list<SectionInfo>::iterator it = modules.front().sections.begin(); it != modules.front().sections.end(); it++)
 	{
-		if(it->name == ".text")
-			RLBinUtils::RLBin_Log("Text section size is " + RLBinUtils::ConvertHexToString(it->size), __FILENAME__);			
+		SectionInfo * sect = &*it;
+		if(SectionHasCode(sect))
+		{
+			total_text_size += sect->size;
+		}
 	}
+	RLBinUtils::RLBin_Log("Text section size is " + RLBinUtils::ConvertHexToString(total_text_size), __FILENAME__);			
+
+}
+
+bool Modules::SectionHasCode(SectionInfo *_section)
+{
+	if(_section->contain & SECTION__CONTAIN_CODE)
+		return true;
+	else
+		return false;
 }

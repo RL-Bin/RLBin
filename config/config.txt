@@ -7,7 +7,6 @@
 //
 OptMode=1
 
-
 ////////////// optimization level in Dynamic Mode
 //
 // OptLevel 0 is the base RL-Bin 

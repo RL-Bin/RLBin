@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 	// Create the target process, exit if it cannot be created.
 	if(!InitProcess(target_cmd))
 	{
-		RLBinUtils::RLBin_Error("The target process cannot be created! \n", __FILENAME__, __LINE__);
+		RLBinUtils::RLBin_Error("The target process cannot be created! + " + std::string(target_cmd) + "\n", __FILENAME__, __LINE__);
 		return 0;	
 	}
 	else

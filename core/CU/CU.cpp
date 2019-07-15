@@ -43,10 +43,11 @@ void CU::Initialize(void)
 
 	Modules::Create();
 	Modules::Get()->Initialize();
+	Modules::Get()->PrintModulesShort();
 
 	DisTable::Create();
 	DisTable::Get()->Initialize(Modules::Get()->GetMainModule()->module_size);
 
-	TMU::Create();
-	TMU::Get()->Initialize();
+	//TMU::Create();
+	//TMU::Get()->Initialize();
 }

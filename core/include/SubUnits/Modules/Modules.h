@@ -92,6 +92,14 @@ private:
 
 	/** @brief Prints the information of the main file to the log file*/
 	void PrintInfoLogFile();
+
+	/** 
+	 * @brief checks if a section contains code
+	 *
+	 * @param [in] The section to be checked
+	 * @return true if the section has code
+	 */
+	bool SectionHasCode(SectionInfo *_section);
 };
 
 #endif

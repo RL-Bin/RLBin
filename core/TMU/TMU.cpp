@@ -34,10 +34,8 @@ TMU* TMU::Get(void)
 void TMU::Initialize(void) 
 {
 	ADDRESS add = Modules::Get()->GetMainModule()->entry_point;
-	DWORD dwOldProtect;
-	VirtualProtect ((LPVOID)add, 1, PAGE_EXECUTE_READWRITE, &dwOldProtect);
 
-	*(byte *) add = 0xcc;
-
-	//RLBinUtils::RLBin_Error(RLBinUtils::ConvertHexToString(add), __FILENAME__, __LINE__);	
+	//DWORD dwOldProtect;
+	//VirtualProtect ((LPVOID)add, 1, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+	//*(byte *) add = 0xcc;
 }

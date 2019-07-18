@@ -25,7 +25,21 @@ public:
 	static TMU* Get(void);
 
 	/** @brief initializes TMU class*/
-	static void Initialize(void);
+	void Initialize(void);
+
+	/**
+	 * @brief Inserts trampoline at the given address
+	 *
+	 * @param[in] _address Address of the trampoline
+	 */
+	void InsertTrampoine(ADDRESS _address);
+
+	/**
+	 * @brief Removes trampoline from the given address
+	 *
+	 * @param[in] _address Address of the code to be restored
+	 */
+	void RemoveTrampoine(ADDRESS _address);
 
 private:
 

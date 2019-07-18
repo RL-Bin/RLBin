@@ -10,8 +10,8 @@
 #include "..\include\IMU\IMU.h"
 
 #include "..\include\SubUnits\Modules\Modules.h"
-#include "..\include\SubUnits\Disassembler\Disassembler.h"
 #include "..\include\DataStructs\DisTable\DisTable.h"
+#include "..\include\SubUnits\Disassembler\Disassembler.h"
 
 // inititalizing the only instace of class 
 CU* CU::s_instance = NULL;
@@ -48,6 +48,46 @@ void CU::Initialize(void)
 	DisTable::Create();
 	DisTable::Get()->Initialize(Modules::Get()->GetMainModule()->module_size);
 
-	//TMU::Create();
-	//TMU::Get()->Initialize();
+	TMU::Create();
+	TMU::Get()->Initialize();
+}
+
+void CU::HandleNewCode(PEXCEPTION_POINTERS p)
+{
+	ADDRESS add = (ADDRESS)p->ExceptionRecord->ExceptionAddress;
+	TMU::Get()->RemoveTrampoine(add);	
+
+	//Analyze  Function Must be pre type 2
+	RLBinUtils::RLBin_Debug("STATUS    :    11", __FILENAME__, __LINE__);
+
+
+	// Set DisTable,      Dis, type 1 or 2
+	RLBinUtils::RLBin_Debug("STATUS    :    111", __FILENAME__, __LINE__);
+
+	DisTable::Get()->SetEntry(add, LOC_DISCOVERD);
+
+	if(Disassembler::Get()->IsInstDirectCall(add))
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1112", __FILENAME__, __LINE__);
+	}
+	else if(Disassembler::Get()->IsInstDirectJump(add))
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1113", __FILENAME__, __LINE__);
+	}
+	else if(Disassembler::Get()->IsInstIndirectCall(add))
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1114", __FILENAME__, __LINE__);		
+	}
+	else if(Disassembler::Get()->IsInstIndirectJump(add))
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1115", __FILENAME__, __LINE__);		
+	}
+	else if(Disassembler::Get()->IsInstRet(add))
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1116", __FILENAME__, __LINE__);		
+	}	
+	else
+	{
+		RLBinUtils::RLBin_Debug("STATUS    :    1111", __FILENAME__, __LINE__);				
+	}
 }

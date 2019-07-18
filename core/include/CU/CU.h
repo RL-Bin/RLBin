@@ -23,12 +23,16 @@ public:
 	static CU* Get(void);
 
 	/** @brief initializes all other modules*/
-	static void Initialize(void);
+	void Initialize(void);
 
-private:
+	/** 
+	 * @brief handles discovery of new code
+	 *
+	 * param [in] p The pointer to the exception structure  
+	 */
+	void HandleNewCode(PEXCEPTION_POINTERS p);
 
-	/** @brief handles discovery of new code */
-	
+private:	
 
 	/** The single unique object of this class */
 	static CU* s_instance;

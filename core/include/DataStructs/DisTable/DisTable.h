@@ -56,6 +56,7 @@ public:
 	 */
 	CELL GetEntry(ADDRESS _address);
 
+
 private:
 	/** size of the disassembly table */
 	SIZE_TYPE size;

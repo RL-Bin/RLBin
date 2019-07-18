@@ -34,8 +34,23 @@ TMU* TMU::Get(void)
 void TMU::Initialize(void) 
 {
 	ADDRESS add = Modules::Get()->GetMainModule()->entry_point;
+	InsertTrampoine(add);
+}
 
-	//DWORD dwOldProtect;
-	//VirtualProtect ((LPVOID)add, 1, PAGE_EXECUTE_READWRITE, &dwOldProtect);
-	//*(byte *) add = 0xcc;
+void TMU::InsertTrampoine(ADDRESS _address)
+{
+	RLBinUtils::SetWritePermission(_address, 1);
+
+	byte orig_code = *(byte *) _address;
+
+	*(byte *) _address = TRAP_INST_OPCODE;	
+
+	original_code.insert({_address, orig_code});
+}
+
+void TMU::RemoveTrampoine(ADDRESS _address)
+{
+	*(byte *) _address = original_code.at(_address);
+
+	original_code.erase(_address);
 }

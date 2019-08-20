@@ -73,7 +73,6 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 	//Analyze  Function Must be pre type 2
 	RLBinUtils::RLBin_Debug("STATUS    :    31", __FILENAME__, __LINE__);
 
-
 	// Set DisTable,      Dis, type 1 or 2
 	RLBinUtils::RLBin_Debug("STATUS    :    4", __FILENAME__, __LINE__);
 
@@ -90,6 +89,7 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 	else if(Disassembler::Get()->IsInstDirectJump(add))
 	{
 		RLBinUtils::RLBin_Debug("STATUS    :    DJ0", __FILENAME__, __LINE__);
+		HandleNewDJ(add);
 	}
 	else if(Disassembler::Get()->IsInstIndirectCall(add))
 	{
@@ -108,4 +108,6 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 		RLBinUtils::RLBin_Debug("STATUS    :    NC0", __FILENAME__, __LINE__);				
 		HandleNewNC(add);
 	}
+
+	RLBinUtils::RLBin_Debug("STATUS    :    DF", __FILENAME__, __LINE__);
 }

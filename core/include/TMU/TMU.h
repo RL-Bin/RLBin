@@ -42,12 +42,15 @@ public:
 	void RemoveTrampoline(ADDRESS _address);
 
 private:
-
-	/** The map that contains backup of rewritten code */
+	/** @brief The map that contains backup of rewritten code */
 	std::unordered_map<ADDRESS,byte> original_code;
 
-	/** The single unique object of this class */
+	/** @brief The single unique object of this class */
 	static TMU* s_instance;
+
+	/** @brief Prints all trampolines to the debug file */
+	void ListTrampolines();
+
 };
 
 #endif

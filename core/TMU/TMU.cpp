@@ -39,8 +39,11 @@ void TMU::Initialize(void)
 
 void TMU::InsertTrampoline(ADDRESS _address)
 {
+	// Debug, check the list of trampolines
+	// ListTrampolines();
+
 	// First, check if current location has trampoline
-	if(original_code.find(_address) == original_code.end() && (!original_code.empty()))
+	if(original_code.find(_address) != original_code.end())
 	{
 		RLBinUtils::RLBin_Debug("Trampoline already exist at location " + RLBinUtils::ConvertHexToString(_address), __FILENAME__, __LINE__);
 		return;
@@ -62,4 +65,15 @@ void TMU::RemoveTrampoline(ADDRESS _address)
 	*(byte *) _address = original_code.at(_address);
 
 	original_code.erase(_address);
+}
+
+void TMU::ListTrampolines()
+{
+	std::unordered_map<ADDRESS,byte>::iterator it = original_code.begin();
+
+	while(it != original_code.end())
+	{
+		RLBinUtils::RLBin_Debug(RLBinUtils::ConvertHexToString(it->first), __FILENAME__, __LINE__);
+		it ++;
+	}
 }

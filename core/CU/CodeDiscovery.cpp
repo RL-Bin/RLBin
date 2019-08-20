@@ -71,14 +71,65 @@ void CU::HandleNewNC(ADDRESS _address)
 	}
 	else
 	{
-		// Check Next Inst Middle of function
-		RLBinUtils::RLBin_Debug("STATUS    :    NC22", __FILENAME__, __LINE__);
+	}
+}
 
-		// Register function
-		RLBinUtils::RLBin_Debug("STATUS    :    DC34", __FILENAME__, __LINE__);
+void CU::HandleNewDJ(ADDRESS _address)
+{
+	// Target of conditional or unconditional jump
+	ADDRESS jump_target;
+
+	if(Disassembler::Get()->IsInstConditionalJump(_address))
+	{
+		Inst current;
+		Disassembler::Get()->GetOneInst(_address, &current);
+		ADDRESS next_inst = _address + current.size;
+
+		ADDRESS targets[2];
+		Disassembler::Get()->GetConditionalCTIDest(_address, targets);
+		jump_target = targets[0];
+
+		// Check Next Inst Discovered
+		RLBinUtils::RLBin_Debug("STATUS    :    DJ1_F", __FILENAME__, __LINE__);
+		if(DisTable::Get()->GetEntry(next_inst) == LOC_UNDISCOVERD)
+		{
+			// Check Next Inst Within Current Function
+			RLBinUtils::RLBin_Debug("STATUS    :    DJ22_F", __FILENAME__, __LINE__);
+
+			// Add to pre type 1
+			RLBinUtils::RLBin_Debug("STATUS    :    DJ33_F", __FILENAME__, __LINE__);
+
+			// Put trap to be discovered
+			TMU::Get()->InsertTrampoline(next_inst);
+			RLBinUtils::RLBin_Debug("STATUS    :    DJ43_F", __FILENAME__, __LINE__);			
+		}
+		else
+		{
+		}		
+	}
+	else
+	{
+		Disassembler::Get()->GetDirectCTIDest(_address, &jump_target);
+	}
+
+	RLBinUtils::RLBin_Debug("jump target is " + RLBinUtils::ConvertHexToString(jump_target), __FILENAME__, __LINE__);
+
+	// Now we handle the target
+	// Check Next Inst Discovered
+	RLBinUtils::RLBin_Debug("STATUS    :    DJ1_T", __FILENAME__, __LINE__);
+	if(DisTable::Get()->GetEntry(jump_target) == LOC_UNDISCOVERD)
+	{
+		// Check Next Inst Within Current Function
+		RLBinUtils::RLBin_Debug("STATUS    :    DJ22_T", __FILENAME__, __LINE__);
+
+		// Add to pre type 1
+		RLBinUtils::RLBin_Debug("STATUS    :    DJ33_T", __FILENAME__, __LINE__);
 
 		// Put trap to be discovered
-		TMU::Get()->InsertTrampoline(next_inst);
-		RLBinUtils::RLBin_Debug("STATUS    :    DC42", __FILENAME__, __LINE__);			
+		TMU::Get()->InsertTrampoline(jump_target);
+		RLBinUtils::RLBin_Debug("STATUS    :    DJ43_T", __FILENAME__, __LINE__);			
 	}
+	else
+	{
+	}		
 }

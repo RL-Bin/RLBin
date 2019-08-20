@@ -180,11 +180,9 @@ void RLBinUtils::RLBin_Debug(std::string str, std::string source_file, int sourc
     {
         std::string tempStr;
         tempStr.append(source_file);
-        tempStr.resize(24, ' ');        
-        tempStr.append("\t");
+        tempStr.resize(30, ' ');        
         tempStr.append(ConvertIntToString(source_file_line));
-        tempStr.append("\t");
-        tempStr.resize(36, ' ');        
+        tempStr.resize(40, ' ');        
         tempStr.append(str);
         fprintf(debugFile, "%s\n", tempStr.c_str());
         fflush(debugFile);

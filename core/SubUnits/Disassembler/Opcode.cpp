@@ -29,7 +29,7 @@ bool Disassembler::IsInstRet(ADDRESS _address)
 	return false;
 }
 
-bool Disassembler::IsInstDirectJump(ADDRESS _address)
+bool Disassembler::IsInstUnconditionalJump(ADDRESS _address)
 {
 	Inst instruction;
 	GetOneInst(_address, &instruction);
@@ -52,6 +52,14 @@ bool Disassembler::IsInstDirectJump(ADDRESS _address)
 	return false;
 }
 
+bool Disassembler::IsInstDirectJump(ADDRESS _address)
+{
+	if (IsInstUnconditionalJump(_address) || IsInstConditionalJump(_address))
+	{
+		return true;
+	}
+	return false;
+}
 
 bool Disassembler::IsInstDirectCall(ADDRESS _address)
 {

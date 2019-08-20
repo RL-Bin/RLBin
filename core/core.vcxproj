@@ -172,6 +172,7 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CU\CodeDiscovery.cpp" />
     <ClCompile Include="CU\CU.cpp" />
     <ClCompile Include="CU\ExceptionHandler.cpp" />
     <ClCompile Include="CU\Main.cpp" />

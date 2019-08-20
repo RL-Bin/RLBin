@@ -32,14 +32,14 @@ public:
 	 *
 	 * @param[in] _address Address of the trampoline
 	 */
-	void InsertTrampoine(ADDRESS _address);
+	void InsertTrampoline(ADDRESS _address);
 
 	/**
 	 * @brief Removes trampoline from the given address
 	 *
 	 * @param[in] _address Address of the code to be restored
 	 */
-	void RemoveTrampoine(ADDRESS _address);
+	void RemoveTrampoline(ADDRESS _address);
 
 private:
 

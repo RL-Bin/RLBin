@@ -188,6 +188,9 @@
     <ClCompile Include="SubUnits\Disassembler\Utilty.cpp">
       <Filter>Source Files\SubUnits\Disassembler</Filter>
     </ClCompile>
+    <ClCompile Include="CU\CodeDiscovery.cpp">
+      <Filter>Source Files\CU</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h">

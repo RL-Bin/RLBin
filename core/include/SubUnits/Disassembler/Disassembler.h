@@ -13,6 +13,8 @@
 #include "..\..\Capstone\platform.h"
 
 #include "Inst.h"
+#include "..\..\SubUnits\Modules\Modules.h"
+#include "..\..\DataStructs\DisTable\DisTable.h"
 
 /**
  * @class Disassembler
@@ -65,6 +67,12 @@ public:
 	 */	
 	bool IsInstConditionalJump(ADDRESS _address);
 
+	/**
+	 * @brief Checks if the instruction is an unconditional jump
+	 *
+	 * @return true if the instruction is unconditional jump
+	 */	
+	bool IsInstUnconditionalJump(ADDRESS _address);
 
 	/**
 	 * @brief Checks if the instruction is indirect jump
@@ -170,6 +178,9 @@ public:
 	 * @param [in] _log_type The given log file
 	 */
 	void PrintInstDetails(ADDRESS address, LogType _log_type);
+
+	/** @brief Prints the instruction that are marked us discovered in the disassembly table */
+	void PrintDisassembly();
 
 private:
 

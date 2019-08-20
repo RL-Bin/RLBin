@@ -96,3 +96,36 @@ void Disassembler::PrintInstDetails(ADDRESS _address, LogType _log_type)
 	RLBinUtils::RLBin_Multi((("displacement: \t ") + RLBinUtils::ConvertHexToString(pinstruction->disp) + std::string("\n")),_log_type);
 	return;	
 }
+
+
+void Disassembler::PrintDisassembly()
+{
+	// go over all entries in the table and print out the discovered insructions  
+	SIZE_TYPE covered_bytes = 0;
+	SIZE_TYPE covered_instructions = 0;
+	ADDRESS start = Modules::Get()->GetMainModule()->base_address;
+	ADDRESS end = Modules::Get()->GetMainModule()->base_address + Modules::Get()->GetMainModule()-> module_size;
+	for (ADDRESS i = start; i < end;)
+	{
+		if (DisTable::Get()->GetEntry(i) != LOC_UNDISCOVERD)
+		{
+			Inst inst;
+			Disassembler::Get()->GetOneInst(i, &inst);
+			RLBinUtils::RLBin_Dis(RLBinUtils::ConvertHexToString(i) + "\t" + RLBinUtils::ConvertIntToString(DisTable::Get()->GetEntry(i))  + "\t " + inst.mnemonic + " " + inst.op_str + "\n");
+			RLBinUtils::RLBin_Dis("\t\t\t\t\t\t\t\t\t\t\t\t\t0x");
+			for (int i = 0; i < inst.size; i++)
+			{
+				RLBinUtils::RLBin_Dis(RLBinUtils::ConvertByteToString(inst.bytes[i]));
+			}
+			RLBinUtils::RLBin_Dis("\n");
+			i = i+inst.size;
+			covered_bytes = covered_bytes + inst.size;
+			covered_instructions ++;
+		}
+		else
+			i++;
+	}
+	RLBinUtils::RLBin_Dis("\n____________________________TOTAL_SIZE_____________________________\n");
+	RLBinUtils::RLBin_Dis("Total Bytes Discovered dynamically\t" + RLBinUtils::ConvertIntToString(covered_bytes) + " bytes\n");
+	RLBinUtils::RLBin_Dis("Total Instructions Discovered dynamically\t" + RLBinUtils::ConvertIntToString(covered_instructions));
+}

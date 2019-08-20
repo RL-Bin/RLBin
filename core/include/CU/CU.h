@@ -25,6 +25,9 @@ public:
 	/** @brief initializes all other modules*/
 	void Initialize(void);
 
+	/** @brief finalizes all other modules*/
+	void Finalize(void);
+
 	/** 
 	 * @brief handles discovery of new code
 	 *
@@ -33,9 +36,50 @@ public:
 	void HandleNewCode(PEXCEPTION_POINTERS p);
 
 private:	
-
 	/** The single unique object of this class */
 	static CU* s_instance;
+
+	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewNC(ADDRESS _address);
+
+	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewDC(ADDRESS _address);
+
+	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewDJ(ADDRESS _address);
+
+ 	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewIC(ADDRESS _address);
+
+ 	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewIJ(ADDRESS _address);
+
+ 	/** 
+	 * @brief handles discovery of new code for a non-cti instruction
+	 *
+	 * param [in] The address of the instruction  
+	 */
+	void HandleNewR(ADDRESS _address);
 };
 
 #endif

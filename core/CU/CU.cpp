@@ -52,42 +52,60 @@ void CU::Initialize(void)
 	TMU::Get()->Initialize();
 }
 
+void CU::Finalize(void) 
+{
+	Disassembler::Get()->PrintDisassembly();
+}
+
 void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 {
+	// Remove Current Tramp 
+	// STATUS    :    1
 	ADDRESS add = (ADDRESS)p->ExceptionRecord->ExceptionAddress;
-	TMU::Get()->RemoveTrampoine(add);	
+	TMU::Get()->RemoveTrampoline(add);	
+
+	Disassembler::Get()->PrintInst(add, T_DEBUG);
+	RLBinUtils::RLBin_Debug("STATUS    :    1", __FILENAME__, __LINE__);
+
+	//Within Function
+	RLBinUtils::RLBin_Debug("STATUS    :    2", __FILENAME__, __LINE__);
 
 	//Analyze  Function Must be pre type 2
-	RLBinUtils::RLBin_Debug("STATUS    :    11", __FILENAME__, __LINE__);
+	RLBinUtils::RLBin_Debug("STATUS    :    31", __FILENAME__, __LINE__);
 
 
 	// Set DisTable,      Dis, type 1 or 2
-	RLBinUtils::RLBin_Debug("STATUS    :    111", __FILENAME__, __LINE__);
+	RLBinUtils::RLBin_Debug("STATUS    :    4", __FILENAME__, __LINE__);
 
 	DisTable::Get()->SetEntry(add, LOC_DISCOVERD);
 
+	// Check inst type
+	RLBinUtils::RLBin_Debug("STATUS    :    5", __FILENAME__, __LINE__);
+
 	if(Disassembler::Get()->IsInstDirectCall(add))
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1112", __FILENAME__, __LINE__);
+		RLBinUtils::RLBin_Debug("STATUS    :    DC0", __FILENAME__, __LINE__);
+		HandleNewDC(add);
 	}
 	else if(Disassembler::Get()->IsInstDirectJump(add))
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1113", __FILENAME__, __LINE__);
+		RLBinUtils::RLBin_Debug("STATUS    :    DJ0", __FILENAME__, __LINE__);
 	}
 	else if(Disassembler::Get()->IsInstIndirectCall(add))
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1114", __FILENAME__, __LINE__);		
+		RLBinUtils::RLBin_Debug("STATUS    :    IC0", __FILENAME__, __LINE__);		
 	}
 	else if(Disassembler::Get()->IsInstIndirectJump(add))
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1115", __FILENAME__, __LINE__);		
+		RLBinUtils::RLBin_Debug("STATUS    :    IJ0", __FILENAME__, __LINE__);		
 	}
 	else if(Disassembler::Get()->IsInstRet(add))
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1116", __FILENAME__, __LINE__);		
+		RLBinUtils::RLBin_Debug("STATUS    :    R0", __FILENAME__, __LINE__);		
 	}	
 	else
 	{
-		RLBinUtils::RLBin_Debug("STATUS    :    1111", __FILENAME__, __LINE__);				
+		RLBinUtils::RLBin_Debug("STATUS    :    NC0", __FILENAME__, __LINE__);				
+		HandleNewNC(add);
 	}
 }

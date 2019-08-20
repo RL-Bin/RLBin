@@ -34,11 +34,19 @@ TMU* TMU::Get(void)
 void TMU::Initialize(void) 
 {
 	ADDRESS add = Modules::Get()->GetMainModule()->entry_point;
-	InsertTrampoine(add);
+	InsertTrampoline(add);
 }
 
-void TMU::InsertTrampoine(ADDRESS _address)
+void TMU::InsertTrampoline(ADDRESS _address)
 {
+	// First, check if current location has trampoline
+	if(original_code.find(_address) == original_code.end() && (!original_code.empty()))
+	{
+		RLBinUtils::RLBin_Debug("Trampoline already exist at location " + RLBinUtils::ConvertHexToString(_address), __FILENAME__, __LINE__);
+		return;
+	}
+
+	// Trampoline does not exist, insert one at this location
 	RLBinUtils::SetWritePermission(_address, 1);
 
 	byte orig_code = *(byte *) _address;
@@ -46,9 +54,10 @@ void TMU::InsertTrampoine(ADDRESS _address)
 	*(byte *) _address = TRAP_INST_OPCODE;	
 
 	original_code.insert({_address, orig_code});
+
 }
 
-void TMU::RemoveTrampoine(ADDRESS _address)
+void TMU::RemoveTrampoline(ADDRESS _address)
 {
 	*(byte *) _address = original_code.at(_address);
 

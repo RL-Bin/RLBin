@@ -5,6 +5,7 @@
  * @file Disassembler.h
  * @brief This file contains Disassembler class and functions which are responsible for disassembling the code
  */
+#include <unordered_map>
 
 #include "..\..\SubUnits\Utils\defs.h"
 #include "..\..\SubUnits\Utils\RLBinUtils.h"
@@ -224,6 +225,9 @@ private:
 	 * @return uint8_t The Rm value from Modrm
 	 */
 	uint8_t GetRmFromModrm(uint8_t _modrm);
+
+	/** @brief unordered map containing the name of libcalls made */
+	std::unordered_map<ADDRESS,std::string> libcalls;
 };
 
 #endif

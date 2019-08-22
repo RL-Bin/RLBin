@@ -110,14 +110,26 @@ void Disassembler::PrintDisassembly()
 		if (DisTable::Get()->GetEntry(i) != LOC_UNDISCOVERD)
 		{
 			Inst inst;
-			Disassembler::Get()->GetOneInst(i, &inst);
-			RLBinUtils::RLBin_Dis(RLBinUtils::ConvertHexToString(i) + "\t" + RLBinUtils::ConvertIntToString(DisTable::Get()->GetEntry(i))  + "\t " + inst.mnemonic + " " + inst.op_str + "\n");
-			RLBinUtils::RLBin_Dis("\t\t\t\t\t\t\t\t\t\t\t\t\t0x");
+			GetOneInst(i, &inst);
+       		std::string tempStr;			
+			tempStr.append(RLBinUtils::ConvertHexToString(i) + "\t" + RLBinUtils::ConvertIntToString(DisTable::Get()->GetEntry(i))  + "\t " + inst.mnemonic + " " + inst.op_str );
+
+       		tempStr.resize(60, ' ');
+       		tempStr.append("0x");
 			for (int i = 0; i < inst.size; i++)
 			{
-				RLBinUtils::RLBin_Dis(RLBinUtils::ConvertByteToString(inst.bytes[i]));
+				tempStr.append(RLBinUtils::ConvertByteToString(inst.bytes[i]));
 			}
-			RLBinUtils::RLBin_Dis("\n");
+
+       		tempStr.resize(90, ' ');
+
+			if(libcalls.find(i) != libcalls.end())
+			{
+				tempStr.append(" " + libcalls[i] + " ");
+			}       		
+
+        	tempStr.append("\n");       			
+			RLBinUtils::RLBin_Dis(tempStr);
 			i = i+inst.size;
 			covered_bytes = covered_bytes + inst.size;
 			covered_instructions ++;

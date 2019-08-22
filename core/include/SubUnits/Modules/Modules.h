@@ -83,6 +83,14 @@ public:
 	 */
 	bool IsInsideMainModule(ADDRESS address);
 
+	/** 
+	 * @brief returns the name of the exported function at the given address
+	 *
+	 * @param [in] The address to be checked
+	 * @return the name of the function
+	 */
+	std::string GetExpFuncName(ADDRESS _func_address);
+
 private:
 	/** The list of all modules (Program and DLL) loaded into the program address space */
 	std::list<ModuleInfo> modules;

@@ -263,3 +263,21 @@ bool Modules::SectionHasCode(SectionInfo *_section)
 	else
 		return false;
 }
+
+
+std::string Modules::GetExpFuncName(ADDRESS _func_address)
+{
+	// iterate over all modules and functions to find the demangled name of the function
+	std::string func_name("");
+	for (std::list<ModuleInfo>::iterator it = modules.begin(); it != modules.end(); it++)
+	{
+		for (std::map<ADDRESS,std::string>::iterator itt=it->func.begin(); itt!=it->func.end(); ++itt)
+		{
+			if(_func_address == (itt->first))
+			{
+				func_name = itt->second;
+			}			
+		}
+	}
+	return func_name;
+}

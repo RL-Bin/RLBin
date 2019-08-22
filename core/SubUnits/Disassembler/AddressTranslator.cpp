@@ -6,6 +6,7 @@
 #include <math.h>
 
 #include "..\..\include\SubUnits\Disassembler\Disassembler.h"
+#include "..\..\include\SubUnits\Modules\Modules.h"
 
 void Disassembler::GetDirectCTIDest(ADDRESS _address, ADDRESS *_destAddress)
 {
@@ -124,5 +125,12 @@ void Disassembler::GetIndirectCTIDest(ADDRESS _address, ADDRESS *_destAddress, P
 			PrintInst(_address, T_ERROR);
 			RLBinUtils::RLBin_Error("Unhandled Inditect CTI, Haven't seen this type of instruction before!", __FILENAME__, __LINE__);
 		}
+	}
+
+	// check if destination is a library call, if so add it to the unordered map
+	std::string lib_name = Modules::Get()->GetExpFuncName(* _destAddress);
+	if(lib_name != "")
+	{
+		libcalls[_address] = lib_name;
 	}
 }

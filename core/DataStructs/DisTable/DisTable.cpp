@@ -46,6 +46,8 @@ void DisTable::Initialize(SIZE_TYPE _size)
 	{
 		table[i] = LOC_UNDISCOVERD;
 	}
+
+	offset = ADDRESS (table) - Modules::Get()->GetMainModule()->base_address;
 }
 
 DisTable::~DisTable()
@@ -80,4 +82,9 @@ CELL DisTable::GetEntry(ADDRESS _address)
 		RLBinUtils::RLBin_Error("Trying to get disassembly table for an invalid address" + RLBinUtils::ConvertHexToString(_address) + "\n", __FILENAME__, __LINE__);
 		return LOC_UNDISCOVERD;
 	}
+}
+
+ADDRESS DisTable::GetOffset()
+{
+	return offset;
 }

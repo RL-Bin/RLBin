@@ -141,3 +141,18 @@ void Disassembler::PrintDisassembly()
 	RLBinUtils::RLBin_Dis("Total Bytes Discovered dynamically\t" + RLBinUtils::ConvertIntToString(covered_bytes) + " bytes\n");
 	RLBinUtils::RLBin_Dis("Total Instructions Discovered dynamically\t" + RLBinUtils::ConvertIntToString(covered_instructions));
 }
+
+void Disassembler::PrintNInsts(ADDRESS _address, LogType _log_type, int _size)
+{
+	ADDRESS printed_address = _address;
+	while(_size>0)
+	{
+		Inst inst;
+		GetOneInst(printed_address, &inst);
+		RLBinUtils::RLBin_Multi((RLBinUtils::ConvertHexToString((int)inst.address) + 
+					std::string(":\t ") + inst.mnemonic + std::string(" ") + inst.op_str), _log_type);
+		_size--;
+		printed_address += inst.size;
+	}
+	return;
+}

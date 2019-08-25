@@ -51,7 +51,14 @@ void CU::Initialize(void)
 	TMU::Create();
 	TMU::Get()->Initialize();
 
+	IMU::Create();
+	IMU::Get()->Initialize();
+	IMU::Get()->CreateInstRoutineRet();
+
+	Disassembler::Get()->PrintNInsts(IMU::Get()->RetRoutine, T_TRAM, 17);
+
 	counter = 0;
+
 	return;
 }
 
@@ -153,17 +160,15 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 	return;
 }
 
-void CU::HandleRecurringCheck(PEXCEPTION_POINTERS p)
+void CU::HandleMissedCheck(PEXCEPTION_POINTERS p)
 {
-	//RLBinUtils::RLBin_Debug("STATUS____:____R0", __FILENAME__, __LINE__);
-	ADDRESS add = (ADDRESS)p->ExceptionRecord->ExceptionAddress;
+	RLBinUtils::RLBin_Debug("STATUS____:____R0", __FILENAME__, __LINE__);
+	ADDRESS return_address = *(((ADDRESS *) p->ContextRecord->Esp));	
+
+	RLBinUtils::RLBin_Debug(RLBinUtils::ConvertHexToString(return_address), __FILENAME__, __LINE__);
 	
-	//TMU::Get()->RemoveTrampoline(add);	
-
 	// Check External Dest
-	//RLBinUtils::RLBin_Debug("STATUS____:____R1", __FILENAME__, __LINE__);
-
-	ADDRESS return_address = *((ADDRESS *) p->ContextRecord->Esp);
+	RLBinUtils::RLBin_Debug("STATUS____:____R1", __FILENAME__, __LINE__);
 
 	if(!Modules::Get()->IsInsideMainCode(return_address))
 	{
@@ -171,16 +176,15 @@ void CU::HandleRecurringCheck(PEXCEPTION_POINTERS p)
 	else
 	{
 		// Check return address discovered
-		//RLBinUtils::RLBin_Debug("STATUS____:____R2", __FILENAME__, __LINE__);
+		RLBinUtils::RLBin_Debug("STATUS____:____R2", __FILENAME__, __LINE__);
 		if(DisTable::Get()->GetEntry(return_address) == LOC_UNDISCOVERD)
 		{
 			// Put trap to be discovered
 			TMU::Get()->InsertTrampoline(return_address);
-			//RLBinUtils::RLBin_Debug("STATUS____:____R3", __FILENAME__, __LINE__);
+			RLBinUtils::RLBin_Debug("STATUS____:____R3", __FILENAME__, __LINE__);
 		}
 	}
 
-	//TMU::Get()->InsertTrampoline(add);
 
 	p->ContextRecord->Eip = return_address;	
 	p->ContextRecord->Esp += 4;		

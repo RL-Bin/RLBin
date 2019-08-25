@@ -40,3 +40,12 @@ void RLBinUtils::SetWritePermission(ADDRESS _address, int _size)
         RLBin_Error("Cannot set write permission at address :" + ConvertHexToString(_address) + "\n", __FILENAME__, __LINE__);
     }
 }
+
+void RLBinUtils::SetExecutePermission(ADDRESS _address, int _size)
+{
+    DWORD OldProtection;
+    if (!VirtualProtect((LPVOID)_address, _size, PAGE_EXECUTE_READWRITE, &OldProtection))
+    {
+        RLBin_Error("Cannot set execute permission at address :" + ConvertHexToString(_address) + "\n", __FILENAME__, __LINE__);
+    }
+}

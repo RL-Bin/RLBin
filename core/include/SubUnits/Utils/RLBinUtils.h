@@ -248,12 +248,20 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @brief This function sets write and execute permission for the page containing the address
+	 * @brief This function sets write permission for the page containing the address
 	 *
 	 * @param [in] _address Input address to get write permission
 	 * @param [in] _size Size of the bytes that need to get write permission
 	 */
 	static DEFAULT_VISIBILTY void SetWritePermission(ADDRESS _address, int _size);
+
+	/**
+	 * @brief This function sets execute permission for the page containing the address
+	 *
+	 * @param [in] _address Input address to get execute permission
+	 * @param [in] _size Size of the bytes that need to get execute permission
+	 */
+	static DEFAULT_VISIBILTY void SetExecutePermission(ADDRESS _address, int _size);
 
 	/**
 	 * @brief Allocates memory and copy the string 

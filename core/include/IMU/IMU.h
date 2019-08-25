@@ -23,11 +23,26 @@ public:
 	static IMU* Get(void);
 
 	/** @brief initializes IMU class*/
-	static void Initialize(void);
+	void Initialize(void);
+
+	/** @brief Creates a routine to check target of a return instruction
+	 *
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutineRet();
+
+	/** (Temp) Address of Ret Routine */
+	ADDRESS RetRoutine;
 
 private:
 	/** The single unique object of this class */
 	static IMU* s_instance;
+
+	/** Memory space containing our instrumentation routines */
+	byte *instrumentations;
+
+	/** Beginning of empy space */
+	ADDRESS head;
 };
 
 #endif

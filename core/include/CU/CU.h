@@ -36,11 +36,11 @@ public:
 	void HandleNewCode(PEXCEPTION_POINTERS p);
 
 	/** 
-	 * @brief handles checking targets of indirect CTIs
+	 * @brief handles checking targets of indirect CTI that are not discovered
 	 *
 	 * param [in] p The pointer to the exception structure  
 	 */
-	void HandleRecurringCheck(PEXCEPTION_POINTERS p);
+	void HandleMissedCheck(PEXCEPTION_POINTERS p);
 
 	/** brief count the number of times exception handler is called */
 	int counter;

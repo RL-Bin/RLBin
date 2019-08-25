@@ -47,7 +47,7 @@ typedef unsigned char  CELL;
 #define DEFAULT_ROUTINE_SIZE 0x0100
 
 /** Default size of memory allocated for instrumentation routines */
-#define SIZE_INSTRUMENATION 0x10000000
+#define SIZE_INSTRUMENATION 0x10000
 
 /** Size of VIRTADDR in bits */
 #define SIZE_VIRTADDR  (BITS_IN_BYTE*sizeof(VirtAddr))

@@ -173,6 +173,15 @@ public:
 	void PrintInst(ADDRESS address, LogType _log_type);
 
 	/**
+	 * @brief Print the given n instructions to the given log file
+	 *
+	 * @param [in] address The address of the instructions that needs to be printed
+	 * @param [in] _log_type The given log file
+	 * @param [in] _size number of instructions that need to printed
+	 */
+	void PrintNInsts(ADDRESS address, LogType _log_type, int _size);
+
+	/**
 	 * @brief Print the details of a given instruction to the given log file
 	 *
 	 * @param [in] address The address of the instruction that needs to be printed

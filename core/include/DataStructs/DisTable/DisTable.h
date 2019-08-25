@@ -56,6 +56,12 @@ public:
 	 */
 	CELL GetEntry(ADDRESS _address);
 
+	/** brief Gets the offset of the distable
+	 *
+	 * return The offset value
+	 */
+	ADDRESS GetOffset();
+
 
 private:
 	/** size of the disassembly table */
@@ -66,6 +72,9 @@ private:
 
 	/** The single unique object of this class */
 	static DisTable* s_instance;
+
+	/** offset of table with regards to the main module */
+	ADDRESS offset;
 };
 
 #endif

@@ -64,6 +64,7 @@ void CU::Initialize(void)
 
 void CU::Finalize(void) 
 {
+	TMU::Get()->RemoveAllTrampolines();
 	Disassembler::Get()->PrintDisassembly();
 	return;
 }

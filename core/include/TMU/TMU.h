@@ -41,6 +41,9 @@ public:
 	 */
 	void RemoveTrampoline(ADDRESS _address);
 
+	/** @brief Removes all trampolines Inserted in the code */
+	void RemoveAllTrampolines();
+
 private:
 	/** @brief The map that contains backup of rewritten code */
 	std::unordered_map<ADDRESS,byte> original_code;

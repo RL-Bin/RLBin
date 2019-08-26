@@ -77,3 +77,12 @@ void TMU::ListTrampolines()
 		it ++;
 	}
 }
+
+void TMU::RemoveAllTrampolines()
+{
+	while(original_code.size() != 0)
+	{
+		std::unordered_map<ADDRESS,byte>::iterator it = original_code.begin();
+		RemoveTrampoline(it->first);
+	}	
+}

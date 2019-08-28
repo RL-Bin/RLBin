@@ -4,8 +4,13 @@
  */
 
 #include "..\include\IMU\IMU.h"
+#include "..\include\FAU\FAU.h"
 #include "..\include\SubUnits\Modules\Modules.h"
 #include "..\include\DataStructs\DisTable\DisTable.h"
+#include "..\include\SubUnits\Disassembler\Disassembler.h"
+
+/** This function will be called so that exception handler gets updated */
+extern void InitGlobals();
 
 // inititalizing the only instace of class 
 IMU* IMU::s_instance = NULL;
@@ -51,8 +56,51 @@ void IMU::Initialize(void)
 	return;
 }
 
+ADDRESS IMU::CreateInstRoutine(ADDRESS _address)
+{
+	// First, create a key based on the first 8 byte of Ind CTI
+	int size = Disassembler::Get()->GetInstSize(_address);
+	DWORD64 key = *(DWORD64 *) _address;
+	for(int i=size; i<8; i++)
+	{
+		*((byte *)(&key) + i) = 0;
+	}
 
-ADDRESS IMU::CreateInstRoutineRet()
+	if(inst_map.find(key) == inst_map.end())
+	{
+		if((key & 0x000000FF) == 0x000000C3)
+		{
+			inst_map [key] = CreateInstRoutine_0xC3();
+		}
+		else if((key & 0x0000FFFF) == 0x000015FF)
+		{
+			inst_map [key] = CreateInstRoutine_0xFF15(_address);
+		}		
+	}
+	else
+	{
+		// RLBinUtils::RLBin_Tram("instrumentation routine has been created for this instruction type already!");
+	}
+	return inst_map [key];
+}
+
+void IMU::PrintRoutines()
+{
+	RLBinUtils::RLBin_Tram("Total Size of instrumentation : " + RLBinUtils::ConvertHexToString(head - (ADDRESS)instrumentations));
+
+	std::unordered_map<DWORD64,ADDRESS>::iterator it = inst_map.begin();
+
+	while(it != inst_map.end())
+	{
+		RLBinUtils::RLBin_Tram("__________________________________________________________");
+		Disassembler::Get()->PrintNInsts(it->second, T_TRAM, 17);
+		it ++;
+	}
+
+	return;
+}
+
+ADDRESS IMU::CreateInstRoutine_0xC3()
 {
 	// 0:  50                      push   eax
 	// 1:  9c                      pushf
@@ -91,7 +139,47 @@ ADDRESS IMU::CreateInstRoutineRet()
 
 	RetRoutine = head;
 
-	head = head + DEFAULT_ROUTINE_SIZE;
+	head = head + added_routine_size;
 
 	return RetRoutine;
+}
+
+ADDRESS IMU::CreateInstRoutine_0xFF15(ADDRESS _address)
+{
+	// 0:  50                      push   eax
+	// 1:  9c                      pushf
+	// 2:  ff 05 aa aa aa aa       inc    DWORD PTR ds:0xaaaaaaaa
+	// 8:  a1 bb bb bb bb          mov    eax,ds:0xbbbbbbbb
+	// d:  3d cc cc cc cc          cmp    eax,0xcccccccc
+	// 12: 75 07                   jne    1b <end>
+	// 14: 9d                      popf
+	// 15: 58                      pop    eax
+	// 16: e9 c8 cc cc cc          jmp   cccccce3 <end+0xccccccc8>
+	// 0000001b <end>:
+	// 1b: 9d                      popf
+	// 1c: 58                      pop    eax
+	// 1d: cc                      int3
+
+	BYTE routine[] = { 0x50, 0x9C, 0xFF, 0x05, 0xAA, 0xAA, 0xAA, 0xAA, 0xA1, 0xBB, 0xBB, 0xBB, 0xBB,
+	 				   0x3D, 0xCC, 0xCC, 0xCC, 0xCC, 0x75, 0x07, 0x9D, 0x58, 0xE9, 0xC8, 0xCC, 0xCC, 
+	 				   0xCC, 0x9D, 0x58, 0xCC };
+	
+	int added_routine_size = (sizeof(routine)/sizeof((routine)[0]));
+
+	*(ADDRESS *) (routine+4) = (ADDRESS)(&(FAU::Get()->count__check_0xFF15));
+
+	*(ADDRESS *) (routine+9) = *(ADDRESS *)((byte *)_address+2);
+
+	*(ADDRESS *) (routine+14) = *(ADDRESS *)(*(ADDRESS *)((byte *)_address+2));
+	
+	*(ADDRESS *) (routine+23) = (*(ADDRESS *)(*(ADDRESS *)((byte *)_address+2))) - ((ADDRESS)(head+27));
+
+	// writing routine
+	CopyAddedRoutine(routine, added_routine_size, head);
+
+	ADDRESS Routine_FF15 = head;
+
+	head = head + added_routine_size;
+
+	return Routine_FF15;
 }

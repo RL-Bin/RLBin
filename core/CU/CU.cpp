@@ -5,7 +5,7 @@
 
 #include "..\include\CU\CU.h"
 
-
+#include "..\include\FAU\FAU.h"
 #include "..\include\TMU\TMU.h"
 #include "..\include\IMU\IMU.h"
 
@@ -53,11 +53,9 @@ void CU::Initialize(void)
 
 	IMU::Create();
 	IMU::Get()->Initialize();
-	IMU::Get()->CreateInstRoutineRet();
 
-	Disassembler::Get()->PrintNInsts(IMU::Get()->RetRoutine, T_TRAM, 17);
-
-	counter = 0;
+	FAU::Create();
+	FAU::Get()->Initialize();
 
 	return;
 }
@@ -66,6 +64,8 @@ void CU::Finalize(void)
 {
 	TMU::Get()->RemoveAllTrampolines();
 	Disassembler::Get()->PrintDisassembly();
+	FAU::Get()->PrintCounters();
+	IMU::Get()->PrintRoutines();
 	return;
 }
 
@@ -123,13 +123,24 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 		HandleNewICJ(add, call_address, next_inst);		
 
 		RLBinUtils::RLBin_Debug("STATUS    :    IF", __FILENAME__, __LINE__);
+
+		if((*(byte *)add == 0xFF) && (*((byte *)add+1) == 0x15))
+		{
+			ADDRESS routine = IMU::Get()->CreateInstRoutine(add);
+			*(byte *) add = 0x90;
+			*((byte *) add + 1) = 0xE8;
+			*(ADDRESS *) ((byte *) add + 2) = routine-add-6;
+			Disassembler::Get()->PrintInst(*((byte *) add + 1), T_DEBUG);
+		}
 	}
 	else if(Disassembler::Get()->IsInstIndirectJump(add))
 	{
 		RLBinUtils::RLBin_Debug("STATUS    :    IJ0", __FILENAME__, __LINE__);
 		ADDRESS jump_address;
+
 		Disassembler::Get()->GetIndirectCTIDest(add, &jump_address, p->ContextRecord);
 		ADDRESS next_inst = *((ADDRESS *)p->ContextRecord->Esp);
+
 		RLBinUtils::RLBin_Debug("Jump Target  " + RLBinUtils::ConvertHexToString(jump_address), __FILENAME__, __LINE__);
 		RLBinUtils::RLBin_Debug("Next Address " + RLBinUtils::ConvertHexToString(next_inst), __FILENAME__, __LINE__);
 		HandleNewICJ(add, jump_address, next_inst);						
@@ -145,8 +156,9 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 		HandleNewR(add, return_address);
 		RLBinUtils::RLBin_Debug("STATUS    :    RF", __FILENAME__, __LINE__);
 
-		if(*(byte *)add == 0xc3)
+		if(*(byte *)add == 0xC3)
 		{
+			IMU::Get()->CreateInstRoutine(add);
 			TMU::Get()->InsertTrampoline(add);
 			p->ContextRecord->Eip = return_address;	
 			p->ContextRecord->Esp += 4;		

@@ -6,6 +6,8 @@
 #ifndef _IMU_H
 #define _IMU_H
 
+#include <unordered_map>
+
 #include "..\SubUnits\Utils\defs.h"
 #include "..\SubUnits\Utils\RLBinUtils.h"
 
@@ -25,16 +27,33 @@ public:
 	/** @brief initializes IMU class*/
 	void Initialize(void);
 
+	/** (Temp) Address of Ret Routine */
+	ADDRESS RetRoutine;
+
+	/** @brief Creates the appropriate intrumentation routine to check target of the indirect CTI instruction
+	 *
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine(ADDRESS _address);
+
+	/** @brief Print all inst routines*/
+	void PrintRoutines();
+
+private:
+
 	/** @brief Creates a routine to check target of a return instruction
 	 *
 	 * return The address of the created routine
 	 */
-	ADDRESS CreateInstRoutineRet();
+	ADDRESS CreateInstRoutine_0xC3();
 
-	/** (Temp) Address of Ret Routine */
-	ADDRESS RetRoutine;
+	/** @brief Creates a routine to check target of indirect calls that go through IAT
+	 *
+	 * param [in] the addresss of the indirect call
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xFF15(ADDRESS _address);
 
-private:
 	/** The single unique object of this class */
 	static IMU* s_instance;
 
@@ -43,6 +62,9 @@ private:
 
 	/** Beginning of empy space */
 	ADDRESS head;
+
+	/** @brief The map that contains instrumentation for checking an indirect CTI */
+	std::unordered_map<DWORD64,ADDRESS> inst_map; 
 };
 
 #endif

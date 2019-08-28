@@ -42,9 +42,6 @@ public:
 	 */
 	void HandleMissedCheck(PEXCEPTION_POINTERS p);
 
-	/** brief count the number of times exception handler is called */
-	int counter;
-
 private:	
 	/** The single unique object of this class */
 	static CU* s_instance;

@@ -135,6 +135,8 @@ void CU::HandleNewDJ(ADDRESS _address)
 
 void CU::HandleNewR(ADDRESS _address, ADDRESS _return_address)
 {
+	if(!(*(byte *)_address == 0xC3))
+		Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
 	// Check against type 2 and pre type 2
 	RLBinUtils::RLBin_Debug("STATUS    :    R1", __FILENAME__, __LINE__);
 
@@ -182,7 +184,9 @@ void CU::HandleNewR(ADDRESS _address, ADDRESS _return_address)
 }
 
 void CU::HandleNewICJ(ADDRESS _address, ADDRESS _cj_address, ADDRESS _next_inst)
-{	
+{
+	if(!((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x15)))
+		Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
 	// Check External Dest
 	RLBinUtils::RLBin_Debug("STATUS    :    ICJ2", __FILENAME__, __LINE__);
 	if(!Modules::Get()->IsInsideMainCode(_cj_address))

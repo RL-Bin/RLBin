@@ -23,7 +23,22 @@ public:
 	static FAU* Get(void);
 
 	/** @brief initializes FAU class*/
-	static void Initialize(void);
+	void Initialize(void);
+
+	/** @brief Prints the value of counters to optstat file at the end of program execution*/
+	void PrintCounters(void);
+
+	/** @brief Counting excpetions for discovering new code */
+	int count__new_code;
+
+	/** @brief Counting mishandled check */
+	int count__handle_missed;
+
+	/** @brief Counting recurring checks for ret 0xC3 */
+	int count__check_0xC3;
+
+	/** @brief Counting recurring checks for calls that go through IAT 0xFF15 */
+	int count__check_0xFF15;
 
 private:
 	/** The single unique object of this class */

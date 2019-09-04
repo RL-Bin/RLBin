@@ -36,10 +36,25 @@ public:
 	 */
 	ADDRESS CreateInstRoutine(ADDRESS _address);
 
-	/** @brief Print all inst routines*/
-	void PrintRoutines();
+	/** @brief Print the instruction and the routine created for that instruction
+	 *
+	 * param [in] _inst The address of the instruction  
+	 * param [in] _routine The address of the routine
+	 * param [in] size The size of the routine
+	 */
+	void PrintRoutine(ADDRESS _inst, ADDRESS _routine, int size);
+
+	/** @brief Print the total size of all inst routines*/
+	void PrintRoutinesSize();
 
 private:
+
+	/** @brief Creates a unique key for the given indirect CTI
+	 *
+	 * param [in] The address of the indirect CTI
+	 * return The key for the specific address
+	 */
+	DWORD64 CreateKey(ADDRESS _address);
 
 	/** @brief Creates a routine to check target of a return instruction
 	 *
@@ -47,12 +62,26 @@ private:
 	 */
 	ADDRESS CreateInstRoutine_0xC3();
 
+	/** @brief Creates a routine to check target of a return instruction with clean up
+	 *
+	 * param [in] The address of the ret instruction
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xC2(ADDRESS _address);
+
 	/** @brief Creates a routine to check target of indirect calls that go through IAT
 	 *
 	 * param [in] the addresss of the indirect call
 	 * return The address of the created routine
 	 */
 	ADDRESS CreateInstRoutine_0xFF15(ADDRESS _address);
+
+	/** @brief Creates a routine to check target of indirect calls using direct register
+	 *
+	 * param [in] the addresss of the indirect call
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xFFD(ADDRESS _address);
 
 	/** The single unique object of this class */
 	static IMU* s_instance;

@@ -11,6 +11,8 @@
 #include "..\SubUnits\Utils\defs.h"
 #include "..\SubUnits\Utils\RLBinUtils.h"
 
+#include "Trampoline.h"
+
 /**
  * @class TMU
  * @brief class that manages and controls all other core modules
@@ -28,11 +30,20 @@ public:
 	void Initialize(void);
 
 	/**
-	 * @brief Inserts trampoline at the given address
+	 * @brief Inserts trampoline at the given address to discover it dynamically
 	 *
 	 * @param[in] _address Address of the trampoline
 	 */
 	void InsertTrampoline(ADDRESS _address);
+
+	/**
+	 * @brief Inserts trampoline at the given address to our instrumentation
+	 *
+	 * @param[in] _address Address of the trampoline
+	 * @param[in] _instr Address of the instrumentation routine
+	 * @param[in] p Pointer to the context
+	 */
+	void InsertCheckTrampoline(ADDRESS _address, ADDRESS _instr, PEXCEPTION_POINTERS p);
 
 	/**
 	 * @brief Removes trampoline from the given address
@@ -43,10 +54,13 @@ public:
 
 	/** @brief Removes all trampolines Inserted in the code */
 	void RemoveAllTrampolines();
+	
+	/** @brief The map that contains backup of rewritten code */
+	std::unordered_map<ADDRESS, byte> tramps_cc;
 
 	/** @brief The map that contains backup of rewritten code */
-	std::unordered_map<ADDRESS,byte> original_code;
-	
+	std::unordered_map<ADDRESS, Trampoline *> tramps_e9;
+
 private:
 
 	/** @brief The single unique object of this class */

@@ -11,6 +11,13 @@
 
 using namespace std;
 
+//Used for Capstone Compatibility
+FILE _iob[] = { *stdin, *stdout, *stderr }; 
+extern "C" FILE * __cdecl __iob_func(void)
+{
+    return _iob;
+}
+
 static std::string getCallConv(char code)
 {
     static const std::map<char, std::string> callConvs

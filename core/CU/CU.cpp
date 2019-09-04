@@ -65,7 +65,7 @@ void CU::Finalize(void)
 	TMU::Get()->RemoveAllTrampolines();
 	Disassembler::Get()->PrintDisassembly();
 	FAU::Get()->PrintCounters();
-	IMU::Get()->PrintRoutines();
+	IMU::Get()->PrintRoutinesSize();
 	return;
 }
 
@@ -122,16 +122,11 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 		RLBinUtils::RLBin_Debug("STATUS    :    IC1", __FILENAME__, __LINE__);
 		HandleNewICJ(add, call_address, next_inst);		
 
+		ADDRESS routine = IMU::Get()->CreateInstRoutine(add);
+		TMU::Get()->InsertCheckTrampoline(add, routine, p);
+
 		RLBinUtils::RLBin_Debug("STATUS    :    IF", __FILENAME__, __LINE__);
 
-		if((*(byte *)add == 0xFF) && (*((byte *)add+1) == 0x15))
-		{
-			ADDRESS routine = IMU::Get()->CreateInstRoutine(add);
-			*(byte *) add = 0x90;
-			*((byte *) add + 1) = 0xE8;
-			*(ADDRESS *) ((byte *) add + 2) = routine-add-6;
-			Disassembler::Get()->PrintInst(*((byte *) add + 1), T_DEBUG);
-		}
 	}
 	else if(Disassembler::Get()->IsInstIndirectJump(add))
 	{
@@ -156,13 +151,9 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 		HandleNewR(add, return_address);
 		RLBinUtils::RLBin_Debug("STATUS    :    RF", __FILENAME__, __LINE__);
 
-		if(*(byte *)add == 0xC3)
-		{
-			IMU::Get()->CreateInstRoutine(add);
-			TMU::Get()->InsertTrampoline(add);
-			p->ContextRecord->Eip = return_address;	
-			p->ContextRecord->Esp += 4;		
-		}
+		ADDRESS routine = IMU::Get()->CreateInstRoutine(add);
+		TMU::Get()->InsertCheckTrampoline(add, routine, p);
+
 	}	
 	else
 	{
@@ -176,31 +167,64 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 void CU::HandleMissedCheck(PEXCEPTION_POINTERS p)
 {
 	RLBinUtils::RLBin_Debug("STATUS____:____R0", __FILENAME__, __LINE__);
-	ADDRESS return_address = *(((ADDRESS *) p->ContextRecord->Esp));	
 
-	RLBinUtils::RLBin_Debug(RLBinUtils::ConvertHexToString(return_address), __FILENAME__, __LINE__);
+	ADDRESS ind_cti_address = p->ContextRecord->Eax;	
+
+	RLBinUtils::RLBin_Debug(RLBinUtils::ConvertHexToString(ind_cti_address), __FILENAME__, __LINE__);
 	
 	// Check External Dest
 	RLBinUtils::RLBin_Debug("STATUS____:____R1", __FILENAME__, __LINE__);
 
-	if(!Modules::Get()->IsInsideMainCode(return_address))
+	if(!Modules::Get()->IsInsideMainCode(ind_cti_address))
 	{
 	}
 	else
 	{
 		// Check return address discovered
 		RLBinUtils::RLBin_Debug("STATUS____:____R2", __FILENAME__, __LINE__);
-		if(DisTable::Get()->GetEntry(return_address) == LOC_UNDISCOVERD)
+		if(DisTable::Get()->GetEntry(ind_cti_address) == LOC_UNDISCOVERD)
 		{
 			// Put trap to be discovered
-			TMU::Get()->InsertTrampoline(return_address);
+			TMU::Get()->InsertTrampoline(ind_cti_address);
 			RLBinUtils::RLBin_Debug("STATUS____:____R3", __FILENAME__, __LINE__);
 		}
 	}
 
+	//p->ContextRecord->Eip = return_address;	
+	//p->ContextRecord->Esp += 4;		
 
-	p->ContextRecord->Eip = return_address;	
-	p->ContextRecord->Esp += 4;		
+	p->ContextRecord->Eip = p->ContextRecord->Eip + 1;
+
+	return;
+}
+
+void CU::HandleRedirection(PEXCEPTION_POINTERS p)
+{
+	ADDRESS exception_address = (ADDRESS)p->ExceptionRecord->ExceptionAddress;
+
+	byte opcode = TMU::Get()->tramps_cc[exception_address];
+
+	if(opcode == 0xC3)
+	{
+		FAU::Get()->count__check_0xC3++;
+		p->ContextRecord->Eip = IMU::Get()->RetRoutine;	
+	}
+
+	if(opcode == 0xC2)
+	{
+		FAU::Get()->count__check_0xC2++;
+		* (byte *) exception_address = 0xC2;
+		p->ContextRecord->Eip = IMU::Get()->CreateInstRoutine(exception_address);	
+		* (byte *) exception_address = 0xCC;
+	}
+
+	else if(opcode == 0xFF) // only FFD
+	{
+		FAU::Get()->count__check_0xFFD++;
+		* (byte *) exception_address = 0xFF;
+		p->ContextRecord->Eip = IMU::Get()->CreateInstRoutine(exception_address);
+		* (byte *) exception_address = 0xCC;
+	}
 
 	return;
 }

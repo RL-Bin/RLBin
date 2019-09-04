@@ -37,8 +37,14 @@ public:
 	/** @brief Counting recurring checks for ret 0xC3 */
 	int count__check_0xC3;
 
+	/** @brief Counting recurring checks for ret 0xC2 */
+	int count__check_0xC2;
+
 	/** @brief Counting recurring checks for calls that go through IAT 0xFF15 */
 	int count__check_0xFF15;
+
+	/** @brief Counting recurring checks for indirect calls 0xFFD */
+	int count__check_0xFFD;
 
 private:
 	/** The single unique object of this class */

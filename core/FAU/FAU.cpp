@@ -34,15 +34,19 @@ void FAU::Initialize(void)
 	count__new_code = 0;
 	count__handle_missed = 0;
 	count__check_0xC3 = 0;
+	count__check_0xC2 = 0;
+	count__check_0xFFD = 0;
 	count__check_0xFF15 = 0;
 	return;
 }
 
 void FAU::PrintCounters(void) 
 {
-	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring Ret Check    ) : " + RLBinUtils::ConvertIntToString(count__check_0xC3));
-	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring IAT Check    ) : " + RLBinUtils::ConvertIntToString(count__check_0xFF15));
-	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (New Code Discovery     ) : " + RLBinUtils::ConvertIntToString(count__new_code));
-	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Mishandled Check       ) : " + RLBinUtils::ConvertIntToString(count__handle_missed));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring Ret C3 Check  ) : " + RLBinUtils::ConvertIntToString(count__check_0xC3));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring Ret C2 Check  ) : " + RLBinUtils::ConvertIntToString(count__check_0xC2));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring IAT FF15 Check) : " + RLBinUtils::ConvertIntToString(count__check_0xFF15));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Recurring FFD Check     ) : " + RLBinUtils::ConvertIntToString(count__check_0xFFD));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (New Code Discovery      ) : " + RLBinUtils::ConvertIntToString(count__new_code));
+	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Mishandled Check        ) : " + RLBinUtils::ConvertIntToString(count__handle_missed));
 	return;
 }

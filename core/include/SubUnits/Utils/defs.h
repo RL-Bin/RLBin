@@ -11,6 +11,10 @@
 #include <map>
 #include <string>
 
+// Used for Capstone Compatibility
+#pragma comment(lib, "legacy_stdio_definitions.lib")
+extern "C" FILE * __cdecl __iob_func(void);
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //////                        Operartion Mode Definitions                           /////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -115,8 +119,8 @@ typedef unsigned char  CELL;
 /** Base file for storing the Optimization Statistics */
 #define BASE_OPTSTAT_FILENAME "\\RLBin_OptStat"
 
-/** Base file for storing the Time Measurements */
-#define BASE_TIMESTAT_FILENAME "\\RLBin_TimeStat"
+/** Base file for storing the Instrumentations */
+#define BASE_INST_FILENAME "\\RLBin_Inst"
 
 /** Base file for storing each CFG of the function in the target program */
 #define BASE_CFG_FILENAME "\\RLBin_CFG"
@@ -232,7 +236,7 @@ typedef enum LogType
     T_OPTSTAT,
     T_MODLOG,
     T_THREADLOG,
-    T_TIMESTAT,
+    T_INST,
     T_STATIC
 } LogType;
 

@@ -20,7 +20,7 @@ FILE* RLBinUtils::errorFile = 0;
 FILE* RLBinUtils::tramFile = 0;
 FILE* RLBinUtils::disassemblyFile = 0;
 FILE* RLBinUtils::optStatFile = 0;
-FILE* RLBinUtils::timeStatFile = 0;
+FILE* RLBinUtils::instFile = 0;
 FILE* RLBinUtils::modLogFile = 0;
 FILE* RLBinUtils::threadLogFile = 0;
 FILE* RLBinUtils::CFGFile = 0;
@@ -37,7 +37,7 @@ void RLBinUtils::RLBin_Multi(std::string str, LogType _log_type)
     else if (_log_type == T_TRAM) RLBin_Tram(str);
     else if (_log_type == T_LIBCALL) RLBin_LibCalls(str);
     else if (_log_type == T_OPTSTAT) RLBin_OptStat(str);
-    else if (_log_type == T_TIMESTAT) RLBin_TimeStat(str);
+    else if (_log_type == T_INST) RLBin_Inst(str);
     else if (_log_type == T_MODLOG) RLBin_ModLog(str);
     else if (_log_type == T_THREADLOG) RLBin_ThreadLog(str);
     else if (_log_type == T_STATIC) RLBin_Static(str);
@@ -311,18 +311,18 @@ void RLBinUtils::RLBin_OptStat(std::string str)
     }
 }
 
-void RLBinUtils::RLBin_TimeStat(std::string str)
+void RLBinUtils::RLBin_Inst(std::string str)
 {
-    if (!timeStatFile)
+    if (!instFile)
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_TIMESTAT_FILENAME + string(".txt");
-        timeStatFile = fopen(fileName.c_str(), "a+");
+        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_INST_FILENAME + string(".txt");
+        instFile = fopen(fileName.c_str(), "a+");
     }
-    if (timeStatFile)
+    if (instFile)
     {
         std::string tempStr;
         tempStr.append(str);
-        fprintf(timeStatFile, "%s\n", tempStr.c_str());
-        fflush(timeStatFile);
+        fprintf(instFile, "%s\n", tempStr.c_str());
+        fflush(instFile);
     }
 }

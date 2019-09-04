@@ -36,6 +36,12 @@ public:
 	void HandleNewCode(PEXCEPTION_POINTERS p);
 
 	/** 
+	 * @brief handles redirecting the trap to instrumentation
+	 *
+	 * param [in] p The pointer to the exception structure  
+	 */
+	void HandleRedirection(PEXCEPTION_POINTERS p);
+	/** 
 	 * @brief handles checking targets of indirect CTI that are not discovered
 	 *
 	 * param [in] p The pointer to the exception structure  

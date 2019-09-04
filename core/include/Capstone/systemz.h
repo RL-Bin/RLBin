@@ -2,14 +2,10 @@
 #define CAPSTONE_SYSTEMZ_H
 
 /* Capstone Disassembly Engine */
-/* By Nguyen Anh Quynh <aquynh@gmail.com>, 2014 */
+/* By Nguyen Anh Quynh <aquynh@gmail.com>, 2014-2015 */
 
 #ifdef __cplusplus
 extern "C" {
-#endif
-
-#if !defined(_MSC_VER) || !defined(_KERNEL_MODE)
-#include <stdint.h>
 #endif
 
 #include "platform.h"
@@ -18,9 +14,9 @@ extern "C" {
 #pragma warning(disable:4201)
 #endif
 
-//> Enums corresponding to SystemZ condition codes
+/// Enums corresponding to SystemZ condition codes
 typedef enum sysz_cc {
-	SYSZ_CC_INVALID = 0,	// invalid CC (default)
+	SYSZ_CC_INVALID = 0,	///< invalid CC (default)
 
 	SYSZ_CC_O,
 	SYSZ_CC_H,
@@ -38,44 +34,16 @@ typedef enum sysz_cc {
 	SYSZ_CC_NO,
 } sysz_cc;
 
-//> Operand type for instruction's operands
+/// Operand type for instruction's operands
 typedef enum sysz_op_type {
-	SYSZ_OP_INVALID = 0, // = CS_OP_INVALID (Uninitialized).
-	SYSZ_OP_REG, // = CS_OP_REG (Register operand).
-	SYSZ_OP_IMM, // = CS_OP_IMM (Immediate operand).
-	SYSZ_OP_MEM, // = CS_OP_MEM (Memory operand).
-	SYSZ_OP_ACREG = 64,	// Access register operand.
+	SYSZ_OP_INVALID = 0, ///< = CS_OP_INVALID (Uninitialized).
+	SYSZ_OP_REG, ///< = CS_OP_REG (Register operand).
+	SYSZ_OP_IMM, ///< = CS_OP_IMM (Immediate operand).
+	SYSZ_OP_MEM, ///< = CS_OP_MEM (Memory operand).
+	SYSZ_OP_ACREG = 64,	///< Access register operand.
 } sysz_op_type;
 
-// Instruction's operand referring to memory
-// This is associated with SYSZ_OP_MEM operand type above
-typedef struct sysz_op_mem {
-	uint8_t base;	// base register
-	uint8_t index;	// index register
-	uint64_t length;	// BDLAddr operand
-	int64_t disp;	// displacement/offset value
-} sysz_op_mem;
-
-// Instruction operand
-typedef struct cs_sysz_op {
-	sysz_op_type type;	// operand type
-	union {
-		unsigned int reg;	// register value for REG operand
-		int64_t imm;		// immediate value for IMM operand
-		sysz_op_mem mem;		// base/disp value for MEM operand
-	};
-} cs_sysz_op;
-
-// Instruction structure
-typedef struct cs_sysz {
-	sysz_cc cc;		// Code condition
-	// Number of operands of this instruction, 
-	// or 0 when instruction has no operand.
-	uint8_t op_count;
-	cs_sysz_op operands[6]; // operands for this instruction.
-} cs_sysz;
-
-//> SystemZ registers
+/// SystemZ registers
 typedef enum sysz_reg {
 	SYSZ_REG_INVALID = 0,
 
@@ -118,7 +86,37 @@ typedef enum sysz_reg {
 	SYSZ_REG_ENDING,
 } sysz_reg;
 
-//> SystemZ instruction
+/// Instruction's operand referring to memory
+/// This is associated with SYSZ_OP_MEM operand type above
+typedef struct sysz_op_mem {
+	uint8_t base;		///< base register, can be safely interpreted as
+				///< a value of type `sysz_reg`, but it is only
+				///< one byte wide
+	uint8_t index;		///< index register, same conditions apply here
+	uint64_t length;	///< BDLAddr operand
+	int64_t disp;	///< displacement/offset value
+} sysz_op_mem;
+
+/// Instruction operand
+typedef struct cs_sysz_op {
+	sysz_op_type type;	///< operand type
+	union {
+		sysz_reg reg;		///< register value for REG operand
+		int64_t imm;		///< immediate value for IMM operand
+		sysz_op_mem mem;	///< base/disp value for MEM operand
+	};
+} cs_sysz_op;
+
+// Instruction structure
+typedef struct cs_sysz {
+	sysz_cc cc;		///< Code condition
+	/// Number of operands of this instruction,
+	/// or 0 when instruction has no operand.
+	uint8_t op_count;
+	cs_sysz_op operands[6]; ///< operands for this instruction.
+} cs_sysz;
+
+/// SystemZ instruction
 typedef enum sysz_insn {
 	SYSZ_INS_INVALID = 0,
 
@@ -807,15 +805,15 @@ typedef enum sysz_insn {
 	SYSZ_INS_ENDING,   // <-- mark the end of the list of instructions
 } sysz_insn;
 
-//> Group of SystemZ instructions
+/// Group of SystemZ instructions
 typedef enum sysz_insn_group {
-	SYSZ_GRP_INVALID = 0, // = CS_GRP_INVALID
+	SYSZ_GRP_INVALID = 0, ///< = CS_GRP_INVALID
 
-	//> Generic groups
+	// Generic groups
 	// all jump instructions (conditional+direct+indirect jumps)
-	SYSZ_GRP_JUMP,	// = CS_GRP_JUMP
+	SYSZ_GRP_JUMP,	///< = CS_GRP_JUMP
 
-	//> Architecture-specific groups
+	// Architecture-specific groups
 	SYSZ_GRP_DISTINCTOPS = 128,
 	SYSZ_GRP_FPEXTENSION,
 	SYSZ_GRP_HIGHWORD,

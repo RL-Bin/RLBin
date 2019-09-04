@@ -182,6 +182,7 @@ del "$(OutDir)\$(ProjectName).exp"</Command>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="FAU\FAU.cpp" />
     <ClCompile Include="IMU\IMU.cpp" />
+    <ClCompile Include="IMU\InstRoutines.cpp" />
     <ClCompile Include="StatUnit\StatUnit.cpp" />
     <ClCompile Include="SubUnits\Config\Config.cpp" />
     <ClCompile Include="SubUnits\Disassembler\AddressTranslator.cpp" />

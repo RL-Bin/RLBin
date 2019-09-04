@@ -191,6 +191,9 @@
     <ClCompile Include="CU\CodeDiscovery.cpp">
       <Filter>Source Files\CU</Filter>
     </ClCompile>
+    <ClCompile Include="IMU\InstRoutines.cpp">
+      <Filter>Source Files\IMU</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Capstone\capstone.h">

@@ -451,11 +451,11 @@ public:
 	static DEFAULT_VISIBILTY void RLBin_OptStat(std::string str);
 
 	/**
-	 * @brief A utility function that prints time measurements
+	 * @brief A utility function that prints instrumentation
 	 *
 	 * @param [in] str Input string
 	 */
-	static DEFAULT_VISIBILTY void RLBin_TimeStat(std::string str);
+	static DEFAULT_VISIBILTY void RLBin_Inst(std::string str);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////						 		Implemented in Other.cpp						////////////////////////////
@@ -509,8 +509,8 @@ public:
 	/** A reference to the optStatFile, that contains stats for the optimizations from RLBin */
 	static FILE* optStatFile;
 	
-	/** A reference to the timeStatFile, that contains timer insformation measured by RLBin */
-	static FILE* timeStatFile;
+	/** A reference to the instFile, that contains timer insformation measured by RLBin */
+	static FILE* instFile;
 
 	/** A reference to the CFGFile, that contains CFG of the functions discovered by RLBin */
 	static FILE* CFGFile;

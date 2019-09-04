@@ -185,8 +185,11 @@ void CU::HandleNewR(ADDRESS _address, ADDRESS _return_address)
 
 void CU::HandleNewICJ(ADDRESS _address, ADDRESS _cj_address, ADDRESS _next_inst)
 {
-	if(!((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x15)))
+	if(!((*(byte *)_address == 0xFF) && (((*((byte *)_address+1)&0xF0) == 0xD0)||(*((byte *)_address+1) == 0x15))))
+	{
 		Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
+	}
+
 	// Check External Dest
 	RLBinUtils::RLBin_Debug("STATUS    :    ICJ2", __FILENAME__, __LINE__);
 	if(!Modules::Get()->IsInsideMainCode(_cj_address))

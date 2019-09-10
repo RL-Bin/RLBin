@@ -138,7 +138,11 @@ void CU::HandleNewCode(PEXCEPTION_POINTERS p)
 
 		RLBinUtils::RLBin_Debug("Jump Target  " + RLBinUtils::ConvertHexToString(jump_address), __FILENAME__, __LINE__);
 		RLBinUtils::RLBin_Debug("Next Address " + RLBinUtils::ConvertHexToString(next_inst), __FILENAME__, __LINE__);
-		HandleNewICJ(add, jump_address, next_inst);						
+		HandleNewICJ(add, jump_address, next_inst);
+
+		ADDRESS routine = IMU::Get()->CreateInstRoutine(add);
+		TMU::Get()->InsertCheckTrampoline(add, routine, p);		
+
 		RLBinUtils::RLBin_Debug("STATUS    :    IF", __FILENAME__, __LINE__);
 	}
 	else if(Disassembler::Get()->IsInstRet(add))
@@ -210,7 +214,15 @@ void CU::HandleRedirection(PEXCEPTION_POINTERS p)
 		p->ContextRecord->Eip = IMU::Get()->RetRoutine;	
 	}
 
-	if(opcode == 0xC2)
+	else if(opcode == 0xF2) // Only F2C3
+	{
+		FAU::Get()->count__check_0xF2C3++;
+		* (byte *) exception_address = 0xF2;
+		p->ContextRecord->Eip = IMU::Get()->CreateInstRoutine(exception_address);	
+		* (byte *) exception_address = 0xCC;
+	}
+
+	else if(opcode == 0xC2)
 	{
 		FAU::Get()->count__check_0xC2++;
 		* (byte *) exception_address = 0xC2;
@@ -218,12 +230,28 @@ void CU::HandleRedirection(PEXCEPTION_POINTERS p)
 		* (byte *) exception_address = 0xCC;
 	}
 
-	else if(opcode == 0xFF) // only FFD
+	else if(opcode == 0xFF) // only FFD and FF5
 	{
-		FAU::Get()->count__check_0xFFD++;
+		if((*(((byte *) exception_address)+1)&0xF0) == 0xD0)
+		{
+			FAU::Get()->count__check_0xFFD++;
+		}
+		else if((*(((byte *) exception_address)+1)&0xF0) == 0x50)
+		{
+			FAU::Get()->count__check_0xFF5++;
+		}
+
 		* (byte *) exception_address = 0xFF;
 		p->ContextRecord->Eip = IMU::Get()->CreateInstRoutine(exception_address);
 		* (byte *) exception_address = 0xCC;
+	}
+
+	else if(opcode == 0x3E) // only 3EFFE
+	{
+		FAU::Get()->count__check_0x3EFFE++;
+		* (byte *) exception_address = 0x3E;
+		p->ContextRecord->Eip = IMU::Get()->CreateInstRoutine(exception_address);
+		* (byte *) exception_address = 0xCC;	
 	}
 
 	return;

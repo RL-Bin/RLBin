@@ -28,6 +28,9 @@ public:
 	/** @brief Prints the value of counters to optstat file at the end of program execution*/
 	void PrintCounters(void);
 
+	/** @brief Counting total number of excpetions*/
+	int count__total;
+
 	/** @brief Counting excpetions for discovering new code */
 	int count__new_code;
 
@@ -37,14 +40,29 @@ public:
 	/** @brief Counting recurring checks for ret 0xC3 */
 	int count__check_0xC3;
 
+	/** @brief Counting recurring checks for ret 0xF2C3 */
+	int count__check_0xF2C3;
+
 	/** @brief Counting recurring checks for ret 0xC2 */
 	int count__check_0xC2;
 
 	/** @brief Counting recurring checks for calls that go through IAT 0xFF15 */
 	int count__check_0xFF15;
 
+	/** @brief Counting recurring checks for jumps that go through IAT 0xFF25 */
+	int count__check_0xFF25;
+
 	/** @brief Counting recurring checks for indirect calls 0xFFD */
 	int count__check_0xFFD;
+
+	/** @brief Counting recurring checks for indirect calls 0xFF5 disp8 */
+	int count__check_0xFF5;
+
+	/** @brief Counting recurring checks for indirect jumps 0xFFE */
+	int count__check_0x3EFFE;
+
+	/** @brief Counting recurring checks for indirect jumps with sib */
+	int count__check_0xFF2485;
 
 private:
 	/** The single unique object of this class */

@@ -70,6 +70,11 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 		InsertTrampoline(_address);
 	}
 
+	else if((*(byte *)_address == 0xF2) && (*((byte *)_address+1) == 0xC3))
+	{
+		InsertTrampoline(_address);
+	}
+
 	else if(*(byte *)_address == 0xC2)
 	{
 		InsertTrampoline(_address);
@@ -83,9 +88,34 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 		Disassembler::Get()->PrintInst(*(ADDRESS *)((byte *) _address + 1), T_DEBUG);
 	}
 
+	else if((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x25))
+	{
+		*(byte *) _address = 0x90;
+		*((byte *) _address + 1) = 0xE9;
+		*(ADDRESS *) ((byte *) _address + 2) = _routine - _address -6;
+		Disassembler::Get()->PrintInst(*(ADDRESS *)((byte *) _address + 1), T_DEBUG);
+	}
+
 	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)&0xF0) == 0xD0))
 	{
 		InsertTrampoline(_address);		
+	}
+
+	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)&0xF0) == 0x50))
+	{
+		InsertTrampoline(_address);		
+	}
+
+	else if((*(byte *)_address == 0x3E) && ((*((byte *)_address+1)) == 0xFF) && ((*((byte *)_address+2)&0xF0) == 0xE0))
+	{
+		InsertTrampoline(_address);		
+	}
+
+	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)) == 0x24) && ((*((byte *)_address+2)&0xC7) == 0x85))
+	{
+		*((byte *) _address) = 0xE9;
+		*(ADDRESS *) ((byte *) _address + 1) = _routine - _address - 5;
+		Disassembler::Get()->PrintInst(*(ADDRESS *)((byte *) _address), T_DEBUG);
 	}
 
 	return;

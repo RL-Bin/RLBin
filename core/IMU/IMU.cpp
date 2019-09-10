@@ -55,7 +55,12 @@ ADDRESS IMU::CreateInstRoutine(ADDRESS _address)
 			inst_map [key] = CreateInstRoutine_0xC3();
 			PrintRoutine(_address, inst_map[key], 19);
 		}
-		if((key & 0x000000FF) == 0x000000C2)
+		else if((key & 0x0000FFFF) == 0x0000C3F2)
+		{
+			inst_map [key] = CreateInstRoutine_0xF2C3();
+			PrintRoutine(_address, inst_map[key], 19);
+		}
+		else if((key & 0x000000FF) == 0x000000C2)
 		{
 			inst_map [key] = CreateInstRoutine_0xC2(_address);
 			PrintRoutine(_address, inst_map[key], 19);
@@ -64,11 +69,31 @@ ADDRESS IMU::CreateInstRoutine(ADDRESS _address)
 		{
 			inst_map [key] = CreateInstRoutine_0xFF15(_address);
 			PrintRoutine(_address, inst_map[key], 12);
+		}
+		else if((key & 0x0000FFFF) == 0x000025FF)
+		{
+			inst_map [key] = CreateInstRoutine_0xFF25(_address);
+			PrintRoutine(_address, inst_map[key], 12);
 		}		
 		else if((key & 0x0000F0FF) == 0x0000D0FF)
 		{
 			inst_map [key] = CreateInstRoutine_0xFFD(_address);
 			PrintRoutine(_address, inst_map[key], 21);
+		}
+		else if((key & 0x0000F0FF) == 0x000050FF)
+		{
+			inst_map [key] = CreateInstRoutine_0xFF5(_address);
+			PrintRoutine(_address, inst_map[key], 21);
+		}		
+		else if((key & 0x00F0FFFF) == 0x00E0FF3E)
+		{
+			inst_map [key] = CreateInstRoutine_0x3EFFE(_address);
+			PrintRoutine(_address, inst_map[key], 19);
+		}
+		else if((key & 0x00C7FFFF) == 0x008524FF)
+		{
+			inst_map [key] = CreateInstRoutine_0xFF2485(_address);
+			PrintRoutine(_address, inst_map[key], 20);
 		}
 		else
 		{
@@ -111,5 +136,9 @@ DWORD64 IMU::CreateKey(ADDRESS _address)
 		*((ADDRESS *)(&key)+1) = _address;
 	}
 
+	if((key & 0x0000F0FF) == 0x000050FF)
+	{
+		*((ADDRESS *)(&key)+1) = _address;
+	}
 	return key;
 }

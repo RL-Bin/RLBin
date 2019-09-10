@@ -136,7 +136,15 @@ void CU::HandleNewDJ(ADDRESS _address)
 void CU::HandleNewR(ADDRESS _address, ADDRESS _return_address)
 {
 	if(!(*(byte *)_address == 0xC3))
-		Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
+	{
+		if(!(*(byte *)_address == 0xC2))
+		{
+			if(!(*(byte *)_address == 0xF2))
+			{
+				Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
+			}
+		}
+	}
 	// Check against type 2 and pre type 2
 	RLBinUtils::RLBin_Debug("STATUS    :    R1", __FILENAME__, __LINE__);
 
@@ -185,9 +193,15 @@ void CU::HandleNewR(ADDRESS _address, ADDRESS _return_address)
 
 void CU::HandleNewICJ(ADDRESS _address, ADDRESS _cj_address, ADDRESS _next_inst)
 {
-	if(!((*(byte *)_address == 0xFF) && (((*((byte *)_address+1)&0xF0) == 0xD0)||(*((byte *)_address+1) == 0x15))))
+	if(!((*(byte *)_address == 0xFF) && (((*((byte *)_address+1)&0xF0) == 0xD0)||(*((byte *)_address+1) == 0x15)||((*((byte *)_address+1)&0xF0) == 0x50)||(*((byte *)_address+1) == 0x25))))
 	{
-		Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
+		if(!((*(byte *)_address == 0x3E) && ((*((byte *)_address+1)) == 0xFF) && ((*((byte *)_address+2)&0xF0) == 0xE0)))
+		{
+			if(!((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)) == 0x24) && ((*((byte *)_address+2)&0xC7) == 0x85)))
+			{
+				Disassembler::Get()->PrintInst(_address, T_OPTSTAT);
+			}
+		}
 	}
 
 	// Check External Dest

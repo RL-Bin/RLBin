@@ -71,8 +71,19 @@ void Disassembler::PrintInst(ADDRESS _address, LogType _log_type)
 {
 	Inst inst;
 	GetOneInst(_address, &inst);
-	RLBinUtils::RLBin_Multi((RLBinUtils::ConvertHexToString((int)inst.address) + 
-				std::string(":\t ") + inst.mnemonic + std::string(" ") + inst.op_str), _log_type);
+
+	std::string tempStr;			
+	tempStr.append(RLBinUtils::ConvertHexToString(_address) + "\t" + inst.mnemonic + " " + inst.op_str );
+
+	tempStr.resize(60, ' ');
+	tempStr.append("0x");
+	for (int i = 0; i < inst.size; i++)
+	{
+		tempStr.append(RLBinUtils::ConvertByteToString(inst.bytes[i]));
+	}
+
+	RLBinUtils::RLBin_Multi(tempStr, _log_type);
+
 	return;
 }
 

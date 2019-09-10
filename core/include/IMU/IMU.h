@@ -62,12 +62,39 @@ private:
 	 */
 	ADDRESS CreateInstRoutine_0xC3();
 
+	/** @brief Creates a routine to check target of a bnd return instruction
+	 *
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xF2C3();
+
 	/** @brief Creates a routine to check target of a return instruction with clean up
 	 *
 	 * param [in] The address of the ret instruction
 	 * return The address of the created routine
 	 */
 	ADDRESS CreateInstRoutine_0xC2(ADDRESS _address);
+
+	/** @brief Creates a routine to check target of indirect jumps that go through IAT
+	 *
+	 * param [in] the addresss of the indirect jump
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xFF25(ADDRESS _address);
+
+	/** @brief Creates a routine to check target of indirect jumps using direct register
+	 *
+	 * param [in] the addresss of the indirect jump
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0x3EFFE(ADDRESS _address);
+
+	/** @brief Creates a routine to check target of indirect jumps using sib
+	 *
+	 * param [in] the addresss of the indirect jump
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xFF2485(ADDRESS _address);
 
 	/** @brief Creates a routine to check target of indirect calls that go through IAT
 	 *
@@ -82,6 +109,13 @@ private:
 	 * return The address of the created routine
 	 */
 	ADDRESS CreateInstRoutine_0xFFD(ADDRESS _address);
+
+	/** @brief Creates a routine to check target of indirect calls using direct register and disp 8
+	 *
+	 * param [in] the addresss of the indirect call
+	 * return The address of the created routine
+	 */
+	ADDRESS CreateInstRoutine_0xFF5(ADDRESS _address);
 
 	/** The single unique object of this class */
 	static IMU* s_instance;

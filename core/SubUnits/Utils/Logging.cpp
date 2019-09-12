@@ -97,7 +97,7 @@ void RLBinUtils::RLBin_Error(std::string errStr, std::string source_file, int so
         fflush(errorFile);
     }
 
-    abort();
+    exit(error);
 }
 
 void RLBinUtils::RLBin_Log(std::string str, std::string source_file)

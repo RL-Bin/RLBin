@@ -47,7 +47,7 @@ void StatUnit::Run()
 	Modules::Get()->PrintModulesShort();
 
 	// if config file needs data reference, add them to the list to_be_disassembled
-	if(Config::Get()->GetFeatureValue("UseCodePointers") == 1)
+	if(Config::code_pointer)
 	{
 		AddDataRefs();
 	}

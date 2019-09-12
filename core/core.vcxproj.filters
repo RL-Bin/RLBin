@@ -173,9 +173,6 @@
     <ClCompile Include="StatUnit\StatUnit.cpp">
       <Filter>Source Files\StatUnit</Filter>
     </ClCompile>
-    <ClCompile Include="SubUnits\Config\Config.cpp">
-      <Filter>Source Files\SubUnits\Config</Filter>
-    </ClCompile>
     <ClCompile Include="SubUnits\Disassembler\AddressTranslator.cpp">
       <Filter>Source Files\SubUnits\Disassembler</Filter>
     </ClCompile>
@@ -193,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="IMU\InstRoutines.cpp">
       <Filter>Source Files\IMU</Filter>
+    </ClCompile>
+    <ClCompile Include="SubUnits\Config\Config.cpp">
+      <Filter>Source Files\SubUnits\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

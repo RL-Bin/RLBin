@@ -19,13 +19,9 @@ extern "C" FILE * __cdecl __iob_func(void);
 //////                        Operartion Mode Definitions                           /////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-#define ISBASE if((Config::Get()->GetFeatureValue("OptLevel") == 0)&&(Config::Get()->GetFeatureValue("OptMode") != 0))
+#define ISSTATIC if(Config::mode == 1)
 
-#define NOTBASE if((Config::Get()->GetFeatureValue("OptLevel") == 1)&&(Config::Get()->GetFeatureValue("OptMode") != 0))
-
-#define ISSTATIC if(Config::Get()->GetFeatureValue("OptMode") == 0)
-
-#define ISDYNAMIC if(Config::Get()->GetFeatureValue("OptMode") != 0)
+#define ISDYNAMIC if(Config::mode == 2)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //////             New types defined and used in the code                           /////

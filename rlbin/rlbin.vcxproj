@@ -154,12 +154,14 @@ del "$(OutDir)\$(ProjectName).lib"</Command>
     <ClCompile Include="..\core\SubUnits\Utils\MemOperations.cpp" />
     <ClCompile Include="..\core\SubUnits\Utils\Other.cpp" />
     <ClCompile Include="..\core\SubUnits\Utils\RLBinUtils.cpp" />
+    <ClCompile Include="config\config.cpp" />
     <ClCompile Include="rlbin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\core\include\SubUnits\Timer\Timer.h" />
     <ClInclude Include="..\core\include\SubUnits\utils\defs.h" />
     <ClInclude Include="..\core\include\SubUnits\utils\RLBinUtils.h" />
+    <ClInclude Include="include\config\config.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -59,7 +59,7 @@ public:
 	std::unordered_map<ADDRESS, byte> tramps_cc;
 
 	/** @brief The map that contains backup of rewritten code */
-	std::unordered_map<ADDRESS, Trampoline *> tramps_e9;
+	std::unordered_map<ADDRESS, Trampoline> tramps_e9;
 
 private:
 

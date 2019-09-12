@@ -82,6 +82,15 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 
 	else if((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x15))
 	{
+
+		Trampoline tt;
+		tt.size = 6;
+		for(int i=0; i<tt.size; i++)
+		{
+			tt.original_code[i] = *((byte *) _address + i);
+		}
+		tramps_e9.insert({_address,tt});
+
 		*(byte *) _address = 0x90;
 		*((byte *) _address + 1) = 0xE8;
 		*(ADDRESS *) ((byte *) _address + 2) = _routine - _address -6;
@@ -90,6 +99,14 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 
 	else if((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x25))
 	{
+		Trampoline tt;
+		tt.size = 6;
+		for(int i=0; i<tt.size; i++)
+		{
+			tt.original_code[i] = *((byte *) _address + i);
+		}
+		tramps_e9.insert({_address,tt});
+
 		*(byte *) _address = 0x90;
 		*((byte *) _address + 1) = 0xE9;
 		*(ADDRESS *) ((byte *) _address + 2) = _routine - _address -6;
@@ -113,6 +130,14 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 
 	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)) == 0x24) && ((*((byte *)_address+2)&0xC7) == 0x85))
 	{
+		Trampoline tt;
+		tt.size = 5;
+		for(int i=0; i<tt.size; i++)
+		{
+			tt.original_code[i] = *((byte *) _address + i);
+		}
+		tramps_e9.insert({_address,tt});
+
 		*((byte *) _address) = 0xE9;
 		*(ADDRESS *) ((byte *) _address + 1) = _routine - _address - 5;
 		Disassembler::Get()->PrintInst(*(ADDRESS *)((byte *) _address), T_DEBUG);
@@ -154,4 +179,14 @@ void TMU::RemoveAllTrampolines()
 		std::unordered_map<ADDRESS, byte>::iterator it = tramps_cc.begin();
 		RemoveTrampoline(it->first);
 	}	
+
+	while(tramps_e9.size() != 0)
+	{
+		std::unordered_map<ADDRESS, Trampoline>::iterator it = tramps_e9.begin();
+		for(int i=0; i<it->second.size; i++)
+		{
+			 *((byte *) (it->first) + i) = it->second.original_code[i];
+		}
+	 	tramps_e9.erase(it->first);
+	}
 }

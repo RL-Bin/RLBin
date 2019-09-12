@@ -13,6 +13,8 @@
 #include <string>
 #include <Psapi.h>
 
+#include "include\config\config.h"
+
 #include "..\core\include\SubUnits\Utils\defs.h"
 #include "..\core\include\SubUnits\Utils\RLBinUtils.h"
 #include "..\core\include\SubUnits\Timer\Timer.h"
@@ -43,7 +45,7 @@ bool InitProcess(LPSTR target_cmd)
  * @param [in] argv the first argument is the target, the rest are arguments to the target
  * @return program execution status
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	// First, initialize and set the timers
 	Timer::Create();
@@ -54,25 +56,11 @@ int main(int argc, char *argv[])
 
 	RLBinUtils::Init();
 
-	if (argc < 2)
-	{
-		RLBinUtils::RLBin_Error("File name of the target application is not provided. RL-Bin will exit! \n", __FILENAME__, __LINE__);
-		return 0;
-	}
-
-	char *fileName = argv[1];
-
-	RLBinUtils::CheckFileExists(fileName, "Target application cannot be found. RL-Bin will exit! \n");
-
-	//RLBinUtils::CheckFileExists(INJECT_LIB_NAME, "inject.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
+	std::string target = ParseCLIConfig(argc, argv);
+	LPSTR target_cmd = (LPSTR) target.c_str();
 
 	RLBinUtils::CheckFileExists(CORE_LIB_NAME, "core.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
 	
-
-	LPSTR cmd_line = GetCommandLineA();
-
-	LPSTR target_cmd = (LPSTR) (cmd_line + strlen(argv[0]) + 2);
-
 	// Create the target process, exit if it cannot be created.
 	if(!InitProcess(target_cmd))
 	{

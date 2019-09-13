@@ -61,5 +61,15 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "xutility": "cpp"
+    },
+    "files.exclude": {
+        "*.exe": true,
+        "*.pdb": true,
+        "*.sln": true,
+        "**/.git**": true,
+        "**/.vs": true,
+        "**/.vscode": true,
+        "**/**.vcxproj**": true,
+        "**/bin": true
     }
 }

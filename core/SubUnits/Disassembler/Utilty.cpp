@@ -23,7 +23,7 @@ bool Disassembler::GetOneInst(int address, Inst *instruction)
 	{
 		instruction->GetFromCapstone(insn[0].id, (ADDRESS)insn[0].address, insn[0].size, insn[0].bytes, insn[0].mnemonic, insn[0].op_str, 
 			insn[0].detail->x86.prefix, insn[0].detail->x86.opcode, insn[0].detail->x86.addr_size, insn[0].detail->x86.modrm, insn[0].detail->x86.sib,
-			insn[0].detail->x86.disp, insn[0].detail->x86.sib_index, insn[0].detail->x86.sib_scale, insn[0].detail->x86.sib_base, 
+			(int32_t) insn[0].detail->x86.disp, insn[0].detail->x86.sib_index, insn[0].detail->x86.sib_scale, insn[0].detail->x86.sib_base, 
 			insn[0].detail->x86.op_count, insn[0].detail->x86.operands);
 		cs_free(insn, count);
 	}

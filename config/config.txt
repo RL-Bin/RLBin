@@ -1,2 +1,3 @@
-native
-normal
+disassembler
+0
+verbose

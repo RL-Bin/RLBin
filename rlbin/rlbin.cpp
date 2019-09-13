@@ -52,12 +52,12 @@ int main(int argc, char **argv)
 	Timer::Get()->Initialize();
 
 	/** The timer id for the whole program */
-	int total_timer_id = Timer::Get()->GetNewTimer("Prgram");
-
-	RLBinUtils::Init();
+	int total_timer_id = Timer::Get()->GetNewTimer("Program");
 
 	std::string target = ParseCLIConfig(argc, argv);
 	LPSTR target_cmd = (LPSTR) target.c_str();
+
+	RLBinUtils::Init();
 
 	RLBinUtils::CheckFileExists(CORE_LIB_NAME, "core.dll cannot be found in ./bin folder. RL-Bin will exit! \n");
 	

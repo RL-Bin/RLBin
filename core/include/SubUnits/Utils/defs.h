@@ -21,7 +21,13 @@ extern "C" FILE * __cdecl __iob_func(void);
 
 #define ISSTATIC if(Config::mode == 1)
 
-#define ISDYNAMIC if(Config::mode == 2)
+#define ISDYNAMIC if(Config::mode >= 2)
+
+#define LVL_VERBOSE if(RLBinUtils::VerbosityLevel >= 2)
+
+#define LVL_NORMAL if(RLBinUtils::VerbosityLevel >= 1)
+
+#define LVL_QUIET if(RLBinUtils::VerbosityLevel >= 0)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //////             New types defined and used in the code                           /////

@@ -21,8 +21,7 @@ void Config::Initialize(void)
 	RLBinUtils::RLBin_Log("Reading configuration file.", __FILENAME__);
  
  	std::ifstream config_stream(CURRENT_CONFIG_FILE);
-	if(!config_stream)
-	{
+	if(!config_stream){
 		RLBinUtils::RLBin_Log("Config file not found! Will continue with the default configuration.", __FILENAME__);
 		return;
 	}
@@ -38,28 +37,29 @@ void Config::Initialize(void)
 	else
 		mode = 3;
 
-	if(mode>1)
-	{
+	if(mode>1){
 		std::getline(config_stream, line);
 		optlevel = RLBinUtils::ConvertStringToInt(line);
 	}
-	else if(mode == 1)
-	{
+	else if(mode == 1){
 		std::getline(config_stream, line);
 		code_pointer = (bool) RLBinUtils::ConvertStringToInt(line);
 	}
 
 	std::getline(config_stream, line);
 	if(line == "quiet")
-		verbosity = 1;
+		verbosity = 0;
 	else if(line == "normal")
-		verbosity = 2;
+		verbosity = 1;
 	else
-		verbosity = 3;
+		verbosity = 2;
 
+	if(mode == 3)
+	{
+		verbosity = 0;
+	}
 
-	std::cout << mode << " " << optlevel << " " << verbosity << " " << code_pointer << std::endl;
-
+	RLBinUtils::SetVerbosityAndMode(verbosity, mode);
 	return;
 }
 

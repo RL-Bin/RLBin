@@ -76,28 +76,31 @@ std::string ParseCLIConfig(int argc, char **argv)
 			if(nativeflag) mode = "native"; 
 			else if(staticflag) mode = "static";
 			else if(disassmblerflag) mode = "disassembler";
+			else if(dynamicflag) mode = "dynamic";
 		}
 	}
 	config_stream << mode << std::endl;
 	// (Done) Resolving operation mode
 
 	//Resolving optimzation level and code pointer
-	if(oopt->count()){
-		if((mode == "native")||(mode == "static")){
-			std::cout << "OptLevel will be ignored in native and static mode!\n"; 
-		}
-		else{
-			config_stream << optlevel << std::endl;
-		}
-	}
-	if(mode == "static")
+	if(mode == "native")
 	{
+		if(oopt->count() || code_pointer)
+			std::cout << "OptLevel and CodePointers will be ignored in native mode!\n"; 
+	}
+	else if(mode == "static")
+	{
+		if(oopt->count())
+			std::cout << "OptLevel will be ignored in static mode!\n"; 
 		config_stream << code_pointer << std::endl;
 	}
-	else if (code_pointer)
+	else
 	{
-		std::cout << "CodePointer in nonstatic mode will be ignored!\n";
+		if(code_pointer)
+			std::cout << "CodePointers will be ignored in dynamic and disassembler modes!\n"; 
+		config_stream << optlevel << std::endl;
 	}
+
 	// (Done) Resolving optimzation level
 
 	//Resolving Debug level
@@ -115,17 +118,20 @@ std::string ParseCLIConfig(int argc, char **argv)
 		else{
 			if(normalflag) verbosity = "normal"; 
 			else if(verboseflag) verbosity = "verbose";
+			else if(quietflag) verbosity = "quiet";
 		}
 	}
 	config_stream << verbosity << std::endl;
 	//(Done) Resolving Debug level
 
-
 	//Passing the rest of arguments to target process
 	std::vector<std::string> target_vector = app.remaining(false);
 
 	if(target_vector.size()==0)
-		RLBinUtils::RLBin_Error("File name of the target application is not provided. RL-Bin will exit! \n", __FILENAME__, __LINE__);
+	{
+		std::cout << "File name of the target application is not provided. RL-Bin will exit! \n";
+		exit(0);
+	}
 	else
 		RLBinUtils::CheckFileExists(target_vector[0].c_str(), "Target application cannot be found. RL-Bin will exit! \n");
 

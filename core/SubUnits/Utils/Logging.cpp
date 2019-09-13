@@ -10,6 +10,7 @@
 
 #include "../../include/SubUnits/Utils/defs.h"
 #include "../../include/SubUnits/Utils/RLBinUtils.h"
+#include "../../include/SubUnits/Config/Config.h"
 
 using namespace std;
 
@@ -27,6 +28,15 @@ FILE* RLBinUtils::CFGFile = 0;
 FILE* RLBinUtils::CFGBBFile = 0;
 FILE* RLBinUtils::CALLGRAPHFile = 0;
 FILE* RLBinUtils::StatFile = 0;
+
+int RLBinUtils::VerbosityLevel = 2;
+int RLBinUtils::Mode = 0;
+
+void RLBinUtils::SetVerbosityAndMode(int _v_level, int _mode)
+{
+    VerbosityLevel = _v_level;
+    Mode = _mode;
+}
 
 void RLBinUtils::RLBin_Multi(std::string str, LogType _log_type)
 {
@@ -102,38 +112,44 @@ void RLBinUtils::RLBin_Error(std::string errStr, std::string source_file, int so
 
 void RLBinUtils::RLBin_Log(std::string str, std::string source_file)
 {
-    if (!logFile)
+    LVL_QUIET
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_LOG_FILENAME + string(".txt");
-        logFile = fopen(fileName.c_str(),"a+");
-    }
-    if (logFile)
-    {
-        std::string tempStr= GetTime();
-        tempStr.append("\t");
-        tempStr.resize(20, ' ');        
-        tempStr.append(source_file);
-        tempStr.resize(40, ' ');        
-        tempStr.append("\t");
-        tempStr.append(str);
-        fprintf(logFile, "%s\n", tempStr.c_str());
-        fflush(logFile);
+        if (!logFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_LOG_FILENAME + string(".txt");
+            logFile = fopen(fileName.c_str(),"a+");
+        }
+        if (logFile)
+        {
+            std::string tempStr= GetTime();
+            tempStr.append("\t");
+            tempStr.resize(20, ' ');        
+            tempStr.append(source_file);
+            tempStr.resize(40, ' ');        
+            tempStr.append("\t");
+            tempStr.append(str);
+            fprintf(logFile, "%s\n", tempStr.c_str());
+            fflush(logFile);
+        }
     }
 }
 
 void RLBinUtils::RLBin_ModLog(std::string str)
 {
-    if (!modLogFile)
+    LVL_NORMAL
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_MODLOG_FILENAME + string(".txt");
-        modLogFile = fopen(fileName.c_str(),"a+");
-    }
-    if (modLogFile)
-    {
-        std::string tempStr= "";
-        tempStr.append(str);
-        fprintf(modLogFile, "%s\n", tempStr.c_str());
-        fflush(modLogFile);
+        if (!modLogFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_MODLOG_FILENAME + string(".txt");
+            modLogFile = fopen(fileName.c_str(),"a+");
+        }
+        if (modLogFile)
+        {
+            std::string tempStr= "";
+            tempStr.append(str);
+            fprintf(modLogFile, "%s\n", tempStr.c_str());
+            fflush(modLogFile);
+        }
     }
 }
 
@@ -171,71 +187,81 @@ void RLBinUtils::RLBin_LibCalls(std::string str)
 
 void RLBinUtils::RLBin_Debug(std::string str, std::string source_file, int source_file_line)
 {
-    if (!debugFile)
+    LVL_VERBOSE
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_DEBUG_FILENAME+ string(".txt");
-        debugFile = fopen(fileName.c_str(),"a+");
-    }
-    if (debugFile)
-    {
-        std::string tempStr;
-        tempStr.append(source_file);
-        tempStr.resize(30, ' ');        
-        tempStr.append(ConvertIntToString(source_file_line));
-        tempStr.resize(40, ' ');        
-        tempStr.append(str);
-        fprintf(debugFile, "%s\n", tempStr.c_str());
-        fflush(debugFile);
+        if (!debugFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_DEBUG_FILENAME+ string(".txt");
+            debugFile = fopen(fileName.c_str(),"a+");
+        }
+        if (debugFile)
+        {
+            std::string tempStr;
+            tempStr.append(source_file);
+            tempStr.resize(30, ' ');        
+            tempStr.append(ConvertIntToString(source_file_line));
+            tempStr.resize(40, ' ');        
+            tempStr.append(str);
+            fprintf(debugFile, "%s\n", tempStr.c_str());
+            fflush(debugFile);
+        }
     }
 }
 
 void RLBinUtils::RLBin_Static(std::string str)
 {
-    if (!StatFile)
+    if((Mode == 1)||(VerbosityLevel >=1))
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_STATIC_FILENAME + string(".txt");
-        StatFile = fopen(fileName.c_str(), "a+");
-    }
-    if (StatFile)
-    {
-        std::string tempStr;
-        tempStr.append(str);
-        fprintf(StatFile, "%s\n", tempStr.c_str());
-        fflush(StatFile);
+        if (!StatFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_STATIC_FILENAME + string(".txt");
+            StatFile = fopen(fileName.c_str(), "a+");
+        }
+        if (StatFile)
+        {
+            std::string tempStr;
+            tempStr.append(str);
+            fprintf(StatFile, "%s\n", tempStr.c_str());
+            fflush(StatFile);
+        }
     }
 }
 
 void RLBinUtils::RLBin_Tram(std::string str)
 {
-    #ifndef RELEASE
-    if (!tramFile)
+    LVL_VERBOSE
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_TRAM_FILENAME + string(".txt");
-        tramFile = fopen(fileName.c_str(), "a+");
+        if (!tramFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_TRAM_FILENAME + string(".txt");
+            tramFile = fopen(fileName.c_str(), "a+");
+        }
+        if (tramFile)
+        {
+            std::string tempStr;
+            tempStr.append(str);
+            fprintf(tramFile, "%s\n", tempStr.c_str());
+            fflush(tramFile);
+        }
     }
-    if (tramFile)
-    {
-        std::string tempStr;
-        tempStr.append(str);
-        fprintf(tramFile, "%s\n", tempStr.c_str());
-        fflush(tramFile);
-    }
-    #endif
 }
 
 void RLBinUtils::RLBin_Dis(std::string str)
 {
-    if (!disassemblyFile)
+    if((Mode == 3)||(VerbosityLevel >=1))
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_DIS_FILENAME + string(".txt");
-        disassemblyFile = fopen(fileName.c_str(), "a+");
-    }
-    if (disassemblyFile)
-    {
-        std::string tempStr;
-        tempStr.append(str);
-        fprintf(disassemblyFile, "%s", tempStr.c_str());
-        fflush(disassemblyFile);
+        if (!disassemblyFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_DIS_FILENAME + string(".txt");
+            disassemblyFile = fopen(fileName.c_str(), "a+");
+        }
+        if (disassemblyFile)
+        {
+            std::string tempStr;
+            tempStr.append(str);
+            fprintf(disassemblyFile, "%s", tempStr.c_str());
+            fflush(disassemblyFile);
+        }
     }
 }
 
@@ -297,32 +323,38 @@ void RLBinUtils::RLBin_CALLGRAPH(std::string str)
 
 void RLBinUtils::RLBin_OptStat(std::string str)
 {
-    if (!optStatFile)
-    {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_OPTSTAT_FILENAME + string(".txt");
-        optStatFile = fopen(fileName.c_str(), "a+");
-    }
-    if (optStatFile)
-    {
-        std::string tempStr;
-        tempStr.append(str);
-        fprintf(optStatFile, "%s\n", tempStr.c_str());
-        fflush(optStatFile);
+    LVL_NORMAL
+    {   
+        if (!optStatFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_OPTSTAT_FILENAME + string(".txt");
+            optStatFile = fopen(fileName.c_str(), "a+");
+        }
+        if (optStatFile)
+        {
+            std::string tempStr;
+            tempStr.append(str);
+            fprintf(optStatFile, "%s\n", tempStr.c_str());
+            fflush(optStatFile);
+        }
     }
 }
 
 void RLBinUtils::RLBin_Inst(std::string str)
 {
-    if (!instFile)
+    LVL_VERBOSE
     {
-        string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_INST_FILENAME + string(".txt");
-        instFile = fopen(fileName.c_str(), "a+");
-    }
-    if (instFile)
-    {
-        std::string tempStr;
-        tempStr.append(str);
-        fprintf(instFile, "%s\n", tempStr.c_str());
-        fflush(instFile);
+        if (!instFile)
+        {
+            string fileName = string(BASE_FOLDER) + ConvertIntToString(Analysis_Number) +  string("\\") + BASE_INST_FILENAME + string(".txt");
+            instFile = fopen(fileName.c_str(), "a+");
+        }
+        if (instFile)
+        {
+            std::string tempStr;
+            tempStr.append(str);
+            fprintf(instFile, "%s\n", tempStr.c_str());
+            fflush(instFile);
+        }
     }
 }

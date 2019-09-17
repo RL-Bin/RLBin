@@ -61,6 +61,9 @@ public:
 	/** @brief The map that contains backup of rewritten code */
 	std::unordered_map<ADDRESS, Trampoline> tramps_e9;
 
+	/** @brief The map that is used for redirection between ind cti and instrumentation */
+	std::unordered_map<ADDRESS,ADDRESS> redirect_map; 
+
 private:
 
 	/** @brief The single unique object of this class */
@@ -68,7 +71,6 @@ private:
 
 	/** @brief Prints all trampolines to the debug file */
 	void ListTrampolines();
-
 };
 
 #endif

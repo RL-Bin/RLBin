@@ -66,6 +66,7 @@ void CU::Finalize(void)
 	Disassembler::Get()->PrintDisassembly();
 	FAU::Get()->PrintCounters();
 	IMU::Get()->PrintRoutinesSize();
+	RLBinUtils::RLBin_Log(RLBinUtils::ConvertIntToString(TMU::Get()->redirect_map.size()),__FILENAME__);
 	return;
 }
 

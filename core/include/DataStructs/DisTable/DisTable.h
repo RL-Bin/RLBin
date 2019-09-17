@@ -62,7 +62,6 @@ public:
 	 */
 	ADDRESS GetOffset();
 
-
 private:
 	/** size of the disassembly table */
 	SIZE_TYPE size;

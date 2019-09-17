@@ -5,7 +5,7 @@
  * This source file contains implementaion of several utility functions which are
  * used to handle file operations and loading libraries and functions in a safe manner.
  */
-
+#include <iostream>
 #include "../../include/SubUnits/Utils/defs.h"
 #include "../../include/SubUnits/Utils/RLBinUtils.h"
 
@@ -53,6 +53,7 @@ void RLBinUtils::CheckFileExists(const char* fileName, const char* errStr)
 		fclose(pfile);
 	else
 	{
+		std::cout << "File not found : " << fileName << std::endl;
 		string tempStr = AppendStrings(3, errStr, "FileName not found -> Name: ",fileName);
 		RLBinUtils::RLBin_Error(tempStr, __FILENAME__, __LINE__);
 	}

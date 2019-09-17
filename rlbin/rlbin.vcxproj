@@ -124,6 +124,7 @@ del "$(OutDir)\$(ProjectName).lib"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile />
     </Link>
     <PostBuildEvent>
       <Command>del "$(OutDir)\$(ProjectName).iobj"

@@ -6,11 +6,11 @@
 #include <fstream>
 #include <string>
 
-#include "..\core\include\SubUnits\Utils\defs.h"
-#include "..\core\include\SubUnits\Utils\RLBinUtils.h"
+#include "..\..\core\include\SubUnits\Utils\defs.h"
+#include "..\..\core\include\SubUnits\Utils\RLBinUtils.h"
 
 #include "..\include\config\config.h"
-#include "..\core\include\CLI11\CLI11.hpp"
+#include "..\..\core\include\CLI11\CLI11.hpp"
 
 std::string ParseCLIConfig(int argc, char **argv)
 {

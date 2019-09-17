@@ -68,16 +68,19 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 	if(*(byte *)_address == 0xC3)
 	{
 		InsertTrampoline(_address);
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if((*(byte *)_address == 0xF2) && (*((byte *)_address+1) == 0xC3))
 	{
 		InsertTrampoline(_address);
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if(*(byte *)_address == 0xC2)
 	{
 		InsertTrampoline(_address);
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if((*(byte *)_address == 0xFF) && (*((byte *)_address+1) == 0x15))
@@ -116,16 +119,19 @@ void TMU::InsertCheckTrampoline(ADDRESS _address, ADDRESS _routine, PEXCEPTION_P
 	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)&0xF0) == 0xD0))
 	{
 		InsertTrampoline(_address);		
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)&0xF0) == 0x50))
 	{
 		InsertTrampoline(_address);		
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if((*(byte *)_address == 0x3E) && ((*((byte *)_address+1)) == 0xFF) && ((*((byte *)_address+2)&0xF0) == 0xE0))
 	{
 		InsertTrampoline(_address);		
+		redirect_map.insert({_address,_routine});
 	}
 
 	else if((*(byte *)_address == 0xFF) && ((*((byte *)_address+1)) == 0x24) && ((*((byte *)_address+2)&0xC7) == 0x85))

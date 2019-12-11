@@ -62,3 +62,78 @@ void FAU::PrintCounters(void)
 	RLBinUtils::RLBin_OptStat("# of Exceptions Executed (Mishandled Check        ) : " + RLBinUtils::ConvertIntToString(count__handle_missed));
 	return;
 }
+
+// // function for pointer to table of functions
+// vector<int> FAU::Pointertotable_callback(ADDRESS _func_name ,PCONTEXT p)
+// {
+// 	std::vector<int> functions_list;
+// 	ADDRESS table_addr = *(_func_name - 4);
+// 	for (ADDRESS i= table_addr; i!=NULL; i-4)
+// 	{
+// 		functions_list.push_back(i)
+// 	}
+
+// 	return functions_list;
+// }
+
+// // function for table of pointers
+// vector<int> FAU::tableofpointer_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	std::vector<int> functions_list;
+// 	ADDRESS param1 = *(_func_name - 4);
+// 	ADDRESS param2 = *(_func_name - 8);
+
+// 	for( ADDRESS i = param1; i<param2;i+4)
+// 	{
+// 		if(i!=0)
+// 		{
+// 			functions_list.push_back(i);
+// 		}
+// 	}
+
+// 	return functions_list;
+// }
+
+// //function for pointer to a function
+// ADDRESS FAU::pointertofunc1_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	ADDRESS func = *(_func_name - 4);
+// 	return func;
+// }
+
+// //pointer to function passed as second parameter
+// ADDRESS FAU::pointertofunc2_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	ADDRESS func = *(_func_name - 8);
+// 	return func;
+// }
+
+// //pointer to function passed as third parameter
+// ADDRESS FAU::pointertofunc3_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	ADDRESS func = *(_func_name - 12);
+// 	return func;
+// }
+
+// //pointer to function passed as fourth parameter
+// ADDRESS FAU::pointertofunc4_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	ADDRESS func = *(_func_name - 16);
+// 	return func;
+// }
+
+// //function for pointer to function table and function
+// vector<int> FAU::pointertotableandfunction_callback(ADDRESS _func_name, PCONTEXT p)
+// {
+// 	std::vector<int> functions_list;
+// 	ADDRESS table_addr = *(_func_name-4);
+// 	ADDRESS func = *(_func_name-8);
+// 	functions_list.push_back(func)
+// 	for (ADDRESS i= table_addr; i!=NULL; i-4)
+// 	{
+// 		functions_list.push_back(i)
+// 	}
+
+	
+// 	return functions_list;
+// }

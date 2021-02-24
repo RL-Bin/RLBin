@@ -120,7 +120,7 @@ Please follow the coding convention in [`Coding Convention`](./scripts/CodingCon
 
 ## Authors
 
-* **Amir Majlesi Kupaei** - [LinkedIn](https://www.linkedin.com/in/amir-majlesi-kupaei/) - [mailto]([mailto:amir.majlesi.kupaei@gmail.com)
+* **Amir Majlesi Kupaei** - [LinkedIn](https://www.linkedin.com/in/amir-majlesi-kupaei/) - [mailto](mailto:amir.majlesi.kupaei@gmail.com)
 * **Danny Kim** - [LinkedIn](https://www.linkedin.com/in/dannykim32)
 * **Rajeev Barua** - [LinkedIn](https://www.linkedin.com/in/rajeev-barua)
 

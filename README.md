@@ -17,7 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 First, you need to clone the repository to your system.
 
 ```
-git clone https://github.com/amirmajlesikupaei/RLBin.git
+git clone https://github.com/RL-Bin/RLBin.git
 ```
 
 Then you need to install the prerequisites on your system.

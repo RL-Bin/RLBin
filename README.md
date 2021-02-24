@@ -127,6 +127,14 @@ Please follow the coding convention in [`Coding Convention`](./scripts/CodingCon
 
 This project is licensed under the The BSD 3-Clause License - see the [LICENSE](LICENSE) file for details
 
+## Publications
+
+* Majlesi-Kupaei, Amir, Danny Kim, and Rajeev Barua. “RL-BIN++: Overcoming Binary Instrumentation Challenges in Presence of Obfuscation Techniques and Problematic Features.” Proceedings of the 2021 10th International Conference on Software and Computer Applications. 2021. 
+
+* Majlesi-Kupaei, Amir, Danny Kim, Kapil Anand, Khaled ElWazeer, Aparna Kotha, and Rajeev Barua. “A Platform For Robust Low-Overhead Binary Instrumentation.” ICSEA 2019. (Best Paper Award)
+
+* Majlesi-Kupaei, Amir, Danny Kim, Kapil Anand, Khaled ElWazeer, and Rajeev Barua. "RL-Bin, robust low-overhead binary rewriter." In Proceedings of the 2017 Workshop on Forming an Ecosystem Around Software Transformation, pp. 17-22. ACM, 2017.
+
 ## Acknowledgments
 
 * Thanks to Kapil Anand, Khaled Elwazeer, and Aparna Kopta. RL-Bin is partially based on RapidWrite developed by the previous team in University of Maryland, College Park. 

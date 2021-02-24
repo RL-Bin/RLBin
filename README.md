@@ -1,4 +1,4 @@
-<img align="right" width="164" height="164" src="http://i65.tinypic.com/33uflmh_th.jpg">
+<img align="right" width="164" height="164" src="https://i.ibb.co/yFXthX8/Logo.jpg">
 
 #    RL-Bin
 
@@ -120,11 +120,12 @@ Please follow the coding convention in [`Coding Convention`](./scripts/CodingCon
 ## Authors
 
 * **Amir Majlesi Kupaei** - [LinkedIn](https://www.linkedin.com/in/amir-majlesi-kupaei/)
-* **Sai Prabhath Ravi Teja Devisetty**
+* **Danny Kim** - [LinkedIn](https://www.linkedin.com/in/dannykim32)
+* **Rajeev Barua** - [LinkedIn](https://www.linkedin.com/in/rajeev-barua)
 
 ## License
 
-This project is licensed under the Creative Commons 4.0 Attribution-NonCommercial-NoDerivatives - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the The BSD 3-Clause License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 

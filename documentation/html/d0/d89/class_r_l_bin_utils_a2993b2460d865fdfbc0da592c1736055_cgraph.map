@@ -1,0 +1,4 @@
+<map id="RLBinUtils::GetPtrToLibFuncIfLoaded" name="RLBinUtils::GetPtrToLibFuncIfLoaded">
+<area shape="rect" id="node1" title="Gets a pointer to the given function in a library that is loaded." alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#aef0e553853f096207c20d3ba14b04f28" title="Gets a pointer to a given function inside the dynamic library." alt="" coords="243,13,425,39"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Modules::AddSection" name="Modules::AddSection">
+<area shape="rect" id="node1" title="adds the given section to the corresponding module" alt="" coords="5,35,152,61"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="205,5,366,32"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a6c4556dc486df5a0a71c30eab99db293" title="A utility function for converting a hex to string." alt="" coords="200,57,371,98"/>
+</map>

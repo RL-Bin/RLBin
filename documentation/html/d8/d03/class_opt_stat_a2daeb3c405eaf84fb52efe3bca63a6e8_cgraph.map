@@ -1,0 +1,4 @@
+<map id="OptStat::Create" name="OptStat::Create">
+<area shape="rect" id="node1" title="Creates the single instance of the OptStat class." alt="" coords="5,5,119,32"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#a8f4fee562828f68a6429dd46cce30ea3" title="An API to log the error info for RLBin." alt="" coords="167,5,328,32"/>
+</map>

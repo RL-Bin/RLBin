@@ -1,0 +1,5 @@
+<map id="Modules::PrintInfoLogFile" name="Modules::PrintInfoLogFile">
+<area shape="rect" id="node1" title="Prints the information of the main file to the log file." alt="" coords="5,35,173,61"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#acbcaebf75e308dd6d421a529728626da" title="An utility function that prints log file for RLBin." alt="" coords="229,5,384,32"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a6c4556dc486df5a0a71c30eab99db293" title="A utility function for converting a hex to string." alt="" coords="221,57,392,98"/>
+</map>

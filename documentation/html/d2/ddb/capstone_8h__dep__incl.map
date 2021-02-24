@@ -1,0 +1,12 @@
+<map id="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/Capstone/capstone.h" name="C:/Users/Amir/Desktop/RLBin&#45;2.0/core/include/Capstone/capstone.h">
+<area shape="rect" id="node1" title=" " alt="" coords="632,5,789,61"/>
+<area shape="rect" id="node2" href="$d5/d93/_disassembler_8h.html" title="This file contains Disassembler class and functions which are responsible for disassembling the code." alt="" coords="561,213,724,284"/>
+<area shape="rect" id="node9" href="$d9/d5c/_inst_8h.html" title="This file contains Inst class for keeping information of a single instruction." alt="" coords="681,109,879,165"/>
+<area shape="rect" id="node3" href="$d9/df6/_c_u_8cpp.html" title="Defines the body of functions in CU class." alt="" coords="5,339,187,381"/>
+<area shape="rect" id="node4" href="$d8/d3f/_stat_unit_8cpp.html" title="Defines the body of functions in StatUnit class." alt="" coords="211,332,373,388"/>
+<area shape="rect" id="node5" href="$d5/d0e/_address_translator_8cpp.html" title="Implementation of the functions in Disassembler class which dynamically calculate the address of inst..." alt="" coords="398,332,637,388"/>
+<area shape="rect" id="node6" href="$d8/d69/_disassembler_8cpp.html" title="Defines the body of functions in Disassembler class." alt="" coords="661,332,875,388"/>
+<area shape="rect" id="node7" href="$df/d89/_opcode_8cpp.html" title="Implements some of the functions in Disassembler class that disect the instructions." alt="" coords="899,332,1077,388"/>
+<area shape="rect" id="node8" href="$d0/dad/_utilty_8cpp.html" title="Implementation of the utility functions in Disassembler class." alt="" coords="1102,332,1271,388"/>
+<area shape="rect" id="node10" href="$d6/dac/_inst_8cpp.html" title="Implements the main functions of the Inst class." alt="" coords="749,221,918,277"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Disassembler::IsInstDirectCTI" name="Disassembler::IsInstDirectCTI">
+<area shape="rect" id="node1" title="Checks if the instruction is direct CTI." alt="" coords="5,31,199,57"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#ad2f743daffe24bb0441725b3e66bf5b4" title="Checks if the instruction is direct jump." alt="" coords="247,5,452,32"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#a13901953894390a98717928944a59c15" title="Checks if the instruction is direct call." alt="" coords="251,56,447,83"/>
+</map>

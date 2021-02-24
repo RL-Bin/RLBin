@@ -1,0 +1,6 @@
+<map id="Disassembler::Get" name="Disassembler::Get">
+<area shape="rect" id="node1" title="gets the single instance of the Disassembler class" alt="" coords="488,24,619,50"/>
+<area shape="rect" id="node2" href="$d1/d5c/class_stat_unit.html#a5558bb021f1f6dc98ce772fac27402da" title="Disassmeble the binary using recursive traversal." alt="" coords="5,28,213,54"/>
+<area shape="rect" id="node3" href="$d1/d5c/class_stat_unit.html#a39d939ba7968ab7e5ab20c2845657c7b" title="Prints the disassembly to file." alt="" coords="261,24,440,50"/>
+<area shape="rect" id="node4" href="$d1/d5c/class_stat_unit.html#a5e3dc43c69e02be313363892796424c9" title="checks if an instruction is valid and the target is within the code section" alt="" coords="271,75,431,116"/>
+</map>

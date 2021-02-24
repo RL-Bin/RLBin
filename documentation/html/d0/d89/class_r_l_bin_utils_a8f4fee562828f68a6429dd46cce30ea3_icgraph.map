@@ -1,0 +1,48 @@
+<map id="RLBinUtils::RLBin_Error" name="RLBinUtils::RLBin_Error">
+<area shape="rect" id="node1" title="An API to log the error info for RLBin." alt="" coords="501,1120,663,1147"/>
+<area shape="rect" id="node2" href="$df/d02/class_c_u.html#a36ce332b9e28e0d8794ba573bbbfd21d" title="Creates the single instance of the CU class." alt="" coords="317,5,403,32"/>
+<area shape="rect" id="node3" href="$df/d02/class_c_u.html#a9d4f7580dc2c49c69f6b5077be71f116" title="gets the single instance of the CU class" alt="" coords="325,56,395,83"/>
+<area shape="rect" id="node4" href="$d5/d12/_main_8cpp.html#a0250275f503dababde4c6e7eaae422a7" title=" " alt="" coords="281,107,439,133"/>
+<area shape="rect" id="node5" href="$db/db3/class_call_graph.html#a4d9ff9f34654b56b9d98b1ef60bdc8ee" title="Creates the single instance of the CallGraph class." alt="" coords="297,157,423,184"/>
+<area shape="rect" id="node6" href="$db/db3/class_call_graph.html#a8635c92f90642958ce3d6768463884a0" title="gets the single instance of the CallGraph class" alt="" coords="306,208,414,235"/>
+<area shape="rect" id="node7" href="$df/d9a/class_dis_table.html#a3c70e452f5963a08127dba14b608abd9" title="Creates the one and only instance of DisTable class." alt="" coords="301,259,419,285"/>
+<area shape="rect" id="node8" href="$df/d9a/class_dis_table.html#a1f66113d8264125b2e9bd06cfdb201ef" title="Gets the one and only instance of DisTable class." alt="" coords="309,309,411,336"/>
+<area shape="rect" id="node9" href="$df/d9a/class_dis_table.html#a8959aede6a162c7cc557ec3b03b9cbe1" title="sets all the table entries to undiscovered" alt="" coords="297,360,423,387"/>
+<area shape="rect" id="node10" href="$d0/d4d/class_funcs.html#a9c5431e6065542776f3dcb177ae4f1de" title="Creates the single instance of the Funcs class." alt="" coords="308,411,412,437"/>
+<area shape="rect" id="node11" href="$d0/d4d/class_funcs.html#a8592e0399683fb1e928611f72b48a74e" title="gets the single instance of the Funcs class" alt="" coords="317,461,403,488"/>
+<area shape="rect" id="node12" href="$d6/db6/class_f_a_u.html#ae6e6e339b6e4563494a8393facdc6a02" title="Creates the single instance of the FAU class." alt="" coords="313,512,407,539"/>
+<area shape="rect" id="node13" href="$d6/db6/class_f_a_u.html#a44fac6f1dbb27aad767f36b0ebfc7d39" title="gets the single instance of the FAU class" alt="" coords="321,563,399,589"/>
+<area shape="rect" id="node14" href="$dd/d3c/class_i_m_u.html#a9d26253b00099ebc5a9df760b763ce45" title="Creates the single instance of the IMU class." alt="" coords="315,613,405,640"/>
+<area shape="rect" id="node15" href="$dd/d3c/class_i_m_u.html#a56f429993158ebef2dfd2041bc903186" title="gets the single instance of the IMU class" alt="" coords="323,664,397,691"/>
+<area shape="rect" id="node16" href="$d1/d5c/class_stat_unit.html#a40d48a851360c30bc19ea60a0963e61e" title="Creates the single instance of the StatUnit class." alt="" coords="303,715,417,741"/>
+<area shape="rect" id="node17" href="$d1/d5c/class_stat_unit.html#a3eb5f59fe9b8cc03a4d6e3bb978f3584" title="gets the single instance of the StatUnit class" alt="" coords="311,765,409,792"/>
+<area shape="rect" id="node18" href="$dd/d34/class_config.html#af04cf773de6731305144f5f71f8922e7" title="Creates the one and only instance of Config class." alt="" coords="308,816,412,843"/>
+<area shape="rect" id="node19" href="$dd/d34/class_config.html#a1c2bbbe279ba2e753f71b9c5d1d164d9" title="Gets the one and only instance of StaticAnalyzer class." alt="" coords="317,867,403,893"/>
+<area shape="rect" id="node20" href="$dd/d34/class_config.html#a33a58007b3bab599454a992e547edb6b" title="Checks if a feature is enabled." alt="" coords="278,917,442,944"/>
+<area shape="rect" id="node21" href="$dd/d0c/class_disassembler.html#a1758c6b243816cab2138f6a3d51fc559" title="Dynamically calculate the target of direct CTI." alt="" coords="7,1088,217,1115"/>
+<area shape="rect" id="node22" href="$dd/d0c/class_disassembler.html#adaa2c92814cdbee4db3404aabcaa2528" title="Dynamically calculate the target of indirect CTI." alt="" coords="26,1011,198,1053"/>
+<area shape="rect" id="node23" href="$dd/d0c/class_disassembler.html#aae365d0ec96b44055b8575be196dd37b" title="Creates the single instance of the Disassembler class." alt="" coords="287,1373,433,1400"/>
+<area shape="rect" id="node24" href="$dd/d0c/class_disassembler.html#a8e5eed89c11a33aef09aefad013e580b" title="gets the single instance of the Disassembler class" alt="" coords="295,1424,425,1451"/>
+<area shape="rect" id="node25" href="$dd/d0c/class_disassembler.html#ad2f743daffe24bb0441725b3e66bf5b4" title="Checks if the instruction is direct jump." alt="" coords="9,1160,215,1187"/>
+<area shape="rect" id="node26" href="$dd/d0c/class_disassembler.html#a13901953894390a98717928944a59c15" title="Checks if the instruction is direct call." alt="" coords="14,1216,210,1243"/>
+<area shape="rect" id="node27" href="$dd/d0c/class_disassembler.html#a0478c162788217d8d5025f7794a046fe" title="Checks if the instruction is indirect jump." alt="" coords="5,1269,219,1296"/>
+<area shape="rect" id="node28" href="$dd/d0c/class_disassembler.html#a44debc72ddab60a2b85f399386d06d57" title="Checks if the instruction is indirect call." alt="" coords="10,1321,214,1348"/>
+<area shape="rect" id="node29" href="$dd/d0c/class_disassembler.html#a57fb18ebdd3b5fb2f402e4dd67c991f5" title="Gets the dynamic value of the register given in the context." alt="" coords="267,968,453,995"/>
+<area shape="rect" id="node30" href="$dd/d0c/class_disassembler.html#ad51c892ddacb5e65af016d454595f9f4" title="The function that gets the information of a single instruction from Capstone library." alt="" coords="273,1171,447,1197"/>
+<area shape="rect" id="node31" href="$dd/d0c/class_disassembler.html#a36ba0ff281f30f1eb0bc25d11441ecfa" title="The function checks whether there is an instruction in a given address using Capstone library." alt="" coords="275,1475,445,1501"/>
+<area shape="rect" id="node32" href="$d4/dc8/class_modules.html#a0fd2a6b8a1d42f93f51ad5542bc44f35" title="Creates the one and only instance of ModuleHs class." alt="" coords="301,1525,419,1552"/>
+<area shape="rect" id="node33" href="$d4/dc8/class_modules.html#aea4c2cc2fd5792acf8bbc759ccaee52e" title="Gets the one and only instance of Modules class." alt="" coords="310,1576,410,1603"/>
+<area shape="rect" id="node34" href="$d4/dc8/class_modules.html#adbc76c5462ddc0a149f9ea7b6033b3fb" title="initializes Modules module" alt="" coords="297,1627,423,1653"/>
+<area shape="rect" id="node35" href="$d4/dc8/class_modules.html#afa908e76054c30f4fe054bf41145eb71" title="adds exported function to a module" alt="" coords="283,1677,437,1704"/>
+<area shape="rect" id="node36" href="$d4/dc8/class_modules.html#ad44f53527a65f6fdbbb2b81bb430b7d9" title="adds the given section to the corresponding module" alt="" coords="287,1728,433,1755"/>
+<area shape="rect" id="node37" href="$d8/d03/class_opt_stat.html#a2daeb3c405eaf84fb52efe3bca63a6e8" title="Creates the single instance of the OptStat class." alt="" coords="303,1779,417,1805"/>
+<area shape="rect" id="node38" href="$d8/d03/class_opt_stat.html#a87ad931f971ab1142a4fcf6c782b7b20" title="gets the single instance of the OptStat class" alt="" coords="312,1829,408,1856"/>
+<area shape="rect" id="node39" href="$d8/d08/class_timer.html#a83f9003db23e504e9514055923d72b53" title="Creates the single instance of the Timer class." alt="" coords="310,1931,410,1957"/>
+<area shape="rect" id="node40" href="$df/d28/rlbin_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="The entry point for monitoring process." alt="" coords="87,1981,137,2008"/>
+<area shape="rect" id="node41" href="$d8/d08/class_timer.html#ab1e5d80c0ee871e54178611e1a7888e1" title="gets the single instance of the Timer class" alt="" coords="319,1981,401,2008"/>
+<area shape="rect" id="node42" href="$d8/d08/class_timer.html#acff72ff8020118ec73061297e8c6b3f1" title="This function creates and initialize a new timer." alt="" coords="290,2032,430,2059"/>
+<area shape="rect" id="node43" href="$d0/d89/class_r_l_bin_utils.html#a0e6a10e7e9b8ffc55cf8904d2d09816c" title="Opens a file and checks for errors." alt="" coords="271,2133,449,2160"/>
+<area shape="rect" id="node44" href="$d0/d89/class_r_l_bin_utils.html#a2bf2e6383028d09a421aec4367d610eb" title="Checks if a given file exists." alt="" coords="267,2083,453,2109"/>
+<area shape="rect" id="node45" href="$db/d60/class_t_m_u.html#a0d6ffb4ed55daef070f87d159f32c537" title="Creates the single instance of the TMU class." alt="" coords="313,2184,407,2211"/>
+<area shape="rect" id="node46" href="$db/d60/class_t_m_u.html#aad1303017ed65949d40389bc59d228a9" title="gets the single instance of the TMU class" alt="" coords="321,2235,399,2261"/>
+</map>

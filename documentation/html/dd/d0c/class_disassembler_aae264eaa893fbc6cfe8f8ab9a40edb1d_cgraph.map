@@ -1,0 +1,4 @@
+<map id="Disassembler::IsInstRet" name="Disassembler::IsInstRet">
+<area shape="rect" id="node1" title="Checks if the instruction is return instruction." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#ad51c892ddacb5e65af016d454595f9f4" title="The function that gets the information of a single instruction from Capstone library." alt="" coords="213,5,388,32"/>
+</map>

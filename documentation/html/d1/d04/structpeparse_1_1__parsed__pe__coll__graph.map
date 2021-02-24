@@ -1,0 +1,10 @@
+<map id="peparse::_parsed_pe" name="peparse::_parsed_pe">
+<area shape="rect" id="node1" title=" " alt="" coords="376,363,519,389"/>
+<area shape="rect" id="node2" href="$d8/d5a/structpeparse_1_1__pe__header.html" title=" " alt="" coords="240,273,383,300"/>
+<area shape="rect" id="node3" href="$d3/dd9/structpeparse_1_1nt__header__32.html" title=" " alt="" coords="234,184,389,211"/>
+<area shape="rect" id="node4" href="$db/d40/structpeparse_1_1optional__header__32.html" title=" " alt="" coords="5,95,193,121"/>
+<area shape="rect" id="node5" href="$d8/dd6/structpeparse_1_1data__directory.html" title=" " alt="" coords="137,5,296,32"/>
+<area shape="rect" id="node7" href="$dd/d01/structpeparse_1_1optional__header__64.html" title=" " alt="" coords="217,95,405,121"/>
+<area shape="rect" id="node6" href="$df/d88/structpeparse_1_1file__header.html" title=" " alt="" coords="430,95,569,121"/>
+<area shape="rect" id="node8" href="$dc/dff/structpeparse_1_1__bounded__buffer.html" title=" " alt="" coords="407,273,578,300"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="RLBinUtils::RLBin_Multi" name="RLBinUtils::RLBin_Multi">
+<area shape="rect" id="node1" title="An API to log multiple tyoes of log info for RLBin." alt="" coords="251,56,412,83"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#a1a0c031f72f238deb5b8cc9f665009d1" title="Print the given instruction to the given log file." alt="" coords="25,5,183,32"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#ae3857bb929c4f4b36c5ec1eac49cd00e" title="Print the details of a given instruction to the given log file." alt="" coords="5,56,203,83"/>
+<area shape="rect" id="node4" href="$d8/d08/class_timer.html#addb28f30d8b8520ffbaf1f69d21c74ca" title="this function prints the average of the time intervals measured by given timer" alt="" coords="23,107,185,133"/>
+</map>

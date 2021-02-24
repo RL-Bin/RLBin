@@ -1,0 +1,6 @@
+<map id="Disassembler::GetRegFromModrm" name="Disassembler::GetRegFromModrm">
+<area shape="rect" id="node1" title="Gets the Reg value from Modrm bits." alt="" coords="267,64,449,105"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#adaa2c92814cdbee4db3404aabcaa2528" title="Dynamically calculate the target of indirect CTI." alt="" coords="26,5,198,47"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#a0478c162788217d8d5025f7794a046fe" title="Checks if the instruction is indirect jump." alt="" coords="5,71,219,98"/>
+<area shape="rect" id="node4" href="$dd/d0c/class_disassembler.html#a44debc72ddab60a2b85f399386d06d57" title="Checks if the instruction is indirect call." alt="" coords="10,122,214,149"/>
+</map>

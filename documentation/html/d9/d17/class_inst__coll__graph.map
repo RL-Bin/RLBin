@@ -1,0 +1,3 @@
+<map id="Inst" name="Inst">
+<area shape="rect" id="node1" title="This class will hold single instructions which will be used in our instrumentation routine or trap." alt="" coords="5,5,153,259"/>
+</map>

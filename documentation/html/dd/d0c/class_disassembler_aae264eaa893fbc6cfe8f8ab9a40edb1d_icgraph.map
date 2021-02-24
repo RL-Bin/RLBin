@@ -1,0 +1,5 @@
+<map id="Disassembler::IsInstRet" name="Disassembler::IsInstRet">
+<area shape="rect" id="node1" title="Checks if the instruction is return instruction." alt="" coords="255,42,415,69"/>
+<area shape="rect" id="node2" href="$dd/d0c/class_disassembler.html#adaa2c92814cdbee4db3404aabcaa2528" title="Dynamically calculate the target of indirect CTI." alt="" coords="20,5,192,47"/>
+<area shape="rect" id="node3" href="$dd/d0c/class_disassembler.html#a5cfe9776504141b0faa84d8126c1d8a7" title="Checks if the instruction is indirect CTI." alt="" coords="5,71,207,98"/>
+</map>

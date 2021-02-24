@@ -1,0 +1,3 @@
+dynamic
+1
+verbose

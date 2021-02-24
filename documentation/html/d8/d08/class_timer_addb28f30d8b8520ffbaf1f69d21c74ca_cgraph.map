@@ -1,0 +1,4 @@
+<map id="Timer::PrintAverageTime" name="Timer::PrintAverageTime">
+<area shape="rect" id="node1" title="this function prints the average of the time intervals measured by given timer" alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#a5a35064fb8deee8b99d76eeaaf2297e5" title="An API to log multiple tyoes of log info for RLBin." alt="" coords="216,5,377,32"/>
+</map>

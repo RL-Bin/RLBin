@@ -1,0 +1,7 @@
+<map id="StatUnit::AddDataRefs" name="StatUnit::AddDataRefs">
+<area shape="rect" id="node1" title="Add data references to the code segment as starting point of disassembly." alt="" coords="5,56,159,82"/>
+<area shape="rect" id="node2" href="$d4/dc8/class_modules.html#aea4c2cc2fd5792acf8bbc759ccaee52e" title="Gets the one and only instance of Modules class." alt="" coords="425,60,525,86"/>
+<area shape="rect" id="node3" href="$d4/dc8/class_modules.html#a1602f73505c143cc2e86adc5268daf23" title=" " alt="" coords="207,30,377,57"/>
+<area shape="rect" id="node4" href="$d1/d5c/class_stat_unit.html#af9603e7a35b69dfbe7583df8897a59b9" title="Checks to see if a given address is in a list." alt="" coords="225,81,359,108"/>
+<area shape="rect" id="node5" href="$d1/d5c/class_stat_unit.html#a5e3dc43c69e02be313363892796424c9" title="checks if an instruction is valid and the target is within the code section" alt="" coords="212,132,372,174"/>
+</map>

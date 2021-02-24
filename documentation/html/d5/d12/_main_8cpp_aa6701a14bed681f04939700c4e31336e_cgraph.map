@@ -1,0 +1,15 @@
+<map id="StartRLBin" name="StartRLBin">
+<area shape="rect" id="node1" title="This function initalizes core modules based on mode of operation." alt="" coords="5,290,91,317"/>
+<area shape="rect" id="node2" href="$d0/d89/class_r_l_bin_utils.html#acbcaebf75e308dd6d421a529728626da" title="An utility function that prints log file for RLBin." alt="" coords="349,189,504,215"/>
+<area shape="rect" id="node3" href="$d0/d89/class_r_l_bin_utils.html#a2282bb0962199aa5412769357e6feb9a" title="A utility function for converting an integer to string." alt="" coords="139,47,301,88"/>
+<area shape="rect" id="node4" href="$d5/d12/_main_8cpp.html#a0250275f503dababde4c6e7eaae422a7" title=" " alt="" coords="141,113,299,139"/>
+<area shape="rect" id="node5" href="$dd/d34/class_config.html#af04cf773de6731305144f5f71f8922e7" title="Creates the one and only instance of Config class." alt="" coords="168,163,272,190"/>
+<area shape="rect" id="node6" href="$dd/d34/class_config.html#a1c2bbbe279ba2e753f71b9c5d1d164d9" title="Gets the one and only instance of StaticAnalyzer class." alt="" coords="383,366,470,393"/>
+<area shape="rect" id="node7" href="$dd/d34/class_config.html#a808b13dfcda8fd8bf17aaac7d71e07ab" title=" " alt="" coords="163,214,277,241"/>
+<area shape="rect" id="node8" href="$d1/d5c/class_stat_unit.html#a40d48a851360c30bc19ea60a0963e61e" title="Creates the single instance of the StatUnit class." alt="" coords="163,265,277,291"/>
+<area shape="rect" id="node9" href="$d1/d5c/class_stat_unit.html#a3eb5f59fe9b8cc03a4d6e3bb978f3584" title="gets the single instance of the StatUnit class" alt="" coords="171,366,269,393"/>
+<area shape="rect" id="node10" href="$d1/d5c/class_stat_unit.html#a96165f11c7e122294d84ac369cfe06c2" title="runs the static disassmebler" alt="" coords="170,417,270,443"/>
+<area shape="rect" id="node11" href="$df/d02/class_c_u.html#a36ce332b9e28e0d8794ba573bbbfd21d" title="Creates the single instance of the CU class." alt="" coords="177,467,263,494"/>
+<area shape="rect" id="node12" href="$df/d02/class_c_u.html#a9d4f7580dc2c49c69f6b5077be71f116" title="gets the single instance of the CU class" alt="" coords="185,518,255,545"/>
+<area shape="rect" id="node13" href="$df/d02/class_c_u.html#a53c26d83f6c9a6e759ca4020b9e6a237" title="initializes all other modules" alt="" coords="173,569,267,595"/>
+</map>
